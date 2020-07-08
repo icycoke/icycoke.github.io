@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-trie-intro-and-application" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/08/trie-intro-and-application/" class="article-date">
+  <time datetime="2020-07-08T18:32:16.000Z" itemprop="datePublished">2020-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/08/trie-intro-and-application/">Trie字典树及其应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Trie概述"><a href="#Trie概述" class="headerlink" title="Trie概述"></a>Trie概述</h3><ul>
+<li><p>Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组</p>
+</li>
+<li><p>Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置</p>
+</li>
+<li><p>一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）</p>
+</li>
+<li><p>根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值</p>
+</li>
+<li><p>每个节点的所有子节点包含的字符串不相同</p>
+</li>
+<li><p>如向一个空字典树中插入”panda”，”pain”，”see”则得到如下图所示字典树</p>
+<p><img src="https://icycoke.github.io/2020/07/08/trie-intro-and-application/trie_example.png" alt="Trie字典树"></p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>在比较时，当前缀不匹配时不继续进行比较，最大的限度地减小了无谓的比较，可用于词频统计和大量字符串排序</li>
+<li>和哈希表相比<ul>
+<li>最坏情况下的时间复杂度比哈希表更好</li>
+<li>没有冲突，除非一个键对应多个值</li>
+<li>自带排序，使用中序遍历字典树可以得到排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>以空间换时间，在最坏情况下占大量空间</li>
+<li>长浮点数等类型数据会让树的高度变得很大，效率降低</li>
+</ul>
+</li>
+</ul>
+<h3 id="Trie应用场景示例"><a href="#Trie应用场景示例" class="headerlink" title="Trie应用场景示例"></a>Trie应用场景示例</h3><ol>
+<li><p>给定一个词典<code>dictionary</code>和一个字符串<code>sentence</code>，以<code>dictionary</code>中的词将<code>sentence</code>断句，返回<code>sentence</code>中不能以<code>dictionary</code>识别的词的字符数总和（<code>sentence</code>和<code>dictionary</code>中仅包含小写字母）</p>
+<ul>
+<li><p>示例</p>
+<ul>
+<li><p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;&#96;sentence &#x3D; &quot;jesslookedjustliketimherbrother&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出：</p>
+<p>7</p>
+</li>
+<li><p>解释：</p>
+<p>断句后为”<strong>jess</strong> looked just like <strong>tim</strong> her brother”，共7个未识别字符</p>
+</li>
+</ul>
+</li>
+<li><p>题解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">respace</span><span class="params">(String[] dictionary, String sentence)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sLength = sentence.length();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建字典树根节点</span></span><br><span class="line">        TrieNode root = <span class="keyword">new</span> TrieNode();</span><br><span class="line">        <span class="keyword">for</span> (String word : dictionary) &#123;</span><br><span class="line">            root.insert(word);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// dp[j]为以sentence中第1个字符到第j个字符组成的子串所有的最小的未识别字符数</span></span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[sLength + <span class="number">1</span>];</span><br><span class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 空字符串的最小未识别字符数为0</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; dp.length; j++) &#123;</span><br><span class="line">            dp[j] = dp[j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            TrieNode curNode = root;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = j; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = sentence.charAt(i - <span class="number">1</span>) - <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 如果当前前缀不匹配，则退出循环，避免无谓的比较</span></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 如果匹配至完整单词，则更新dp[j]</span></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num].isEnd) &#123;</span><br><span class="line">                    dp[j] = Math.min(dp[j], dp[i - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 如果当前最小未识别字符数为0，则退出循环，避免无谓的比较</span></span><br><span class="line">                <span class="keyword">if</span> (dp[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                curNode = curNode.nextNodes[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[sLength];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一个字典树节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 该节点的子节点集合</span></span><br><span class="line">        <span class="keyword">private</span> TrieNode[] nextNodes;</span><br><span class="line">        <span class="comment">// 该节点是否为叶子节点</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isEnd;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            nextNodes = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</span><br><span class="line">            isEnd = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将指定字符串倒序插入字典树中</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">            TrieNode curNode = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = s.charAt(i) - <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    curNode.nextNodes[num] = <span class="keyword">new</span> TrieNode();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                curNode = curNode.nextNodes[num];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            curNode.isEnd = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/08/trie-intro-and-application/" data-id="ckcdw94zp000na0tabjm97y29" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">算法与数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-concurrency-intro" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/03/java-concurrency-intro/" class="article-date">
+  <time datetime="2020-07-03T20:55:06.000Z" itemprop="datePublished">2020-07-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/03/java-concurrency-intro/">Java并发编程基础复习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="创建多线程程序"><a href="#创建多线程程序" class="headerlink" title="创建多线程程序"></a>创建多线程程序</h3><ul>
+<li>方法<ol>
+<li>继承<code>Thread</code>类</li>
+<li>实现<code>Runnable</code>接口（推荐）</li>
+</ol>
+</li>
+<li>通过实现<code>Runnable</code>接口创建多线程程序的优点：<ul>
+<li>避免了单继承的局限性</li>
+<li><strong>解耦</strong>：实现<code>Runnable</code>接口的方式，把设置线程任务和开启新线程进行了分离</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><ul>
+<li><p>当多个线程访问了共享数据时，会产生线程安全问题</p>
+</li>
+<li><p>Java引入<strong>线程同步</strong>机制处理线程安全问题</p>
+<ol>
+<li><p><strong>同步代码块</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(同步锁对象) &#123;</span><br><span class="line">	需要同步操作的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>同步方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	需要同步操作的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非静态方法的锁是实例对象本身（this）</li>
+<li>静态方法的锁是本类的class</li>
+</ul>
+</li>
+<li><p><strong>Lock锁</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lock l = ...;</span><br><span class="line">l.lock();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	需要同步操作的代码</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	l.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Lock</code>接口提供了比使用<code>synchronized</code>方法和语句可获得的更广泛的锁定操作</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><ul>
+<li>新建状态</li>
+<li>运行状态</li>
+<li>阻塞状态</li>
+<li>休眠状态</li>
+<li>永久等待状态</li>
+<li>死亡状态</li>
+</ul>
+<p><em><code>sleep()</code>和<code>wait()</code>的区别：前者保持对象锁，其他线程无法访问；后者释放对象锁，其他线程可以访问</em></p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
+<li><p>如果并发的线程数量很多，并且每个线程完成任务的时间很短，频繁创建线程会大大降低效率，因此需要线程池</p>
+</li>
+<li><p>流程：</p>
+<ul>
+<li>当程序初次启动时，创建多个线程，保存在一个容器中</li>
+<li>使用线程时从容器中取线程使用</li>
+<li>线程使用完毕后，把线程归还给线程池</li>
+</ul>
+</li>
+<li><p>线程池的优点</p>
+<ul>
+<li>降低资源消耗。每个线程都可被重复利用</li>
+<li>提高响应速度。任务到达时，不需要等待线程创建</li>
+<li>提高线程的可管理性。可根据系统的承受能力，调整线程池中工作线程的数量</li>
+</ul>
+</li>
+<li><p>JDK1.5之后，内置线程池工厂类<code>Executors</code>，但推荐手动创建线程池。使用该工厂类创建线程池可能会因为允许的请求队列长度或创建线程数量太大而导致内存溢出</p>
+</li>
+<li><p>通过<code>ThreadPoolExecutor</code>手动创建线程池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates a new &#123;<span class="doctag">@code</span> ThreadPoolExecutor&#125; with the given initial</span></span><br><span class="line"><span class="comment"> * parameters and default thread factory and rejected execution handler.</span></span><br><span class="line"><span class="comment"> * It may be more convenient to use one of the &#123;<span class="doctag">@link</span> Executors&#125; factory</span></span><br><span class="line"><span class="comment"> * methods instead of this general purpose constructor.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> corePoolSize the number of threads to keep in the pool, even</span></span><br><span class="line"><span class="comment"> *        if they are idle, unless &#123;<span class="doctag">@code</span> allowCoreThreadTimeOut&#125; is set</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> maximumPoolSize the maximum number of threads to allow in the</span></span><br><span class="line"><span class="comment"> *        pool</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> keepAliveTime when the number of threads is greater than</span></span><br><span class="line"><span class="comment"> *        the core, this is the maximum time that excess idle threads</span></span><br><span class="line"><span class="comment"> *        will wait for new tasks before terminating.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> unit the time unit for the &#123;<span class="doctag">@code</span> keepAliveTime&#125; argument</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> workQueue the queue to use for holding tasks before they are</span></span><br><span class="line"><span class="comment"> *        executed.  This queue will hold only the &#123;<span class="doctag">@code</span> Runnable&#125;</span></span><br><span class="line"><span class="comment"> *        tasks submitted by the &#123;<span class="doctag">@code</span> execute&#125; method.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IllegalArgumentException if one of the following holds:&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> corePoolSize &lt; 0&#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> keepAliveTime &lt; 0&#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> maximumPoolSize &lt;= 0&#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> maximumPoolSize &lt; corePoolSize&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if &#123;<span class="doctag">@code</span> workQueue&#125; is null</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">						<span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">						<span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">						TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">						BlockingQueue&lt;Runnable&gt; workQueue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,</span><br><span class="line">             Executors.defaultThreadFactory(), defaultHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>corePoolSize</code>是线程池维护线程的最少数量，如果任务添加时，线程池中的数量小于该数值，则创建新的线程来处理该任务</li>
+<li><code>maximumPoolSize</code>是线程池维护线程的最大数量</li>
+<li><code>keepAliveTime</code>是线程池维护线程所允许的空闲时间</li>
+<li><code>unit</code>是像城池维护线程所允许的空闲时间的单位</li>
+<li><code>workQueue</code>是线程池所使用的缓冲队列</li>
+<li><code>handler</code>是线程池对拒绝任务的处理策略</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/03/java-concurrency-intro/" data-id="ckcdw94za0008a0taeijzacyw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-markdown-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/02/markdown-notes/" class="article-date">
+  <time datetime="2020-07-02T21:55:35.000Z" itemprop="datePublished">2020-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/02/markdown-notes/">Markdown使用笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="图片插入"><a href="#图片插入" class="headerlink" title="图片插入"></a>图片插入</h3><ul>
+<li><code>![图片名称]{路径}</code></li>
+<li><code>&lt;img src=&quot;路径&quot; /&gt;</code></li>
+</ul>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><ul>
+<li><p>使用<code>&lt;table&gt;&lt;/table&gt;</code>标签，用CSS控制样式</p>
+</li>
+<li><p>例如：</p>
+<p><img src="https://icycoke.github.io/2020/07/02/markdown-notes/table_code.png" alt="示例表格代码"></p>
+<p>将显示为：</p>
+<table>
+    <tr>
+        <th style="vertical-align:middle; text-align:center">事件</th>
+        <th style="vertical-align:middle; text-align:center">发送方动作</th>
+    </tr>
+    <tr>
+        <td rowspan="2" style="vertical-align:middle; text-align:center">从应用层收到数据</td>
+        <td align="center">创建序列号是第一个字节编号的Segment</td>
+    </tr>
+    <tr>
+        <td align="center">设置超时时间，开启计时器</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="vertical-align:middle; text-align:center">超时</td>
+        <td align="center">重传引起超时的Segment（单个）</td>
+    </tr>
+    <tr>
+        <td align="center">重启定时器</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle; text-align:center">收到ACK</td>
+        <td style="vertical-align:middle; text-align:center">如果确认此前未确认的Segment：<br/>&nbsp&nbsp&nbsp&nbsp 1.更新SendBase<br/>&nbsp&nbsp&nbsp&nbsp 2.如果窗口中还有违背确认的分组，重新启动定时器</td>
+  </tr>
+</table>
+
+</li>
+</ul>
+<h3 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h3><ul>
+<li><p>在md文件头部加入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>借助MathJax引擎在Markdown中写数学公式</p>
+</li>
+<li><p>与在Latex中写数学公式不同的是，Markdown中<code>\</code>是转义字符，因此输入行内公式时应使用<code>\\表达式\\</code>，输入行间公式时应使用<code>$$表达式$$</code></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/02/markdown-notes/" data-id="ckcdw94zf000da0ta5tj2hw8c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-transport-layer-tcp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/27/transport-layer-tcp/" class="article-date">
+  <time datetime="2020-06-27T19:42:37.000Z" itemprop="datePublished">2020-06-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/27/transport-layer-tcp/">运输层：TCP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<h3 id="可靠数据传输原理"><a href="#可靠数据传输原理" class="headerlink" title="可靠数据传输原理"></a>可靠数据传输原理</h3><ul>
+<li><p>构造可靠数据传输协议</p>
+<ol>
+<li><p>经完全可靠信道的可靠数据传输：rdt1.0</p>
+<ul>
+<li><p>底层信道是完全可靠的</p>
+</li>
+<li><p>发送方和接收方的状态机</p>
+<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt1.0_sender.png" alt="rdt1.0发送方状态机"></p>
+<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt1.0_receiver.png" alt="rdt1.0接收方状态机"></p>
+</li>
+</ul>
+</li>
+<li><p>经具有比特差错信道的可靠数据传输：rdt2.0，rdt2.1，rdt2.2</p>
+<ol>
+<li><p>rdt2.0</p>
+<ul>
+<li><p>底层信道中的分组可能受损</p>
+</li>
+<li><p>重传机制的可靠数据传输协议称为<strong>自动重传请求</strong>（Automatic Repeat reQuest, ARQ）<strong>协议</strong></p>
+</li>
+<li><p>ARP协议中需要另外三种协议功能来处理存在比特差错的情况：</p>
+<ol>
+<li><strong>差错检测</strong></li>
+<li><em>接收方反馈*</em>，包括<strong>肯定确认</strong>（ACK）与<strong>否定确认</strong>（NAK）**</li>
+<li>重传**</li>
+</ol>
+</li>
+<li><p>发送方和接收方的状态机</p>
+<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.0_sender.png" alt="rdt2.0发送方状态机"></p>
+<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.0_receiver.png" alt="rdt2.0接收方状态机"></p>
+</li>
+<li><p>在发送方处于等待ACK或NAK的状态时，它不能从上层获得更多数据，因此在发送方确信接收方已正确接受当前分组前，发送方将不会发送一块新数据，这种协议被称为<strong>停等</strong>（stop-and-wait）协议</p>
+</li>
+</ul>
+</li>
+<li><p>rdt2.1</p>
+<ul>
+<li><p>为了处理ACK或NAK分组受损的情况，发送方对其数据分组编号，即将发送数据分组的<strong>序号</strong>放在该字段</p>
+</li>
+<li><p>接收方需要检查序号确定收到的分组是否是一次重传</p>
+</li>
+<li><p>发送方和接收方的状态机</p>
+<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.1_sender.png" alt="rdt2.1发送方状态机"></p>
+<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.1_receiver.png" alt="rdt2.1接收方状态机"></p>
+</li>
+</ul>
+</li>
+<li><p>rdt2.2</p>
+<ul>
+<li>接收方发送上一个正确接收的分组的ACK来代替NAK</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>经具有比特差错的丢包信道的可靠数据传输：rdt3.0</p>
+<ul>
+<li><p>底层信道除了比特受损外，还可能丢包</p>
+</li>
+<li><p>为了实现基于时间的重传机制，设定一个<strong>倒计数定时器</strong>，超时则重发</p>
+</li>
+<li><p>由于分组序号在0和1之间交替，因此rdt3.0被称为<strong>比特交替协议</strong></p>
+</li>
+<li><p>rdt3.0发送方的状态机</p>
+<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt3.0_sender.png" alt="rdt3.0发送方状态机"></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>流水线可靠数据传输协议</p>
+<ul>
+<li>rdt是一个停等协议，因此其性能并不理想</li>
+<li>流水线可靠数据传输协议不以停等方式运行，允许发送方发送多个分组而无须等待确认</li>
+<li>必须增加序号范围</li>
+<li>协议的发送方和接收方需要缓存多个分组</li>
+<li>需要解决流水线的差错恢复问题<ul>
+<li><strong>回退N步</strong>（Go-Back-N，GBN）<ul>
+<li>限制在流水线中未确认的分组数不能超过最大允许数N</li>
+<li>因为违背确认的分组的许可序号范围可以被看成是一个在序号范围内长度为N，N也被称为<strong>窗口长度</strong>，GBN协议也被称为<strong>滑动窗口协议</strong></li>
+<li>接收方只需要维护下一个按序接受的分组的序号</li>
+</ul>
+</li>
+<li><strong>选择重传</strong><ul>
+<li>单个分组的差错就会引起GBN重传大量分组，因此需要对重传分组进行选择</li>
+<li>接收方将确认一个正确接受的分组而不管其是否按序，失序的分组将被缓存直到所有丢失分组都被收到为止</li>
+<li><strong><em>窗口长度必须小于或等于序号空间大小的一半</em></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP（Transmission-Control-Protocol）概述"><a href="#TCP（Transmission-Control-Protocol）概述" class="headerlink" title="TCP（Transmission Control Protocol）概述"></a>TCP（Transmission Control Protocol）概述</h3><ul>
+<li><p>TCP是<strong>面向连接的</strong>（connection-oriented），是<strong>点对点的</strong></p>
+</li>
+<li><p>TCP提供<strong>全双工服务</strong></p>
+</li>
+<li><p>TCP连接建立的<strong>三次握手</strong></p>
+<ol>
+<li>客户发送TCP报文，请求建立连接（不承载应用层数据）</li>
+<li>服务器返回TCP报文，同意创建连接（不承载应用层数据）</li>
+<li>客户端返回TCP报文，确认收到同意连接的信号<strong>（可承载应用层数据）</strong></li>
+</ol>
+<ul>
+<li><p>作用：</p>
+<ul>
+<li>防止服务器端开启无用链接</li>
+<li>防止已失效的连接请求报文突然到达</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>必须为每个请求的对象建立和维护一个全新的连接</li>
+<li>每个对象经受两倍往返时间（RTT）的交付时延</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>传输流程：</p>
+<ol>
+<li>客户进程通过socket传递数据流</li>
+<li>TCP将数据引导到<strong>发送缓存</strong></li>
+<li>TCP不时地从发送缓存里取出数据传递到网络层</li>
+<li>数据被传输到<strong>接收缓存</strong></li>
+<li>服务器进程通过socket读取接收缓存中的数据</li>
+</ol>
+<ul>
+<li>TCP可从缓存中取出并放入报文段的数据数量受限于<strong>最大报文段长度</strong>（Maximum Segment Size, MSS），MSS指在报文段里应用层数据的最大长度，<strong><em>而不是指包括首部的TCP报文段的最大长度</em></strong></li>
+<li>MSS通常根据最初确定的由本地发送主机发送到最大链路层帧长度，即<strong>最大传输单元</strong>（Maximum Transmission Unit, MTU）来设置</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP报文"><a href="#TCP报文" class="headerlink" title="TCP报文"></a>TCP报文</h3><ul>
+<li><p>TCP报文段结构</p>
+<table>
+    <tr>
+        <td align="center" colspan="3">源端口号</td>
+        <td align="center" colspan="3">目的端口号</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="6">序号</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="6">确认号</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="1">首部长度</td>
+        <td align="center" colspan="1">保留未用</td>
+        <td align="center" colspan="1">标志字段</td>
+        <td align="center" colspan="3">接收窗口</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3">检验和</td>
+        <td align="center" colspan="3">紧急数据指针</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="6">选项</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="6">数据</td>
+    </tr>
+</table>
+
+<ul>
+<li><strong>首部字段</strong><ul>
+<li><strong>源端口号</strong>和<strong>目的端口号</strong>。用于多路复用/分解来自或送到上层应用的数据</li>
+<li><strong>序号</strong>和<strong>确认号</strong><ul>
+<li>序号：该报文的首个字节的字节流编号</li>
+<li>确认号：发送方期望收到的下一字节的序号</li>
+</ul>
+</li>
+<li><strong>首部长度</strong></li>
+<li><strong>标志字段</strong><ul>
+<li><strong>ACK</strong>指示确认字段中的值时有效的</li>
+<li><strong>RST</strong>、<strong>SYN</strong>和<strong>FIN</strong>用于连接建立和拆除</li>
+<li><strong>CWR</strong>和<strong>ECE</strong>用于明确拥塞通告</li>
+<li><strong>PSH</strong>被置位（置为1）时，指示接收方立即将数据交给上层</li>
+<li><strong>URG</strong>用于指示报文段里存在被发送端的上层实体置为“紧急”的数据</li>
+</ul>
+</li>
+<li><strong>接受窗口</strong>。用于流量控制，指示接收方愿意接受的字节数量</li>
+<li><strong>检验和</strong></li>
+<li><strong>紧急数据指针</strong></li>
+<li><strong>选项字段</strong>。用于发送方和接收方协商最大报文段长度时，或在高速网络环境下用作窗口调节因子时使用</li>
+</ul>
+</li>
+<li><strong>数据字段</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP的可靠数据传输"><a href="#TCP的可靠数据传输" class="headerlink" title="TCP的可靠数据传输"></a>TCP的可靠数据传输</h3><ul>
+<li><p>TCP发送方事件</p>
+<table>
+    <tr>
+        <th style="vertical-align:middle; text-align:center">事件</th>
+        <th style="vertical-align:middle; text-align:center">发送方动作</th>
+    </tr>
+    <tr>
+        <td rowspan="2" style="vertical-align:middle; text-align:center">从应用层收到数据</td>
+        <td align="center">创建序列号是第一个字节编号的Segment</td>
+    </tr>
+    <tr>
+        <td align="center">设置超时时间，开启计时器</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="vertical-align:middle; text-align:center">超时</td>
+        <td align="center">重传引起超时的Segment（单个）</td>
+    </tr>
+    <tr>
+        <td align="center">重启定时器</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle; text-align:center">收到ACK</td>
+        <td style="vertical-align:middle; text-align:center">如果确认此前未确认的Segment：<br/>&nbsp&nbsp&nbsp&nbsp 1.更新SendBase<br/>&nbsp&nbsp&nbsp&nbsp 2.如果窗口中还有违背确认的分组，重新启动定时器</td>
+    </tr>
+</table>
+</li>
+<li><p>TCP接收方事件</p>
+<table>
+    <tr>
+        <th style="vertical-align:middle; text-align:center">事件</th>
+        <th style="vertical-align:middle; text-align:center">接受方动作</th>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle; text-align:center">具有所期望序号的按序报文段到达，所有在期望序号及以前的数据都已经被确认</td>
+        <td style="vertical-align:middle; text-align:center">延迟的ACK，如果下一个按序报文段在500ms内没有到达，则发送一个ACK</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle; text-align:center">具有所期望序号的按序报文段到达，另一个按序报文段等待ACK传输</td>
+        <td style="vertical-align:middle; text-align:center">立即发送单个累积ACK，以确认两个按序报文段</td>
+    </tr>
+    <tr>
+        <td style="vertical-align:middle; text-align:center">比期望序列号大的失序报文段到达，检测出间隔
+        <td style="vertical-align:middle; text-align:center">立即发送冗余ACK，指示下一个期待字节的序号（其为间隔低端的序号</td>
+    <tr>
+        <td style="vertical-align:middle; text-align:center">能部分或完全填充接收数据间隔的报文段到达</td>
+        <td style="vertical-align:middle; text-align:center">倘若该报文段起始于间隔的低端，则立即发送ACK</td>
+    </tr>
+</table>
+</li>
+<li><p>超时间隔加倍</p>
+<ul>
+<li>每次TCP重传时都会将下一次的超时间隔设为先前值的两倍，而定时器在另两个事件（即收到上层应用的数据和收到ACK）中的任意一个启动时，超时间隔由样本RTT和估计RTT推算得到</li>
+<li>这一机制防止了网络拥塞情况下，源持续重传分组加剧网络拥塞</li>
+</ul>
+</li>
+<li><p>快速重传</p>
+<ul>
+<li><strong>冗余ACK</strong>指再次确认某个报文段的ACK，而发送方先前已经收到对该报文段的确认</li>
+<li>一旦收到3个冗余ACK，则立即重传以该ACK字段值为序号的报文段</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h3><ul>
+<li>TCP为它的应用程序提供了<strong>流量控制服务</strong></li>
+<li>流量控制是一个速度匹配服务，即发送方的发送速率与接收方的接受速率相匹配</li>
+<li>流量控制服务用于消除发送方使接收方缓存溢出的可能性</li>
+<li>方法：<ul>
+<li>发送方维护一个<strong>接收窗口</strong>，用于给发送方指示接收方还有多少可用的缓存空间</li>
+<li>由于TCP是全双工通信，连接两端的发送方都各自维护一个接收窗口</li>
+<li>接收方在报文中将接收窗口大小告诉发送方，发送方限制自己已经发送的但还未收到的ACK的数据不超过接收方的接收窗口大小</li>
+<li>如果接收方的接收窗口为0时，发送方继续发送只有一个字节数据的报文段，防止被阻塞而不能再发送数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h3><ul>
+<li>TCP连接建立流程（<strong>三次握手</strong>）<ol>
+<li>客户端的TCP首先向服务器端的TCP发送一个特殊的TCP报文段（<strong>SYN报文段</strong>）。该报文段不含应用层数据，其SYN标志位被置为1。另外，其随机选择一个初始序号，将其置于序号字段中</li>
+<li>服务器端接受SYN报文段，为该TCP连接分配TCP缓存和变量，并向客户端发送允许连接的报文段（<strong>SYNACK报文段</strong>）。该报文段不含应用层数据，其SYN标志位被置为1，其确认号字段被置为收到的SYN报文段的序号字段值+1。最后，服务器选择自己的初始序号，并将其放置到该报文段的序号字段中</li>
+<li>客户端接受SYNACK报文段，为该TCP连接分配TCP缓存和变量，并向服务器端发送确认的报文段。该报文段可以携带应用层数据，其SYN标志位被置为0，其确认号字段为SYNACK报文段中序号字段值+1</li>
+</ol>
+</li>
+<li>TCP连接关闭流程（<strong>四次挥手</strong>）<ol>
+<li>客户端向服务器发送TCP报文段，其中FIN标志位被置为1</li>
+<li>服务器端向客户端发送确认报文段，其中FIN标志位被置为1</li>
+<li>服务器端向客户端发送TCP报文段，其中FIN标志位被置为1</li>
+<li>客户端向服务器段发送确认报文段，其中FIN标志位被置为1</li>
+</ol>
+</li>
+</ul>
+<h3 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h3><ul>
+<li><p>由于IP不向端系统提供显式的网络拥塞反馈，TCP必须使用<strong>端到端拥塞控制</strong>，即端系统需要通过对网络行为的观察来推断网络拥塞的存在</p>
+</li>
+<li><p>TCP发送方感知网络拥塞程度并限制其能向连接发送流量的速率</p>
+<ul>
+<li>TCP发送方跟踪一个额外变量<strong>拥塞窗口</strong>（congestion window, cwnd），在发送方中违背确认的数据量不会超过拥塞窗口和接收窗口中的最小值</li>
+<li>TCP的发送方使用报文段成功交付的确认来增加窗口的长度，因此TCP是<strong>自计时</strong>的</li>
+</ul>
+</li>
+<li><p>TCP拥塞控制原则</p>
+<ul>
+<li>一个丢失的报文段意味着拥塞，丢失报文段时应当降低发送方的发送速率</li>
+<li>一个确认报文段指示该网络正在向接收方交付发送方的报文段，对先前未确认报文段的确认到达时应当增加发送方的发送速率</li>
+<li>带宽探测。TCP调节其传输速率的策略时增加其速率以响应到达的ACK，除非出现丢包事件，此时才减小传输速率</li>
+</ul>
+</li>
+<li><p>TCP拥塞控制算法</p>
+<ol>
+<li><strong>慢启动</strong><ul>
+<li>TCP连接开始时，cwnd的值初始置为一个MSS</li>
+<li>每当传输到报文段首次被确认就增加一个MSS</li>
+<li>当出现一个由超时指示的丢包事件时，TCP发送方将cwnd设置为1并重新开始慢启动过程，同时将ssthresh（慢启动阈值）置为cwnd/2</li>
+<li>当出现一个由3个冗余ACK指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd的值被设置为更新后的ssthresh+3MSS（经过3个RTT接受3个冗余ACK），进入快速恢复状态</li>
+<li>当cwnd到达慢启动阈值时，结束慢启动并转移到拥塞避免状态</li>
+</ul>
+</li>
+<li><strong>拥塞避免</strong><ul>
+<li>进入拥塞避免模式时，cwnd的值为上次遇到拥塞时的一半，此时距离拥塞可能并不遥远</li>
+<li>每经过一个RTT，cwnd的值增加一个MSS</li>
+<li>当出现一个由超时指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd的值被设置为1MSS，进入慢启动状态</li>
+<li>当出现一个由3个冗余ACK指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd的值被设置为更新后的ssthresh+3MSS（经过3个RTT接受3个冗余ACK），进入快速恢复状态</li>
+</ul>
+</li>
+<li><strong>快速恢复</strong><ul>
+<li>每接受到一个冗余ACK，cwnd增加1MSS</li>
+<li>当出现一个由超时指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd被设置为1MSS，进入慢启动状态</li>
+<li>当发送方接受到一条新的确认报文段时，cwnd被设置为ssthresh，进入拥塞避免状态</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><em>为什么在快速恢复状态下接受冗余ACK要将cwnd增加1MSS？ 虽然接收到的是冗余ACK，但仍指示了网络中多了一条报文段的空间，允许发送端再发送一条报文段。由于当前序列号最小的报文丢失，拥塞窗口无法向前移动，因此将cwnd增加1MSS，提高网络利用率</em></li>
+</ul>
+</li>
+<li><p>对TCP吞吐量的宏观描述：$$一条连接的平均吞吐量 = \frac{0.75 \times W}{RTT}$$</p>
+<ul>
+<li>其中W是丢包事件发生时的窗口长度</li>
+<li>TCP吞吐量在0.5W/RTT到W/RTT之间线性变化</li>
+</ul>
+</li>
+<li><p>TCP拥塞控制的公平性</p>
+<ul>
+<li>TCP趋于在竞争的多条TCP连接之间提供对一段瓶颈链路带宽的平等分享</li>
+</ul>
+</li>
+<li><p>涉及TCP和IP协议的<strong>明确拥塞通告</strong></p>
+<ul>
+<li>新方案允许网络明确向TCP发送方和接收方发出拥塞信号，在接收方到发送方的ACK报文段中设置ECN回显比特</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/27/transport-layer-tcp/" data-id="ckcdw94zn000la0tadcewch5r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-application-layer-dns" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/26/application-layer-dns/" class="article-date">
+  <time datetime="2020-06-27T01:19:53.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/26/application-layer-dns/">应用层：DNS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="DNS概况"><a href="#DNS概况" class="headerlink" title="DNS概况"></a>DNS概况</h3><ul>
+<li>DNS是：<ol>
+<li>一个由分层的DNS服务器实现的<strong>分布式数据库</strong></li>
+<li>一个使得主机能够查询分布式数据库的<strong>应用层协议</strong></li>
+</ol>
+</li>
+<li>提供<strong>主机名到IP地址的转换</strong></li>
+<li>DNS协议运行在<strong>UDP</strong>之上</li>
+<li>其它服务：<ul>
+<li><strong>主机别名</strong></li>
+<li><strong>邮件服务器别名</strong></li>
+<li><strong>负载分配</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="DNS数据库"><a href="#DNS数据库" class="headerlink" title="DNS数据库"></a>DNS数据库</h3><ul>
+<li>DNS服务器是<strong>分布式</strong>、<strong>层次式</strong>的</li>
+<li>DNS服务器分类：<ul>
+<li><strong>根DNS服务器</strong></li>
+<li><strong>顶级域DNS服务器</strong></li>
+<li><strong>权威DNS服务器</strong></li>
+<li><em>本地DNS服务器</em>（不属于层次结构中，由ISP提供，起着代理的作用）</li>
+</ul>
+</li>
+<li>查询流程:<ol>
+<li>客户与根服务器之一联系，根服务器返回顶级域名服务器的IP地址</li>
+<li>客户与对应顶级域名服务器联系，顶级域名服务器返回权威服务器的IP地址</li>
+<li>客户与对应权威服务器联系，权威服务器返回待查询主机名的IP地址</li>
+</ol>
+</li>
+<li>DNS缓存<ul>
+<li>当某一个DNS服务器接收到一个DNS回答时，它能将映射缓存在本地服务器中</li>
+<li>改善了时延性能并减少了因特网上传输到DNS报文数量</li>
+</ul>
+</li>
+</ul>
+<h3 id="DNS记录和报文"><a href="#DNS记录和报文" class="headerlink" title="DNS记录和报文"></a>DNS记录和报文</h3><ul>
+<li><p><strong>资源记录</strong>（Resource Record, RR）</p>
+<ul>
+<li><p>格式：（Name, Value, Type, TTL)</p>
+<ul>
+<li><p>TTL是该记录的生存时间</p>
+</li>
+<li><p>Type决定了Name和Value值的含义：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Type</th>
+<th align="center">Name</th>
+<th align="center">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">A</td>
+<td align="center">主机名</td>
+<td align="center">该主机名对应的IP地址</td>
+</tr>
+<tr>
+<td align="center">NS</td>
+<td align="center">域</td>
+<td align="center">知道如何获得该域中主机IP地址的权威DNS服务器的主机名</td>
+</tr>
+<tr>
+<td align="center">CNAME</td>
+<td align="center">主机别名</td>
+<td align="center">别名为Name的主机的规范主机名</td>
+</tr>
+<tr>
+<td align="center">MX</td>
+<td align="center">主机别名</td>
+<td align="center">别名为Name的邮件服务器的规范主机名</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>DNS报文</p>
+<ul>
+<li><p>格式</p>
+<div class="tabletext">
+<table>
+    <tr>
+        <td align="center">标识符</td>
+        <td align="center">标志</td>
+    </tr>
+    <tr>
+        <td align="center">问题数</td>
+        <td align="center">回答RR数</td>
+    </tr>
+    <tr>
+        <td align="center">权威RR数</td>
+        <td align="center">附加RR数</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">问题（问题的变量数）</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">回答（资源记录的变量数）</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">权威服务器的记录（资源记录的变量数）</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">附加信息（资源记录的变量数）</td>
+    </tr>
+</table>
+</div>
+
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/26/application-layer-dns/" data-id="ckcdw94yl0000a0tabpo03cfl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-transport-layer-udp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/26/transport-layer-udp/" class="article-date">
+  <time datetime="2020-06-27T01:01:34.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/26/transport-layer-udp/">运输层：UDP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="UDP概述"><a href="#UDP概述" class="headerlink" title="UDP概述"></a>UDP概述</h3><ul>
+<li>UDP（User Data Protocol, 用户数据报协议）是一个非链接的协议</li>
+<li>UDP使用<strong>尽最大努力交付</strong>，即<strong>不保证可靠交付</strong></li>
+<li>使用UDP的应用是可能实现可靠数据传输都，可通过在应用程序自身中建立可靠性机制来实现</li>
+<li>主要功能：<ul>
+<li><strong>多路复用</strong> + <strong>多路分解</strong></li>
+<li>少量的差错检查</li>
+</ul>
+</li>
+<li>优点：<ul>
+<li>关于发送什么数据以及何时发送的应用层控制更为精细（吞吐量不受拥塞控制算法的调节）</li>
+<li>无须建立连接</li>
+<li>无连接状态（不需要维护连接状态或跟踪参数）</li>
+<li>分组首部开销小（仅8字节）</li>
+</ul>
+</li>
+</ul>
+<h3 id="UDP报文"><a href="#UDP报文" class="headerlink" title="UDP报文"></a>UDP报文</h3><ul>
+<li><p>报文结构</p>
+<table>
+    <tr>
+        <td align="center">源端口号</td>
+        <td align="center">目的端口号</td>
+    </tr>
+    <tr>
+        <td align="center">长度（首部+数据）</td>
+        <td align="center">校验和</td>
+    </tr>
+    <tr>
+        <td align="center" colspan='2'>应用数据（报文）</td>
+    </tr>
+</table>
+</li>
+<li><p>校验和</p>
+<ul>
+<li>原理：<ol>
+<li>发送方的UDP对报文段中的所有16比特字求和，溢出则回卷</li>
+<li>对该和取反码作为校验和</li>
+<li>接收方将所有的16比特字与校验和求和，若所有位数为1则校验成功</li>
+</ol>
+</li>
+<li>引入原因：<ul>
+<li>不能保证源和目的之间的所有链路都提供差错检测</li>
+<li>遵循<strong>端到端原则</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/26/transport-layer-udp/" data-id="ckcdw94zm000ja0tahl84dvdd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-application-layer-video-stream" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/26/application-layer-video-stream/" class="article-date">
+  <time datetime="2020-06-27T00:59:00.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/26/application-layer-video-stream/">应用层：视频流和内容分发网</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="HTTP流和DASH"><a href="#HTTP流和DASH" class="headerlink" title="HTTP流和DASH"></a>HTTP流和DASH</h3><ul>
+<li>HTTP流中，视频只是存储在HTTP服务器中作为一个普通的文件</li>
+<li><strong>经HTTP的动态适应性流</strong>（Dynamic Adaptive Streaming over HTTP，DASH）<ul>
+<li>在DASH中，视频编码为几个不同的版本，每个版本具有不同的比特率</li>
+</ul>
+</li>
+</ul>
+<h3 id="内容分发网（Content-Distribution-Network，CDN）"><a href="#内容分发网（Content-Distribution-Network，CDN）" class="headerlink" title="内容分发网（Content Distribution Network，CDN）"></a>内容分发网（Content Distribution Network，CDN）</h3><ul>
+<li>CDN管理分布在多个地理位置上的服务器，在他的服务器中存储视频（和其他类型的Web内容，包括文档、图片和音频）的副本，并且试图将每个用户请求定向到一个将提供最好的用户体验的CDN位置。</li>
+<li>安置原则：<ol>
+<li><strong>深入</strong>。通过在遍及全球的接入ISP中部署服务器集群来深入到ISP的接入网中。较高的维护和管理开销。</li>
+<li><strong>邀请做客</strong>。通过在少量关键位置建造大集群来邀请ISP做客。较低的维护和管理开销，可能以对端用户的高时延和较低吞吐量作为代价。</li>
+</ol>
+</li>
+<li>CDN操作<ul>
+<li>当用户主机中的一个浏览器指令检索一个特定的视频（由URL标识）时，CDN必须截获该请求，以便能够：<ol>
+<li>确定此时适合用于该客户的CDN服务器集群</li>
+<li>将客户的请求重定向到该集群的某台服务器</li>
+</ol>
+</li>
+<li>大多数CDN利用DNS来截获和重定向请求</li>
+<li>操作流程：<ol>
+<li>用户访问位于某一Web网页</li>
+<li>当用户点击视频链接时，发送一个对对应服务器的DNS请求</li>
+<li>用户的本地DNS服务器将该DNS请求中继到一台用于视频提供服务器的权威DNS服务器，权威DNS服务器返回一个CDN域的主机名</li>
+<li>DNS请求进入CDN专用DNS基础设施，用户的本地DNS服务器发送对CDN域内某一主机的DNS请求，CDN的DNS系统返回内容服务器的IP地址</li>
+<li>本地DNS向用户主机转发内容服务CDN节点的IP地址</li>
+<li>客户与目标IP地址的服务器建立TCP链接，并且发出对该视频的HTTP GET请求</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>集群选择策略</strong><ul>
+<li>集群选择策略是任何CDN部署的核心</li>
+<li>是动态地将客户定向到CDN中某个服务器集群或数据中心的机制</li>
+<li>常用策略<ul>
+<li>地理上最为临近</li>
+<li>实时测量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/26/application-layer-video-stream/" data-id="ckcdw94yv0001a0tag15bd002" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-application-layer-email-and-smtp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/26/application-layer-email-and-smtp/" class="article-date">
+  <time datetime="2020-06-27T00:56:49.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/26/application-layer-email-and-smtp/">应用层：电子邮件与SMTP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="电子邮件系统"><a href="#电子邮件系统" class="headerlink" title="电子邮件系统"></a>电子邮件系统</h3><ul>
+<li><p>组成部分：</p>
+<ol>
+<li><strong>用户代理</strong>（user agent）</li>
+<li><strong>邮件服务器</strong>（mail server）</li>
+<li><strong>简单邮件传输协议</strong>（Simple Mail Transfer Protocol, SMTP）</li>
+</ol>
+</li>
+<li><p>邮件发送流程：</p>
+<ol>
+<li>发送方撰写邮件，由用户代理传输到发送方的邮件服务器</li>
+<li>发送方的邮件服务器传输到接收方的邮件服务器</li>
+<li>接收方的邮件服务器分发邮件到接收方的邮箱</li>
+</ol>
+</li>
+</ul>
+<h3 id="SMTP概况"><a href="#SMTP概况" class="headerlink" title="SMTP概况"></a>SMTP概况</h3><ul>
+<li>SMTP是因特网电子邮件中主要的应用层协议</li>
+<li>SMTP使用<strong>TCP</strong>可靠数据传输服务</li>
+<li>SMTP用于从发送方的邮件服务器发送报文到接收方的邮件服务器</li>
+<li>SMPT要求每个报文采用7比特ASCII码格式，如果某报文包含了非7比特ASCII码字符或二进制数据，则该报文必须按照7比特ASCII码进行编码</li>
+</ul>
+<h3 id="邮件报文格式"><a href="#邮件报文格式" class="headerlink" title="邮件报文格式"></a>邮件报文格式</h3><ul>
+<li>首部<ul>
+<li>From: 首部行</li>
+<li>To: 首部行</li>
+<li>Subject: 首部行</li>
+</ul>
+</li>
+<li>空行分隔</li>
+<li>报文体（以ASCII格式表示）</li>
+</ul>
+<h3 id="邮件访问协议"><a href="#邮件访问协议" class="headerlink" title="邮件访问协议"></a>邮件访问协议</h3><ul>
+<li>用于将邮件从接收方的邮件服务器传送到接收方的用户代理</li>
+<li>常见的邮件访问协议<ul>
+<li>第三版的邮局协议（Post Office Protocol - version 3, POP3）</li>
+<li>因特网邮件访问协议（Internet Mail Access Protocol, IMAP）</li>
+<li>HTTP</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/26/application-layer-email-and-smtp/" data-id="ckcdw94z10003a0ta2w29h75n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-application-layer-web-and-http" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/26/application-layer-web-and-http/" class="article-date">
+  <time datetime="2020-06-27T00:55:00.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/26/application-layer-web-and-http/">应用层：Web和HTTP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="HTTP概况"><a href="#HTTP概况" class="headerlink" title="HTTP概况"></a>HTTP概况</h3><ul>
+<li><p>Web的应用层协议是<strong>超文本传输协议（HyperText Transfer Protocol, HTTP）</strong>，它是Web的核心。</p>
+</li>
+<li><p>HTTP使用<strong>TCP</strong>作为它的支撑运输协议</p>
+</li>
+<li><p>HTTP是一个<strong>无状态协议</strong>，不保存关于客户的任何信息</p>
+</li>
+<li><p>两种连接方式:</p>
+<ol>
+<li><p><strong>非持续链接</strong>：每个请求/响应对经一个单独的TCP连接发送</p>
+</li>
+<li><p><strong>持续链接</strong>： 所有的请求及其响应经相同的TCP连接发送</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h3><ol>
+<li>请求报文<ul>
+<li>请求行<ul>
+<li>方法字段</li>
+<li>URL字段</li>
+<li>HTTP版本字段</li>
+</ul>
+</li>
+<li>首部行<ul>
+<li>Host</li>
+<li>Connection</li>
+<li>User-agent</li>
+<li>Accept-language</li>
+</ul>
+</li>
+<li>实体体</li>
+</ul>
+</li>
+<li>响应报文<ul>
+<li>状态行<ul>
+<li>版本</li>
+<li>状态码</li>
+<li>短语</li>
+</ul>
+</li>
+<li>首部行<ul>
+<li>Connection</li>
+<li>Date</li>
+<li>Server</li>
+<li>Last-Modified</li>
+<li>Cotent-Length</li>
+<li>Content-Type</li>
+</ul>
+</li>
+<li>实体体</li>
+</ul>
+</li>
+</ol>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><ul>
+<li>Cookie技术的四个组件：<ol>
+<li>在HTTP响应报文中的一个Cookie首部行（Set-Cookie: xxx）</li>
+<li>在HTTP请求报文中的一个Cookie首部行（Cookie: xxx）</li>
+<li>在用户端系统中保留由一个Cookie文件，由用户的浏览器进行管理</li>
+<li>位于Web站点的一个后端数据库</li>
+</ol>
+</li>
+</ul>
+<h3 id="Web缓存器（代理服务器）"><a href="#Web缓存器（代理服务器）" class="headerlink" title="Web缓存器（代理服务器）"></a>Web缓存器（代理服务器）</h3><ul>
+<li>是能够代表初始Web服务器来满足HTTP请求的网络实体</li>
+<li>在存储空间中保存最近请求过的对象的副本</li>
+<li>条件GET方法<ul>
+<li>请求报文中使用GET方法且请求报文中包含一个“If-Modified-Since:”</li>
+<li>允许缓存器证实它的对象是最新的</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/26/application-layer-web-and-http/" data-id="ckcdw94z60005a0ta2p7z4fzw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-computer-network-basic-intro" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/26/computer-network-basic-intro/" class="article-date">
+  <time datetime="2020-06-27T00:46:03.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/26/computer-network-basic-intro/">计算机网络基本概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="计算机网络结构"><a href="#计算机网络结构" class="headerlink" title="计算机网络结构"></a>计算机网络结构</h3><ul>
+<li><p>网络边缘</p>
+<ol>
+<li><p>主机（端系统）</p>
+<ul>
+<li>位于网络边缘</li>
+<li>运行网络应用程序</li>
+</ul>
+</li>
+<li><p>客户/服务器（Client/Server）应用模型</p>
+<ul>
+<li>客户发送请求，接受服务器响应</li>
+</ul>
+</li>
+<li><p>对等（Peer-peer, P2P）应用模型</p>
+<ul>
+<li>无（或不仅依赖）专用服务器</li>
+<li>通信在对等实体之间直接进行</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>接入网络</p>
+<ol>
+<li>数字用户线路（DSL）<ul>
+<li>复用电话线路</li>
+<li>接入是独占的</li>
+</ul>
+</li>
+<li>同轴电缆网络（Cable）<ul>
+<li>复用电视线路</li>
+<li>接入是共享的</li>
+</ul>
+</li>
+<li>以太网</li>
+<li>无线局域网（LANs）</li>
+<li>广域无线接入</li>
+</ol>
+</li>
+<li><p>网络核心</p>
+<ol>
+<li><p>分组交换</p>
+<ol>
+<li><p>存储转发传输</p>
+<ul>
+<li>多数分组交换机在链路的输入端使用<em>存储转发传输</em>：在交换机能够开始向输出链路传输该分组的第一个比特之前，必须接收到整个分组</li>
+</ul>
+</li>
+<li><p>排队时延和分组丢失</p>
+<ul>
+<li><p>到达分组在输出缓存中排队等待引起<em>排队时延</em></p>
+</li>
+<li><p>缓存空间达到上限，出现<em>分组丢失（丢包）</em></p>
+</li>
+</ul>
+</li>
+<li><p>转发表和路由选择协议</p>
+<ul>
+<li><p>每台路由器具有一个<em>转发表</em>，用于将目的地址映射成为输出链路</p>
+</li>
+<li><p><em>路由选择协议</em>用于自动设置转发表</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>电路交换</p>
+<ol>
+<li>复用<ul>
+<li>时分复用</li>
+<li>频分复用</li>
+<li>波分复用</li>
+<li>码分复用</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="计算机网络性能"><a href="#计算机网络性能" class="headerlink" title="计算机网络性能"></a>计算机网络性能</h3><ol>
+<li>分组时延<ul>
+<li>处理时延</li>
+<li>排队时延</li>
+<li>传输时延</li>
+<li>传播时延</li>
+</ul>
+</li>
+<li>时延带宽积<ul>
+<li><em>时延带宽积 = 传播时延 × 带宽</em></li>
+<li>链路的<em>时延带宽积</em>又被称为以比特为单位的链路长度</li>
+</ul>
+</li>
+<li>吞吐量<ul>
+<li>表示在发送端与接收端之间传送数据的速率</li>
+</ul>
+</li>
+</ol>
+<h3 id="计算机网络体系"><a href="#计算机网络体系" class="headerlink" title="计算机网络体系"></a>计算机网络体系</h3><ol>
+<li><p>分层结构</p>
+<ul>
+<li>优点：<ul>
+<li>结构清晰，有利于识别复杂系统的部件及其关系</li>
+<li>模块化的分层易于系统更新、维护，任何一层的服务实现的改变对于系统其他层都是透明的，并不影响该系统的其他层</li>
+<li>有利于标准化</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>层次过多效率降低，一层可能冗余较低层的功能</li>
+<li>某层的功能可能需要仅在其他层才出现的信息，这违反了层次分离的目标</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>协议</p>
+<ul>
+<li>通信计算机双方必须共同遵从的一组约定，是计算机之间相互通信交流的前提</li>
+<li>协议是“水平的”，是控制两个对等实体进行通信的规则的集合</li>
+<li>任一层实体需要使用下层服务，遵循本层协议，实现本层功能，向上层提供服务，服务是“垂直的”</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>下层协议的实现对上层的服务用户是透明的<ul>
+<li>协议的三要素<ol>
+<li>语法（Syntax）</li>
+<li>语义（Semantics）</li>
+<li>时序（Timing）</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/26/computer-network-basic-intro/" data-id="ckcdw94z30004a0tafw64dp9l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag">容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">算法与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 13.33px;">容器</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/08/trie-intro-and-application/">Trie字典树及其应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/03/java-concurrency-intro/">Java并发编程基础复习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/02/markdown-notes/">Markdown使用笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/transport-layer-tcp/">运输层：TCP</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/26/application-layer-dns/">应用层：DNS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

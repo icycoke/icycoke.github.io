@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Trie字典树及其应用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Trie概述 Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组  Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置  一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）  根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值  每个节点的所有子节点包含的字符串不相同  如向一个空字典树中插入”panda”，”pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trie字典树及其应用">
+<meta property="og:url" content="http://yoursite.com/2020/07/08/trie-intro-and-application/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Trie概述 Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组  Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置  一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）  根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值  每个节点的所有子节点包含的字符串不相同  如向一个空字典树中插入”panda”，”pa">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://icycoke.github.io/2020/07/08/trie-intro-and-application/trie_example.png">
+<meta property="article:published_time" content="2020-07-08T18:32:16.000Z">
+<meta property="article:modified_time" content="2020-07-08T21:20:56.470Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法与数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://icycoke.github.io/2020/07/08/trie-intro-and-application/trie_example.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-trie-intro-and-application" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/08/trie-intro-and-application/" class="article-date">
+  <time datetime="2020-07-08T18:32:16.000Z" itemprop="datePublished">2020-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Trie字典树及其应用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Trie概述"><a href="#Trie概述" class="headerlink" title="Trie概述"></a>Trie概述</h3><ul>
+<li><p>Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组</p>
+</li>
+<li><p>Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置</p>
+</li>
+<li><p>一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）</p>
+</li>
+<li><p>根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值</p>
+</li>
+<li><p>每个节点的所有子节点包含的字符串不相同</p>
+</li>
+<li><p>如向一个空字典树中插入”panda”，”pain”，”see”则得到如下图所示字典树</p>
+<p><img src="https://icycoke.github.io/2020/07/08/trie-intro-and-application/trie_example.png" alt="Trie字典树"></p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>在比较时，当前缀不匹配时不继续进行比较，最大的限度地减小了无谓的比较，可用于词频统计和大量字符串排序</li>
+<li>和哈希表相比<ul>
+<li>最坏情况下的时间复杂度比哈希表更好</li>
+<li>没有冲突，除非一个键对应多个值</li>
+<li>自带排序，使用中序遍历字典树可以得到排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>以空间换时间，在最坏情况下占大量空间</li>
+<li>长浮点数等类型数据会让树的高度变得很大，效率降低</li>
+</ul>
+</li>
+</ul>
+<h3 id="Trie应用场景示例"><a href="#Trie应用场景示例" class="headerlink" title="Trie应用场景示例"></a>Trie应用场景示例</h3><ol>
+<li><p>给定一个词典<code>dictionary</code>和一个字符串<code>sentence</code>，以<code>dictionary</code>中的词将<code>sentence</code>断句，返回<code>sentence</code>中不能以<code>dictionary</code>识别的词的字符数总和（<code>sentence</code>和<code>dictionary</code>中仅包含小写字母）</p>
+<ul>
+<li><p>示例</p>
+<ul>
+<li><p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;&#96;sentence &#x3D; &quot;jesslookedjustliketimherbrother&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出：</p>
+<p>7</p>
+</li>
+<li><p>解释：</p>
+<p>断句后为”<strong>jess</strong> looked just like <strong>tim</strong> her brother”，共7个未识别字符</p>
+</li>
+</ul>
+</li>
+<li><p>题解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">respace</span><span class="params">(String[] dictionary, String sentence)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sLength = sentence.length();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建字典树根节点</span></span><br><span class="line">        TrieNode root = <span class="keyword">new</span> TrieNode();</span><br><span class="line">        <span class="keyword">for</span> (String word : dictionary) &#123;</span><br><span class="line">            root.insert(word);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// dp[j]为以sentence中第1个字符到第j个字符组成的子串所有的最小的未识别字符数</span></span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[sLength + <span class="number">1</span>];</span><br><span class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 空字符串的最小未识别字符数为0</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; dp.length; j++) &#123;</span><br><span class="line">            dp[j] = dp[j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            TrieNode curNode = root;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = j; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = sentence.charAt(i - <span class="number">1</span>) - <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 如果当前前缀不匹配，则退出循环，避免无谓的比较</span></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 如果匹配至完整单词，则更新dp[j]</span></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num].isEnd) &#123;</span><br><span class="line">                    dp[j] = Math.min(dp[j], dp[i - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 如果当前最小未识别字符数为0，则退出循环，避免无谓的比较</span></span><br><span class="line">                <span class="keyword">if</span> (dp[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                curNode = curNode.nextNodes[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[sLength];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一个字典树节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 该节点的子节点集合</span></span><br><span class="line">        <span class="keyword">private</span> TrieNode[] nextNodes;</span><br><span class="line">        <span class="comment">// 该节点是否为叶子节点</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isEnd;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            nextNodes = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</span><br><span class="line">            isEnd = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将指定字符串倒序插入字典树中</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">            TrieNode curNode = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = s.charAt(i) - <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    curNode.nextNodes[num] = <span class="keyword">new</span> TrieNode();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                curNode = curNode.nextNodes[num];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            curNode.isEnd = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/08/trie-intro-and-application/" data-id="ckcdw94zp000na0tabjm97y29" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">算法与数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/03/java-concurrency-intro/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java并发编程基础复习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag">容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">算法与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 13.33px;">容器</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/08/trie-intro-and-application/">Trie字典树及其应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/03/java-concurrency-intro/">Java并发编程基础复习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/02/markdown-notes/">Markdown使用笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/transport-layer-tcp/">运输层：TCP</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/26/application-layer-dns/">应用层：DNS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>应用层：视频流和内容分发网 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP流和DASH HTTP流中，视频只是存储在HTTP服务器中作为一个普通的文件 经HTTP的动态适应性流（Dynamic Adaptive Streaming over HTTP，DASH） 在DASH中，视频编码为几个不同的版本，每个版本具有不同的比特率    内容分发网（Content Distribution Network，CDN） CDN管理分布在多个地理位置上的服务器，在他的服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用层：视频流和内容分发网">
+<meta property="og:url" content="http://yoursite.com/2020/06/26/application-layer-video-stream/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="HTTP流和DASH HTTP流中，视频只是存储在HTTP服务器中作为一个普通的文件 经HTTP的动态适应性流（Dynamic Adaptive Streaming over HTTP，DASH） 在DASH中，视频编码为几个不同的版本，每个版本具有不同的比特率    内容分发网（Content Distribution Network，CDN） CDN管理分布在多个地理位置上的服务器，在他的服务">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-27T00:59:00.000Z">
+<meta property="article:modified_time" content="2020-06-27T01:00:39.066Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-application-layer-video-stream" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/26/application-layer-video-stream/" class="article-date">
+  <time datetime="2020-06-27T00:59:00.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      应用层：视频流和内容分发网
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="HTTP流和DASH"><a href="#HTTP流和DASH" class="headerlink" title="HTTP流和DASH"></a>HTTP流和DASH</h3><ul>
+<li>HTTP流中，视频只是存储在HTTP服务器中作为一个普通的文件</li>
+<li><strong>经HTTP的动态适应性流</strong>（Dynamic Adaptive Streaming over HTTP，DASH）<ul>
+<li>在DASH中，视频编码为几个不同的版本，每个版本具有不同的比特率</li>
+</ul>
+</li>
+</ul>
+<h3 id="内容分发网（Content-Distribution-Network，CDN）"><a href="#内容分发网（Content-Distribution-Network，CDN）" class="headerlink" title="内容分发网（Content Distribution Network，CDN）"></a>内容分发网（Content Distribution Network，CDN）</h3><ul>
+<li>CDN管理分布在多个地理位置上的服务器，在他的服务器中存储视频（和其他类型的Web内容，包括文档、图片和音频）的副本，并且试图将每个用户请求定向到一个将提供最好的用户体验的CDN位置。</li>
+<li>安置原则：<ol>
+<li><strong>深入</strong>。通过在遍及全球的接入ISP中部署服务器集群来深入到ISP的接入网中。较高的维护和管理开销。</li>
+<li><strong>邀请做客</strong>。通过在少量关键位置建造大集群来邀请ISP做客。较低的维护和管理开销，可能以对端用户的高时延和较低吞吐量作为代价。</li>
+</ol>
+</li>
+<li>CDN操作<ul>
+<li>当用户主机中的一个浏览器指令检索一个特定的视频（由URL标识）时，CDN必须截获该请求，以便能够：<ol>
+<li>确定此时适合用于该客户的CDN服务器集群</li>
+<li>将客户的请求重定向到该集群的某台服务器</li>
+</ol>
+</li>
+<li>大多数CDN利用DNS来截获和重定向请求</li>
+<li>操作流程：<ol>
+<li>用户访问位于某一Web网页</li>
+<li>当用户点击视频链接时，发送一个对对应服务器的DNS请求</li>
+<li>用户的本地DNS服务器将该DNS请求中继到一台用于视频提供服务器的权威DNS服务器，权威DNS服务器返回一个CDN域的主机名</li>
+<li>DNS请求进入CDN专用DNS基础设施，用户的本地DNS服务器发送对CDN域内某一主机的DNS请求，CDN的DNS系统返回内容服务器的IP地址</li>
+<li>本地DNS向用户主机转发内容服务CDN节点的IP地址</li>
+<li>客户与目标IP地址的服务器建立TCP链接，并且发出对该视频的HTTP GET请求</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>集群选择策略</strong><ul>
+<li>集群选择策略是任何CDN部署的核心</li>
+<li>是动态地将客户定向到CDN中某个服务器集群或数据中心的机制</li>
+<li>常用策略<ul>
+<li>地理上最为临近</li>
+<li>实时测量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/26/application-layer-video-stream/" data-id="ckcdw94yv0001a0tag15bd002" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/26/transport-layer-udp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          运输层：UDP
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/26/application-layer-email-and-smtp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">应用层：电子邮件与SMTP</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag">容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag">并发编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">算法与数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 13.33px;">容器</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">并发编程</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">算法与数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 20px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/08/trie-intro-and-application/">Trie字典树及其应用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/03/java-concurrency-intro/">Java并发编程基础复习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/02/markdown-notes/">Markdown使用笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/transport-layer-tcp/">运输层：TCP</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/26/application-layer-dns/">应用层：DNS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
