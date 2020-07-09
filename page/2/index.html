@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
@@ -115,9 +115,14 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">6</span></a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">14</span></a>
 
   </li>
   </ul>
@@ -143,6 +148,197 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/computer-network-basic-intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/26/computer-network-basic-intro/" class="post-title-link" itemprop="url">计算机网络基本概述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-26 20:46:03 / Modified: 20:47:38" itemprop="dateCreated datePublished" datetime="2020-06-26T20:46:03-04:00">2020-06-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="计算机网络结构"><a href="#计算机网络结构" class="headerlink" title="计算机网络结构"></a>计算机网络结构</h3><ul>
+<li><p>网络边缘</p>
+<ol>
+<li><p>主机（端系统）</p>
+<ul>
+<li>位于网络边缘</li>
+<li>运行网络应用程序</li>
+</ul>
+</li>
+<li><p>客户/服务器（Client/Server）应用模型</p>
+<ul>
+<li>客户发送请求，接受服务器响应</li>
+</ul>
+</li>
+<li><p>对等（Peer-peer, P2P）应用模型</p>
+<ul>
+<li>无（或不仅依赖）专用服务器</li>
+<li>通信在对等实体之间直接进行</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>接入网络</p>
+<ol>
+<li>数字用户线路（DSL）<ul>
+<li>复用电话线路</li>
+<li>接入是独占的</li>
+</ul>
+</li>
+<li>同轴电缆网络（Cable）<ul>
+<li>复用电视线路</li>
+<li>接入是共享的</li>
+</ul>
+</li>
+<li>以太网</li>
+<li>无线局域网（LANs）</li>
+<li>广域无线接入</li>
+</ol>
+</li>
+<li><p>网络核心</p>
+<ol>
+<li><p>分组交换</p>
+<ol>
+<li><p>存储转发传输</p>
+<ul>
+<li>多数分组交换机在链路的输入端使用<em>存储转发传输</em>：在交换机能够开始向输出链路传输该分组的第一个比特之前，必须接收到整个分组</li>
+</ul>
+</li>
+<li><p>排队时延和分组丢失</p>
+<ul>
+<li><p>到达分组在输出缓存中排队等待引起<em>排队时延</em></p>
+</li>
+<li><p>缓存空间达到上限，出现<em>分组丢失（丢包）</em></p>
+</li>
+</ul>
+</li>
+<li><p>转发表和路由选择协议</p>
+<ul>
+<li><p>每台路由器具有一个<em>转发表</em>，用于将目的地址映射成为输出链路</p>
+</li>
+<li><p><em>路由选择协议</em>用于自动设置转发表</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>电路交换</p>
+<ol>
+<li>复用<ul>
+<li>时分复用</li>
+<li>频分复用</li>
+<li>波分复用</li>
+<li>码分复用</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="计算机网络性能"><a href="#计算机网络性能" class="headerlink" title="计算机网络性能"></a>计算机网络性能</h3><ol>
+<li>分组时延<ul>
+<li>处理时延</li>
+<li>排队时延</li>
+<li>传输时延</li>
+<li>传播时延</li>
+</ul>
+</li>
+<li>时延带宽积<ul>
+<li><em>时延带宽积 = 传播时延 × 带宽</em></li>
+<li>链路的<em>时延带宽积</em>又被称为以比特为单位的链路长度</li>
+</ul>
+</li>
+<li>吞吐量<ul>
+<li>表示在发送端与接收端之间传送数据的速率</li>
+</ul>
+</li>
+</ol>
+<h3 id="计算机网络体系"><a href="#计算机网络体系" class="headerlink" title="计算机网络体系"></a>计算机网络体系</h3><ol>
+<li><p>分层结构</p>
+<ul>
+<li>优点：<ul>
+<li>结构清晰，有利于识别复杂系统的部件及其关系</li>
+<li>模块化的分层易于系统更新、维护，任何一层的服务实现的改变对于系统其他层都是透明的，并不影响该系统的其他层</li>
+<li>有利于标准化</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>层次过多效率降低，一层可能冗余较低层的功能</li>
+<li>某层的功能可能需要仅在其他层才出现的信息，这违反了层次分离的目标</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>协议</p>
+<ul>
+<li>通信计算机双方必须共同遵从的一组约定，是计算机之间相互通信交流的前提</li>
+<li>协议是“水平的”，是控制两个对等实体进行通信的规则的集合</li>
+<li>任一层实体需要使用下层服务，遵循本层协议，实现本层功能，向上层提供服务，服务是“垂直的”</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>下层协议的实现对上层的服务用户是透明的<ul>
+<li>协议的三要素<ol>
+<li>语法（Syntax）</li>
+<li>语义（Semantics）</li>
+<li>时序（Timing）</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -484,19 +680,24 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/icycoke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;icycoke" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/reviveclsun@outlook.com" title="E-Mail → reviveclsun@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -527,7 +728,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">icycoke</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
         
@@ -553,7 +754,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
