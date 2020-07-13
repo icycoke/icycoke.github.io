@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">18</span></a>
 
   </li>
   </ul>
@@ -148,6 +148,313 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/transport-layer-udp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/26/transport-layer-udp/" class="post-title-link" itemprop="url">运输层：UDP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-26 21:01:34 / Modified: 21:02:14" itemprop="dateCreated datePublished" datetime="2020-06-26T21:01:34-04:00">2020-06-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="UDP概述"><a href="#UDP概述" class="headerlink" title="UDP概述"></a>UDP概述</h3><ul>
+<li>UDP（User Data Protocol, 用户数据报协议）是一个非链接的协议</li>
+<li>UDP使用<strong>尽最大努力交付</strong>，即<strong>不保证可靠交付</strong></li>
+<li>使用UDP的应用是可能实现可靠数据传输都，可通过在应用程序自身中建立可靠性机制来实现</li>
+<li>主要功能：<ul>
+<li><strong>多路复用</strong> + <strong>多路分解</strong></li>
+<li>少量的差错检查</li>
+</ul>
+</li>
+<li>优点：<ul>
+<li>关于发送什么数据以及何时发送的应用层控制更为精细（吞吐量不受拥塞控制算法的调节）</li>
+<li>无须建立连接</li>
+<li>无连接状态（不需要维护连接状态或跟踪参数）</li>
+<li>分组首部开销小（仅8字节）</li>
+</ul>
+</li>
+</ul>
+<h3 id="UDP报文"><a href="#UDP报文" class="headerlink" title="UDP报文"></a>UDP报文</h3><ul>
+<li><p>报文结构</p>
+<table>
+    <tr>
+        <td align="center">源端口号</td>
+        <td align="center">目的端口号</td>
+    </tr>
+    <tr>
+        <td align="center">长度（首部+数据）</td>
+        <td align="center">校验和</td>
+    </tr>
+    <tr>
+        <td align="center" colspan='2'>应用数据（报文）</td>
+    </tr>
+</table>
+</li>
+<li><p>校验和</p>
+<ul>
+<li>原理：<ol>
+<li>发送方的UDP对报文段中的所有16比特字求和，溢出则回卷</li>
+<li>对该和取反码作为校验和</li>
+<li>接收方将所有的16比特字与校验和求和，若所有位数为1则校验成功</li>
+</ol>
+</li>
+<li>引入原因：<ul>
+<li>不能保证源和目的之间的所有链路都提供差错检测</li>
+<li>遵循<strong>端到端原则</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/application-layer-video-stream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/26/application-layer-video-stream/" class="post-title-link" itemprop="url">应用层：视频流和内容分发网</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-26 20:59:00 / Modified: 21:00:39" itemprop="dateCreated datePublished" datetime="2020-06-26T20:59:00-04:00">2020-06-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="HTTP流和DASH"><a href="#HTTP流和DASH" class="headerlink" title="HTTP流和DASH"></a>HTTP流和DASH</h3><ul>
+<li>HTTP流中，视频只是存储在HTTP服务器中作为一个普通的文件</li>
+<li><strong>经HTTP的动态适应性流</strong>（Dynamic Adaptive Streaming over HTTP，DASH）<ul>
+<li>在DASH中，视频编码为几个不同的版本，每个版本具有不同的比特率</li>
+</ul>
+</li>
+</ul>
+<h3 id="内容分发网（Content-Distribution-Network，CDN）"><a href="#内容分发网（Content-Distribution-Network，CDN）" class="headerlink" title="内容分发网（Content Distribution Network，CDN）"></a>内容分发网（Content Distribution Network，CDN）</h3><ul>
+<li>CDN管理分布在多个地理位置上的服务器，在他的服务器中存储视频（和其他类型的Web内容，包括文档、图片和音频）的副本，并且试图将每个用户请求定向到一个将提供最好的用户体验的CDN位置。</li>
+<li>安置原则：<ol>
+<li><strong>深入</strong>。通过在遍及全球的接入ISP中部署服务器集群来深入到ISP的接入网中。较高的维护和管理开销。</li>
+<li><strong>邀请做客</strong>。通过在少量关键位置建造大集群来邀请ISP做客。较低的维护和管理开销，可能以对端用户的高时延和较低吞吐量作为代价。</li>
+</ol>
+</li>
+<li>CDN操作<ul>
+<li>当用户主机中的一个浏览器指令检索一个特定的视频（由URL标识）时，CDN必须截获该请求，以便能够：<ol>
+<li>确定此时适合用于该客户的CDN服务器集群</li>
+<li>将客户的请求重定向到该集群的某台服务器</li>
+</ol>
+</li>
+<li>大多数CDN利用DNS来截获和重定向请求</li>
+<li>操作流程：<ol>
+<li>用户访问位于某一Web网页</li>
+<li>当用户点击视频链接时，发送一个对对应服务器的DNS请求</li>
+<li>用户的本地DNS服务器将该DNS请求中继到一台用于视频提供服务器的权威DNS服务器，权威DNS服务器返回一个CDN域的主机名</li>
+<li>DNS请求进入CDN专用DNS基础设施，用户的本地DNS服务器发送对CDN域内某一主机的DNS请求，CDN的DNS系统返回内容服务器的IP地址</li>
+<li>本地DNS向用户主机转发内容服务CDN节点的IP地址</li>
+<li>客户与目标IP地址的服务器建立TCP链接，并且发出对该视频的HTTP GET请求</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>集群选择策略</strong><ul>
+<li>集群选择策略是任何CDN部署的核心</li>
+<li>是动态地将客户定向到CDN中某个服务器集群或数据中心的机制</li>
+<li>常用策略<ul>
+<li>地理上最为临近</li>
+<li>实时测量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/application-layer-email-and-smtp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/26/application-layer-email-and-smtp/" class="post-title-link" itemprop="url">应用层：电子邮件与SMTP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-26 20:56:49 / Modified: 20:58:25" itemprop="dateCreated datePublished" datetime="2020-06-26T20:56:49-04:00">2020-06-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="电子邮件系统"><a href="#电子邮件系统" class="headerlink" title="电子邮件系统"></a>电子邮件系统</h3><ul>
+<li><p>组成部分：</p>
+<ol>
+<li><strong>用户代理</strong>（user agent）</li>
+<li><strong>邮件服务器</strong>（mail server）</li>
+<li><strong>简单邮件传输协议</strong>（Simple Mail Transfer Protocol, SMTP）</li>
+</ol>
+</li>
+<li><p>邮件发送流程：</p>
+<ol>
+<li>发送方撰写邮件，由用户代理传输到发送方的邮件服务器</li>
+<li>发送方的邮件服务器传输到接收方的邮件服务器</li>
+<li>接收方的邮件服务器分发邮件到接收方的邮箱</li>
+</ol>
+</li>
+</ul>
+<h3 id="SMTP概况"><a href="#SMTP概况" class="headerlink" title="SMTP概况"></a>SMTP概况</h3><ul>
+<li>SMTP是因特网电子邮件中主要的应用层协议</li>
+<li>SMTP使用<strong>TCP</strong>可靠数据传输服务</li>
+<li>SMTP用于从发送方的邮件服务器发送报文到接收方的邮件服务器</li>
+<li>SMPT要求每个报文采用7比特ASCII码格式，如果某报文包含了非7比特ASCII码字符或二进制数据，则该报文必须按照7比特ASCII码进行编码</li>
+</ul>
+<h3 id="邮件报文格式"><a href="#邮件报文格式" class="headerlink" title="邮件报文格式"></a>邮件报文格式</h3><ul>
+<li>首部<ul>
+<li>From: 首部行</li>
+<li>To: 首部行</li>
+<li>Subject: 首部行</li>
+</ul>
+</li>
+<li>空行分隔</li>
+<li>报文体（以ASCII格式表示）</li>
+</ul>
+<h3 id="邮件访问协议"><a href="#邮件访问协议" class="headerlink" title="邮件访问协议"></a>邮件访问协议</h3><ul>
+<li>用于将邮件从接收方的邮件服务器传送到接收方的用户代理</li>
+<li>常见的邮件访问协议<ul>
+<li>第三版的邮局协议（Post Office Protocol - version 3, POP3）</li>
+<li>因特网邮件访问协议（Internet Mail Access Protocol, IMAP）</li>
+<li>HTTP</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -816,7 +1123,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
