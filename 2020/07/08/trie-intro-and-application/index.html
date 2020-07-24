@@ -22,16 +22,16 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Trie概述 Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组  Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置  一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）  根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值  每个节点的所有子节点包含的字符串不相同  如向一个空字典树中插入”panda”，”pa">
+  <meta name="description" content="1. Trie概述 Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组  Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置  一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）  根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值  每个节点的所有子节点包含的字符串不相同  如向一个空字典树中插入”panda”，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Trie字典树及其应用">
 <meta property="og:url" content="http://yoursite.com/2020/07/08/trie-intro-and-application/index.html">
 <meta property="og:site_name" content="icycoke&#39;s blog">
-<meta property="og:description" content="Trie概述 Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组  Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置  一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）  根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值  每个节点的所有子节点包含的字符串不相同  如向一个空字典树中插入”panda”，”pa">
+<meta property="og:description" content="1. Trie概述 Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组  Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置  一个节点的所有子孙节点都具有相同的前缀，也就是该节点所对应的值（一般是字符串）  根节点为空节点，从根节点到某一结点所经过的所有节点保存的值相连，为该节点对应的串值  每个节点的所有子节点包含的字符串不相同  如向一个空字典树中插入”panda”，">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://icycoke.github.io/2020/07/08/trie-intro-and-application/trie_example.png">
 <meta property="article:published_time" content="2020-07-08T18:32:16.000Z">
-<meta property="article:modified_time" content="2020-07-10T20:29:57.565Z">
+<meta property="article:modified_time" content="2020-07-24T22:46:13.445Z">
 <meta property="article:author" content="icycoke">
 <meta property="article:tag" content="算法与数据结构">
 <meta name="twitter:card" content="summary">
@@ -129,7 +129,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">17</span></a>
 
   </li>
   </ul>
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-10 16:29:57" itemprop="dateModified" datetime="2020-07-10T16:29:57-04:00">2020-07-10</time>
+                <time title="Modified: 2020-07-24 18:46:13" itemprop="dateModified" datetime="2020-07-24T18:46:13-04:00">2020-07-24</time>
               </span>
 
           
@@ -204,7 +204,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Trie概述"><a href="#Trie概述" class="headerlink" title="Trie概述"></a>Trie概述</h2><ul>
+        <h2 id="1-Trie概述"><a href="#1-Trie概述" class="headerlink" title="1. Trie概述"></a>1. Trie概述</h2><ul>
 <li><p>Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组</p>
 </li>
 <li><p>Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置</p>
@@ -236,7 +236,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="Trie应用场景示例"><a href="#Trie应用场景示例" class="headerlink" title="Trie应用场景示例"></a>Trie应用场景示例</h2><ol>
+<a id="more"></a>
+
+<h2 id="2-Trie应用场景示例"><a href="#2-Trie应用场景示例" class="headerlink" title="2. Trie应用场景示例"></a>2. Trie应用场景示例</h2><ol>
 <li><p>给定一个词典<code>dictionary</code>和一个字符串<code>sentence</code>，以<code>dictionary</code>中的词将<code>sentence</code>断句，返回<code>sentence</code>中不能以<code>dictionary</code>识别的词的字符数总和（<code>sentence</code>和<code>dictionary</code>中仅包含小写字母）</p>
 <ul>
 <li><p>示例</p>
@@ -342,7 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie概述"><span class="nav-number">1.</span> <span class="nav-text">Trie概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie应用场景示例"><span class="nav-number">2.</span> <span class="nav-text">Trie应用场景示例</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Trie概述"><span class="nav-number">1.</span> <span class="nav-text">1. Trie概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Trie应用场景示例"><span class="nav-number">2.</span> <span class="nav-text">2. Trie应用场景示例</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,7 +358,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">17</span></a>
 
   </li>
   </ul>
@@ -231,64 +231,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/binary-indexed-tree-note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="icycoke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icycoke's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/10/binary-indexed-tree-note/" class="post-title-link" itemprop="url">树状数组</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-07-10 19:31:49 / Modified: 19:41:28" itemprop="dateCreated datePublished" datetime="2020-07-10T19:31:49-04:00">2020-07-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="树状数组概述"><a href="#树状数组概述" class="headerlink" title="树状数组概述"></a>树状数组概述</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/segment-tree-intro-and-application/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -312,10 +254,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-07-10 16:28:44 / Modified: 19:22:41" itemprop="dateCreated datePublished" datetime="2020-07-10T16:28:44-04:00">2020-07-10</time>
+              <time title="Created: 2020-07-10 16:28:44" itemprop="dateCreated datePublished" datetime="2020-07-10T16:28:44-04:00">2020-07-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-24 18:49:07" itemprop="dateModified" datetime="2020-07-24T18:49:07-04:00">2020-07-24</time>
+              </span>
 
           
 
@@ -328,7 +276,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="线段树概述"><a href="#线段树概述" class="headerlink" title="线段树概述"></a>线段树概述</h2><ul>
+          <h2 id="1-线段树概述"><a href="#1-线段树概述" class="headerlink" title="1. 线段树概述"></a>1. 线段树概述</h2><ul>
 <li>线段树是一种特殊的二叉搜索树，它将一个区间（数组arr）划分成一些单元区间，每个单元区间对应线段树中的一个节点</li>
 <li>对于线段树中的每一个节点[l, r]，它对应的值代表了arr[l…r]的区间和</li>
 <li>对于线段树中的每一个非叶子节点[l, r]，令mid = (l + r) / 2，它的左儿子表示的区间为[l, mid]，右儿子表示的区间为[mid + 1, r]</li>
@@ -350,7 +298,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="线段树的部分代码实现"><a href="#线段树的部分代码实现" class="headerlink" title="线段树的部分代码实现"></a>线段树的部分代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> icycoke</span></span><br><span class="line"><span class="comment"> * 线段树 （构造、单点更新）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SegmentTree</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用一个数组表示线段树</span></span><br><span class="line">    <span class="keyword">int</span>[] tree;</span><br><span class="line">    <span class="comment">// 记录该索引对应的节点是否为空</span></span><br><span class="line">    <span class="keyword">boolean</span>[] isNullArr;</span><br><span class="line">    <span class="keyword">int</span>[] arr;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SegmentTree</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.arr = arr;</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 确定线段树数组大小</span></span><br><span class="line">        <span class="keyword">while</span> (size &lt; arr.length) &#123;</span><br><span class="line">            size &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        size = size * <span class="number">2</span> - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        tree = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">        isNullArr = <span class="keyword">new</span> <span class="keyword">boolean</span>[size];</span><br><span class="line">        Arrays.fill(isNullArr, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        buildTree(<span class="number">0</span>, <span class="number">0</span>, arr.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归构建线段树</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span> treeIndex, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 若当前节点为叶子节点，则计算该节点的值并标记其为非空节点</span></span><br><span class="line">        <span class="keyword">if</span> (start == end) &#123;</span><br><span class="line">            tree[treeIndex] = arr[start];</span><br><span class="line">            isNullArr[treeIndex] = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> leftIndex = treeIndex * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> rightIndex = treeIndex * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">        <span class="comment">// 构建左子树</span></span><br><span class="line">        buildTree(leftIndex, start, mid);</span><br><span class="line">        <span class="comment">// 构建右子树</span></span><br><span class="line">        buildTree(rightIndex, mid + <span class="number">1</span>, end);</span><br><span class="line"></span><br><span class="line">        tree[treeIndex] = tree[leftIndex] + tree[rightIndex];</span><br><span class="line">        isNullArr[treeIndex] = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新指定索引处的值</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">updateTree</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line">        updateNode(<span class="number">0</span>, <span class="number">0</span>, arr.length - <span class="number">1</span>, index, newValue);</span><br><span class="line">        arr[index] = newValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">updateNode</span><span class="params">(<span class="keyword">int</span> treeIndex, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span> index, <span class="keyword">int</span> newValue)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 若更新的值对该节点极其子孙节点无影响，则无须进一步操作</span></span><br><span class="line">        <span class="keyword">if</span> (index &lt; start || index &gt; end) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        tree[treeIndex] = tree[treeIndex] - arr[index] + newValue;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (start != end) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> leftIndex = treeIndex * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> rightIndex = treeIndex * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">            updateNode(leftIndex, start, mid, index, newValue);</span><br><span class="line">            updateNode(rightIndex, mid + <span class="number">1</span>, end, index, newValue);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/10/segment-tree-intro-and-application/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -400,7 +355,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-24 02:07:18" itemprop="dateModified" datetime="2020-07-24T02:07:18-04:00">2020-07-24</time>
+                <time title="Modified: 2020-07-24 18:41:57" itemprop="dateModified" datetime="2020-07-24T18:41:57-04:00">2020-07-24</time>
               </span>
 
           
@@ -418,127 +373,14 @@
 <li>设计模式（Design pattern）代表了最佳的实践，是软件开发人员在软件开发过程中面临的一般问题的解决方案</li>
 <li>使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性</li>
 </ul>
-<h2 id="2-设计模式六大原则"><a href="#2-设计模式六大原则" class="headerlink" title="2. 设计模式六大原则"></a>2. 设计模式六大原则</h2><h3 id="2-1-开闭原则"><a href="#2-1-开闭原则" class="headerlink" title="2.1 开闭原则"></a>2.1 开闭原则</h3><ul>
-<li>一个软件实体如类、模块和函数应该对修改封闭，对扩展开放</li>
-</ul>
-<h3 id="2-2-单一职责原则"><a href="#2-2-单一职责原则" class="headerlink" title="2.2 单一职责原则"></a>2.2 单一职责原则</h3><ul>
-<li>一个类只做一件事，一个类应该只有一个引起它修改的原因</li>
-</ul>
-<h3 id="2-3-里氏替换原则"><a href="#2-3-里氏替换原则" class="headerlink" title="2.3 里氏替换原则"></a>2.3 里氏替换原则</h3><ul>
-<li>子类应该可以完全替换父类。也就是说在使用继承时，只扩展新功能，而不要破坏父类原有的功能</li>
-</ul>
-<h3 id="3-4-依赖倒置原则"><a href="#3-4-依赖倒置原则" class="headerlink" title="3.4 依赖倒置原则"></a>3.4 依赖倒置原则</h3><ul>
-<li>细节应该依赖于抽象，抽象不应依赖于细节。把抽象层放在程序设计的高层，并保持稳定，程序的细节变化由低层的实现层来完成</li>
-</ul>
-<h3 id="3-5-最少知道原则（迪米特法则）"><a href="#3-5-最少知道原则（迪米特法则）" class="headerlink" title="3.5 最少知道原则（迪米特法则）"></a>3.5 最少知道原则（迪米特法则）</h3><ul>
-<li>一个类不应知道自己操作的类的细节</li>
-</ul>
-<h3 id="3-6-接口隔离原则"><a href="#3-6-接口隔离原则" class="headerlink" title="3.6 接口隔离原则"></a>3.6 接口隔离原则</h3><ul>
-<li>客户端不应依赖它不需要的接口。如果一个接口在实现时，部分方法由于冗余被客户端空实现，则应该将接口拆分，让实现类只需依赖自己需要的接口方法</li>
-</ul>
-<h2 id="3-设计模式类型"><a href="#3-设计模式类型" class="headerlink" title="3. 设计模式类型"></a>3. 设计模式类型</h2><h3 id="3-1-创建型模式"><a href="#3-1-创建型模式" class="headerlink" title="3.1 创建型模式"></a>3.1 创建型模式</h3><ul>
-<li>这些设计模式提供了一种在创建对象的同时<strong>隐藏创建逻辑</strong>的方式，而不是使用 new 运算符直接实例化对象</li>
-<li>这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活</li>
-</ul>
-<h4 id="3-1-1-工厂模式"><a href="#3-1-1-工厂模式" class="headerlink" title="3.1.1 工厂模式"></a>3.1.1 工厂模式</h4><ul>
-<li><p>定义一个创建对象的接口，返回抽象的产品，工厂模式使其<strong>创建过程延迟到子类进行</strong></p>
-</li>
-<li><p>优点</p>
-<ul>
-<li>扩展性高</li>
-<li>屏蔽了产品的具体实现</li>
-</ul>
-</li>
-<li><p>缺点</p>
-<ul>
-<li>每次增加一个产品时，都需要增加一个具体类和对象实现工厂</li>
-<li>添加新产品时要对现有的工厂类进行修改，违背了<strong>开闭原则</strong></li>
-</ul>
-</li>
-<li><p>实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Fruit <span class="title">create</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"苹果"</span>: <span class="keyword">return</span> <span class="keyword">new</span> Apple();</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"梨子"</span>: <span class="keyword">return</span> <span class="keyword">new</span> Pear();</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"暂时没有这种水果"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        FruitFactory fruitFactory = <span class="keyword">new</span> FruitFactory();</span><br><span class="line">        <span class="comment">// 用抽象的Fruit类型接收对象</span></span><br><span class="line">        Fruit apple = fruitFactory.create(<span class="string">"苹果"</span>);</span><br><span class="line">        Fruit pear = fruitFactory.create(<span class="string">"梨子"</span>);</span><br><span class="line">        apple.eat();</span><br><span class="line">        pear.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="3-1-2-抽象工厂模式"><a href="#3-1-2-抽象工厂模式" class="headerlink" title="3.1.2 抽象工厂模式"></a>3.1.2 抽象工厂模式</h4><ul>
-<li><p>围绕一个抽象工厂接口创建其它工厂</p>
-</li>
-<li><p>优点</p>
-<ul>
-<li>我们在创建时指定了具体的工厂类后，在使用时就无需再关心是哪个工厂类，只需要将此工厂当作抽象工厂接口使用即可</li>
-<li>扩展具体工厂时只需新建一个具体工厂类</li>
-</ul>
-</li>
-<li><p>缺点</p>
-<ul>
-<li>如果抽象工厂接口需要新增功能，则会影响到所有的具体工厂类</li>
-</ul>
-</li>
-<li><p>实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="function">Fruit <span class="title">create</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppleFactory</span> <span class="keyword">implements</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Fruit <span class="title">create</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Apple();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PearFactory</span> <span class="keyword">implements</span> <span class="title">IFactory</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Fruit <span class="title">create</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Pear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 创建时指定具体工厂类</span></span><br><span class="line">        IFactory appleFactory = <span class="keyword">new</span> AppleFactory();</span><br><span class="line">        <span class="comment">// 使用时将工厂当作抽象工厂使用</span></span><br><span class="line">        Fruit apple = appleFactory.create();</span><br><span class="line">        IFactory pearFactory = <span class="keyword">new</span> PearFactory();</span><br><span class="line">        Fruit pear = pearFactory.create();</span><br><span class="line">        apple.eat();</span><br><span class="line">        pear.eat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="3-1-3-单例模式"><a href="#3-1-3-单例模式" class="headerlink" title="3.1.3 单例模式"></a>3.1.3 单例模式</h4><ul>
-<li><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点</p>
-</li>
-<li><p>优点</p>
-<ul>
-<li>可控制实例数目，节省系统资源</li>
-<li>避免了对资源的多重占用（比如写文件操作）</li>
-</ul>
-</li>
-<li><p>缺点</p>
-<ul>
-<li>没有接口，不能继承</li>
-<li>违反了<strong>单一职责原则</strong></li>
-</ul>
-</li>
-<li><p>实现</p>
-<ul>
-<li><p>饿汉式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 在类加载之后立即创建该实例，这会占用内存空间并增加类初始化时间</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将构造方法定义为private，保证其他类无法实例化该类</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 该方法为获取到instance实例的唯一途径</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>懒汉式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 懒汉式将加载时间从启动时延迟到了运行时，缩短了启动时间，但增加了运行时间</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果instance已被实例化，则不执行同步化操作，提升程序效率</span></span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 保证线程安全</span></span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Singleton类加载时，内部类不会被立即加载，节省了内存</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当访问Singleton类的静态字段时，对SingletonHolder进行加载，且JVM加载类时会保证clinit(class+initialize)方法被正确加锁、同步，保证了线程安全</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-1-4-建造者模式"><a href="#3-1-4-建造者模式" class="headerlink" title="3.1.4 建造者模式"></a>3.1.4 建造者模式</h4><ul>
-<li><p>使用多个简单的对象一步一步构建成一个复杂的对象</p>
-</li>
-<li><p>当一个类的构造函数参数个数超过4个，而且这些参数有些是可选的参数，考虑使用构造者模式</p>
-</li>
-<li><p>优点</p>
-<ul>
-<li>建造者独立，易扩展</li>
-<li>可在客户端使用使用链式调用地构造对象，对象的属性十分清晰</li>
-</ul>
-</li>
-<li><p>缺点</p>
-<ul>
-<li>如果内部变化很复杂，会有很多的建造类，系统会很庞大</li>
-<li>产品必须有共同点，范围有限制</li>
-</ul>
-</li>
-<li><p>实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String cpu;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String ram;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> usbCount;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String keyboard;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String display;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将唯一的构造器设为private，禁止来自其他类的调用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Computer</span><span class="params">(Builder builder)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cpu=builder.cpu;</span><br><span class="line">        <span class="keyword">this</span>.ram=builder.ram;</span><br><span class="line">        <span class="keyword">this</span>.usbCount=builder.usbCount;</span><br><span class="line">        <span class="keyword">this</span>.keyboard=builder.keyboard;</span><br><span class="line">        <span class="keyword">this</span>.display=builder.display;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">private</span> String cpu;</span><br><span class="line">        <span class="keyword">private</span> String ram;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> usbCount;</span><br><span class="line">        <span class="keyword">private</span> String keyboard;</span><br><span class="line">        <span class="keyword">private</span> String display;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(String cup,String ram)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.cpu=cup;</span><br><span class="line">            <span class="keyword">this</span>.ram=ram;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设定对象属性时均返回Builder自身，以支持链式调用</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">setUsbCount</span><span class="params">(<span class="keyword">int</span> usbCount)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.usbCount = usbCount;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">setKeyboard</span><span class="params">(String keyboard)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.keyboard = keyboard;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">setDisplay</span><span class="params">(String display)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.display = display;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;   </span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 以该Builder为参数构造实体对象</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Computer <span class="title">build</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Computer(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="3-1-5-原型模式"><a href="#3-1-5-原型模式" class="headerlink" title="3.1.5 原型模式"></a>3.1.5 原型模式</h4>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/09/design-pattern-note/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -664,7 +506,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-10 16:29:57" itemprop="dateModified" datetime="2020-07-10T16:29:57-04:00">2020-07-10</time>
+                <time title="Modified: 2020-07-24 18:46:13" itemprop="dateModified" datetime="2020-07-24T18:46:13-04:00">2020-07-24</time>
               </span>
 
           
@@ -678,7 +520,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Trie概述"><a href="#Trie概述" class="headerlink" title="Trie概述"></a>Trie概述</h2><ul>
+          <h2 id="1-Trie概述"><a href="#1-Trie概述" class="headerlink" title="1. Trie概述"></a>1. Trie概述</h2><ul>
 <li><p>Trie，又称字典树或前缀树，是一种有序树，用于保存关联数组</p>
 </li>
 <li><p>Trie中的键并不直接保存在节点中，而是取决于该节点在树中的位置</p>
@@ -710,30 +552,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="Trie应用场景示例"><a href="#Trie应用场景示例" class="headerlink" title="Trie应用场景示例"></a>Trie应用场景示例</h2><ol>
-<li><p>给定一个词典<code>dictionary</code>和一个字符串<code>sentence</code>，以<code>dictionary</code>中的词将<code>sentence</code>断句，返回<code>sentence</code>中不能以<code>dictionary</code>识别的词的字符数总和（<code>sentence</code>和<code>dictionary</code>中仅包含小写字母）</p>
-<ul>
-<li><p>示例</p>
-<ul>
-<li><p>输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dictionary &#x3D; [&quot;looked&quot;, &quot;just&quot;, &quot;like&quot;, &quot;her&quot;, &quot;brother&quot;]</span><br><span class="line">sentence &#x3D; &quot;jesslookedjustliketimherbrother&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>输出：</p>
-<p>7</p>
-</li>
-<li><p>解释：</p>
-<p>断句后为”<strong>jess</strong> looked just like <strong>tim</strong> her brother”，共7个未识别字符</p>
-</li>
-</ul>
-</li>
-<li><p>题解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">respace</span><span class="params">(String[] dictionary, String sentence)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sLength = sentence.length();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建字典树根节点</span></span><br><span class="line">        TrieNode root = <span class="keyword">new</span> TrieNode();</span><br><span class="line">        <span class="keyword">for</span> (String word : dictionary) &#123;</span><br><span class="line">            root.insert(word);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// dp[j]为以sentence中第1个字符到第j个字符组成的子串所有的最小的未识别字符数</span></span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[sLength + <span class="number">1</span>];</span><br><span class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 空字符串的最小未识别字符数为0</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; dp.length; j++) &#123;</span><br><span class="line">            dp[j] = dp[j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            TrieNode curNode = root;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = j; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = sentence.charAt(i - <span class="number">1</span>) - <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 如果当前前缀不匹配，则退出循环，避免无谓的比较</span></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 如果匹配至完整单词，则更新dp[j]</span></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num].isEnd) &#123;</span><br><span class="line">                    dp[j] = Math.min(dp[j], dp[i - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 如果当前最小未识别字符数为0，则退出循环，避免无谓的比较</span></span><br><span class="line">                <span class="keyword">if</span> (dp[j] == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                curNode = curNode.nextNodes[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[sLength];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一个字典树节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 该节点的子节点集合</span></span><br><span class="line">        <span class="keyword">private</span> TrieNode[] nextNodes;</span><br><span class="line">        <span class="comment">// 该节点是否为叶子节点</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isEnd;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            nextNodes = <span class="keyword">new</span> TrieNode[<span class="number">26</span>];</span><br><span class="line">            isEnd = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将指定字符串倒序插入字典树中</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">            TrieNode curNode = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = s.charAt(i) - <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (curNode.nextNodes[num] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    curNode.nextNodes[num] = <span class="keyword">new</span> TrieNode();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                curNode = curNode.nextNodes[num];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            curNode.isEnd = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/08/trie-intro-and-application/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -783,7 +609,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-08 18:24:33" itemprop="dateModified" datetime="2020-07-08T18:24:33-04:00">2020-07-08</time>
+                <time title="Modified: 2020-07-24 18:38:56" itemprop="dateModified" datetime="2020-07-24T18:38:56-04:00">2020-07-24</time>
               </span>
 
           
@@ -797,7 +623,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="创建多线程程序"><a href="#创建多线程程序" class="headerlink" title="创建多线程程序"></a>创建多线程程序</h3><ul>
+          <h2 id="1-创建多线程程序"><a href="#1-创建多线程程序" class="headerlink" title="1. 创建多线程程序"></a>1. 创建多线程程序</h2><ul>
 <li>方法<ol>
 <li>继承<code>Thread</code>类</li>
 <li>实现<code>Runnable</code>接口（推荐）</li>
@@ -809,74 +635,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><ul>
-<li><p>当多个线程访问了共享数据时，会产生线程安全问题</p>
-</li>
-<li><p>Java引入<strong>线程同步</strong>机制处理线程安全问题</p>
-<ol>
-<li><p><strong>同步代码块</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(同步锁对象) &#123;</span><br><span class="line">	需要同步操作的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>同步方法</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	需要同步操作的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>非静态方法的锁是实例对象本身（this）</li>
-<li>静态方法的锁是本类的class</li>
-</ul>
-</li>
-<li><p><strong>Lock锁</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Lock l = ...;</span><br><span class="line">l.lock();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	需要同步操作的代码</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	l.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>Lock</code>接口提供了比使用<code>synchronized</code>方法和语句可获得的更广泛的锁定操作</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><ul>
-<li>新建状态</li>
-<li>运行状态</li>
-<li>阻塞状态</li>
-<li>休眠状态</li>
-<li>永久等待状态</li>
-<li>死亡状态</li>
-</ul>
-<p><em><code>sleep()</code>和<code>wait()</code>的区别：前者保持对象锁，其他线程无法访问；后者释放对象锁，其他线程可以访问</em></p>
-<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
-<li><p>如果并发的线程数量很多，并且每个线程完成任务的时间很短，频繁创建线程会大大降低效率，因此需要线程池</p>
-</li>
-<li><p>流程：</p>
-<ul>
-<li>当程序初次启动时，创建多个线程，保存在一个容器中</li>
-<li>使用线程时从容器中取线程使用</li>
-<li>线程使用完毕后，把线程归还给线程池</li>
-</ul>
-</li>
-<li><p>线程池的优点</p>
-<ul>
-<li>降低资源消耗。每个线程都可被重复利用</li>
-<li>提高响应速度。任务到达时，不需要等待线程创建</li>
-<li>提高线程的可管理性。可根据系统的承受能力，调整线程池中工作线程的数量</li>
-</ul>
-</li>
-<li><p>JDK1.5之后，内置线程池工厂类<code>Executors</code>，但推荐手动创建线程池。使用该工厂类创建线程池可能会因为允许的请求队列长度或创建线程数量太大而导致内存溢出</p>
-</li>
-<li><p>通过<code>ThreadPoolExecutor</code>手动创建线程池</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates a new &#123;<span class="doctag">@code</span> ThreadPoolExecutor&#125; with the given initial</span></span><br><span class="line"><span class="comment"> * parameters and default thread factory and rejected execution handler.</span></span><br><span class="line"><span class="comment"> * It may be more convenient to use one of the &#123;<span class="doctag">@link</span> Executors&#125; factory</span></span><br><span class="line"><span class="comment"> * methods instead of this general purpose constructor.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> corePoolSize the number of threads to keep in the pool, even</span></span><br><span class="line"><span class="comment"> *        if they are idle, unless &#123;<span class="doctag">@code</span> allowCoreThreadTimeOut&#125; is set</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> maximumPoolSize the maximum number of threads to allow in the</span></span><br><span class="line"><span class="comment"> *        pool</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> keepAliveTime when the number of threads is greater than</span></span><br><span class="line"><span class="comment"> *        the core, this is the maximum time that excess idle threads</span></span><br><span class="line"><span class="comment"> *        will wait for new tasks before terminating.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> unit the time unit for the &#123;<span class="doctag">@code</span> keepAliveTime&#125; argument</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> workQueue the queue to use for holding tasks before they are</span></span><br><span class="line"><span class="comment"> *        executed.  This queue will hold only the &#123;<span class="doctag">@code</span> Runnable&#125;</span></span><br><span class="line"><span class="comment"> *        tasks submitted by the &#123;<span class="doctag">@code</span> execute&#125; method.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IllegalArgumentException if one of the following holds:&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> corePoolSize &lt; 0&#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> keepAliveTime &lt; 0&#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> maximumPoolSize &lt;= 0&#125;&lt;br&gt;</span></span><br><span class="line"><span class="comment"> *         &#123;<span class="doctag">@code</span> maximumPoolSize &lt; corePoolSize&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if &#123;<span class="doctag">@code</span> workQueue&#125; is null</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">						<span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">						<span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">						TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">						BlockingQueue&lt;Runnable&gt; workQueue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,</span><br><span class="line">             Executors.defaultThreadFactory(), defaultHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>corePoolSize</code>是线程池维护线程的最少数量，如果任务添加时，线程池中的数量小于该数值，则创建新的线程来处理该任务</li>
-<li><code>maximumPoolSize</code>是线程池维护线程的最大数量</li>
-<li><code>keepAliveTime</code>是线程池维护线程所允许的空闲时间</li>
-<li><code>unit</code>是像城池维护线程所允许的空闲时间的单位</li>
-<li><code>workQueue</code>是线程池所使用的缓冲队列</li>
-<li><code>handler</code>是线程池对拒绝任务的处理策略</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/03/java-concurrency-intro/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -918,10 +684,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-07-02 17:55:35 / Modified: 18:57:51" itemprop="dateCreated datePublished" datetime="2020-07-02T17:55:35-04:00">2020-07-02</time>
+              <time title="Created: 2020-07-02 17:55:35" itemprop="dateCreated datePublished" datetime="2020-07-02T17:55:35-04:00">2020-07-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-24 18:45:31" itemprop="dateModified" datetime="2020-07-24T18:45:31-04:00">2020-07-24</time>
+              </span>
 
           
 
@@ -934,53 +706,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="图片插入"><a href="#图片插入" class="headerlink" title="图片插入"></a>图片插入</h3><ul>
-<li><code>![图片名称]{路径}</code></li>
-<li><code>&lt;img src=&quot;路径&quot; /&gt;</code></li>
-</ul>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><ul>
-<li><p>使用<code>&lt;table&gt;&lt;/table&gt;</code>标签，用CSS控制样式</p>
-</li>
-<li><p>例如：</p>
-<p><img src="https://icycoke.github.io/2020/07/02/markdown-notes/table_code.png" alt="示例表格代码"></p>
-<p>将显示为：</p>
-<table>
-    <tr>
-        <th style="vertical-align:middle; text-align:center">事件</th>
-        <th style="vertical-align:middle; text-align:center">发送方动作</th>
-    </tr>
-    <tr>
-        <td rowspan="2" style="vertical-align:middle; text-align:center">从应用层收到数据</td>
-        <td align="center">创建序列号是第一个字节编号的Segment</td>
-    </tr>
-    <tr>
-        <td align="center">设置超时时间，开启计时器</td>
-    </tr>
-    <tr>
-        <td rowspan="2" style="vertical-align:middle; text-align:center">超时</td>
-        <td align="center">重传引起超时的Segment（单个）</td>
-    </tr>
-    <tr>
-        <td align="center">重启定时器</td>
-    </tr>
-    <tr>
-        <td style="vertical-align:middle; text-align:center">收到ACK</td>
-        <td style="vertical-align:middle; text-align:center">如果确认此前未确认的Segment：<br/>&nbsp&nbsp&nbsp&nbsp 1.更新SendBase<br/>&nbsp&nbsp&nbsp&nbsp 2.如果窗口中还有违背确认的分组，重新启动定时器</td>
-  </tr>
-</table>
-
-</li>
-</ul>
-<h3 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h3><ul>
-<li><p>在md文件头部加入</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>借助MathJax引擎在Markdown中写数学公式</p>
-</li>
-<li><p>与在Latex中写数学公式不同的是，Markdown中<code>\</code>是转义字符，因此输入行内公式时应使用<code>\\表达式\\</code>，输入行间公式时应使用<code>$$表达式$$</code></p>
-</li>
-</ul>
-
+          <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>Markdown使用过程中的常见操作与实用技巧</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/02/markdown-notes/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1030,7 +764,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-08 17:52:55" itemprop="dateModified" datetime="2020-07-08T17:52:55-04:00">2020-07-08</time>
+                <time title="Modified: 2020-07-24 18:48:49" itemprop="dateModified" datetime="2020-07-24T18:48:49-04:00">2020-07-24</time>
               </span>
 
           
@@ -1046,7 +780,7 @@
       
           <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
-<h3 id="可靠数据传输原理"><a href="#可靠数据传输原理" class="headerlink" title="可靠数据传输原理"></a>可靠数据传输原理</h3><ul>
+<h2 id="1-可靠数据传输原理"><a href="#1-可靠数据传输原理" class="headerlink" title="1. 可靠数据传输原理"></a>1. 可靠数据传输原理</h2><ul>
 <li><p>构造可靠数据传输协议</p>
 <ol>
 <li><p>经完全可靠信道的可靠数据传输：rdt1.0</p>
@@ -1058,338 +792,14 @@
 <p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt1.0_receiver.png" alt="rdt1.0接收方状态机"></p>
 </li>
 </ul>
-</li>
-<li><p>经具有比特差错信道的可靠数据传输：rdt2.0，rdt2.1，rdt2.2</p>
-<ol>
-<li><p>rdt2.0</p>
-<ul>
-<li><p>底层信道中的分组可能受损</p>
-</li>
-<li><p>重传机制的可靠数据传输协议称为<strong>自动重传请求</strong>（Automatic Repeat reQuest, ARQ）<strong>协议</strong></p>
-</li>
-<li><p>ARP协议中需要另外三种协议功能来处理存在比特差错的情况：</p>
-<ol>
-<li><strong>差错检测</strong></li>
-<li><em>接收方反馈*</em>，包括<strong>肯定确认</strong>（ACK）与<strong>否定确认</strong>（NAK）**</li>
-<li>重传**</li>
-</ol>
-</li>
-<li><p>发送方和接收方的状态机</p>
-<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.0_sender.png" alt="rdt2.0发送方状态机"></p>
-<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.0_receiver.png" alt="rdt2.0接收方状态机"></p>
-</li>
-<li><p>在发送方处于等待ACK或NAK的状态时，它不能从上层获得更多数据，因此在发送方确信接收方已正确接受当前分组前，发送方将不会发送一块新数据，这种协议被称为<strong>停等</strong>（stop-and-wait）协议</p>
-</li>
-</ul>
-</li>
-<li><p>rdt2.1</p>
-<ul>
-<li><p>为了处理ACK或NAK分组受损的情况，发送方对其数据分组编号，即将发送数据分组的<strong>序号</strong>放在该字段</p>
-</li>
-<li><p>接收方需要检查序号确定收到的分组是否是一次重传</p>
-</li>
-<li><p>发送方和接收方的状态机</p>
-<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.1_sender.png" alt="rdt2.1发送方状态机"></p>
-<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt2.1_receiver.png" alt="rdt2.1接收方状态机"></p>
-</li>
-</ul>
-</li>
-<li><p>rdt2.2</p>
-<ul>
-<li>接收方发送上一个正确接收的分组的ACK来代替NAK</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>经具有比特差错的丢包信道的可靠数据传输：rdt3.0</p>
-<ul>
-<li><p>底层信道除了比特受损外，还可能丢包</p>
-</li>
-<li><p>为了实现基于时间的重传机制，设定一个<strong>倒计数定时器</strong>，超时则重发</p>
-</li>
-<li><p>由于分组序号在0和1之间交替，因此rdt3.0被称为<strong>比特交替协议</strong></p>
-</li>
-<li><p>rdt3.0发送方的状态机</p>
-<p><img src="https://icycoke.github.io/2020/06/27/transport-layer-tcp/rdt3.0_sender.png" alt="rdt3.0发送方状态机"></p>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>流水线可靠数据传输协议</p>
-<ul>
-<li>rdt是一个停等协议，因此其性能并不理想</li>
-<li>流水线可靠数据传输协议不以停等方式运行，允许发送方发送多个分组而无须等待确认</li>
-<li>必须增加序号范围</li>
-<li>协议的发送方和接收方需要缓存多个分组</li>
-<li>需要解决流水线的差错恢复问题<ul>
-<li><strong>回退N步</strong>（Go-Back-N，GBN）<ul>
-<li>限制在流水线中未确认的分组数不能超过最大允许数N</li>
-<li>因为违背确认的分组的许可序号范围可以被看成是一个在序号范围内长度为N，N也被称为<strong>窗口长度</strong>，GBN协议也被称为<strong>滑动窗口协议</strong></li>
-<li>接收方只需要维护下一个按序接受的分组的序号</li>
-</ul>
-</li>
-<li><strong>选择重传</strong><ul>
-<li>单个分组的差错就会引起GBN重传大量分组，因此需要对重传分组进行选择</li>
-<li>接收方将确认一个正确接受的分组而不管其是否按序，失序的分组将被缓存直到所有丢失分组都被收到为止</li>
-<li><strong><em>窗口长度必须小于或等于序号空间大小的一半</em></strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP（Transmission-Control-Protocol）概述"><a href="#TCP（Transmission-Control-Protocol）概述" class="headerlink" title="TCP（Transmission Control Protocol）概述"></a>TCP（Transmission Control Protocol）概述</h3><ul>
-<li><p>TCP是<strong>面向连接的</strong>（connection-oriented），是<strong>点对点的</strong></p>
-</li>
-<li><p>TCP提供<strong>全双工服务</strong></p>
-</li>
-<li><p>TCP连接建立的<strong>三次握手</strong></p>
-<ol>
-<li>客户发送TCP报文，请求建立连接（不承载应用层数据）</li>
-<li>服务器返回TCP报文，同意创建连接（不承载应用层数据）</li>
-<li>客户端返回TCP报文，确认收到同意连接的信号<strong>（可承载应用层数据）</strong></li>
-</ol>
-<ul>
-<li><p>作用：</p>
-<ul>
-<li>防止服务器端开启无用链接</li>
-<li>防止已失效的连接请求报文突然到达</li>
-</ul>
-</li>
-<li><p>缺点：</p>
-<ul>
-<li>必须为每个请求的对象建立和维护一个全新的连接</li>
-<li>每个对象经受两倍往返时间（RTT）的交付时延</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>传输流程：</p>
-<ol>
-<li>客户进程通过socket传递数据流</li>
-<li>TCP将数据引导到<strong>发送缓存</strong></li>
-<li>TCP不时地从发送缓存里取出数据传递到网络层</li>
-<li>数据被传输到<strong>接收缓存</strong></li>
-<li>服务器进程通过socket读取接收缓存中的数据</li>
-</ol>
-<ul>
-<li>TCP可从缓存中取出并放入报文段的数据数量受限于<strong>最大报文段长度</strong>（Maximum Segment Size, MSS），MSS指在报文段里应用层数据的最大长度，<strong><em>而不是指包括首部的TCP报文段的最大长度</em></strong></li>
-<li>MSS通常根据最初确定的由本地发送主机发送到最大链路层帧长度，即<strong>最大传输单元</strong>（Maximum Transmission Unit, MTU）来设置</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP报文"><a href="#TCP报文" class="headerlink" title="TCP报文"></a>TCP报文</h3><ul>
-<li><p>TCP报文段结构</p>
-<table>
-    <tr>
-        <td align="center" colspan="3">源端口号</td>
-        <td align="center" colspan="3">目的端口号</td>
-    </tr>
-    <tr>
-        <td align="center" colspan="6">序号</td>
-    </tr>
-    <tr>
-        <td align="center" colspan="6">确认号</td>
-    </tr>
-    <tr>
-        <td align="center" colspan="1">首部长度</td>
-        <td align="center" colspan="1">保留未用</td>
-        <td align="center" colspan="1">标志字段</td>
-        <td align="center" colspan="3">接收窗口</td>
-    </tr>
-    <tr>
-        <td align="center" colspan="3">检验和</td>
-        <td align="center" colspan="3">紧急数据指针</td>
-    </tr>
-    <tr>
-        <td align="center" colspan="6">选项</td>
-    </tr>
-    <tr>
-        <td align="center" colspan="6">数据</td>
-    </tr>
-</table>
-
-<ul>
-<li><strong>首部字段</strong><ul>
-<li><strong>源端口号</strong>和<strong>目的端口号</strong>。用于多路复用/分解来自或送到上层应用的数据</li>
-<li><strong>序号</strong>和<strong>确认号</strong><ul>
-<li>序号：该报文的首个字节的字节流编号</li>
-<li>确认号：发送方期望收到的下一字节的序号</li>
-</ul>
-</li>
-<li><strong>首部长度</strong></li>
-<li><strong>标志字段</strong><ul>
-<li><strong>ACK</strong>指示确认字段中的值时有效的</li>
-<li><strong>RST</strong>、<strong>SYN</strong>和<strong>FIN</strong>用于连接建立和拆除</li>
-<li><strong>CWR</strong>和<strong>ECE</strong>用于明确拥塞通告</li>
-<li><strong>PSH</strong>被置位（置为1）时，指示接收方立即将数据交给上层</li>
-<li><strong>URG</strong>用于指示报文段里存在被发送端的上层实体置为“紧急”的数据</li>
-</ul>
-</li>
-<li><strong>接受窗口</strong>。用于流量控制，指示接收方愿意接受的字节数量</li>
-<li><strong>检验和</strong></li>
-<li><strong>紧急数据指针</strong></li>
-<li><strong>选项字段</strong>。用于发送方和接收方协商最大报文段长度时，或在高速网络环境下用作窗口调节因子时使用</li>
-</ul>
-</li>
-<li><strong>数据字段</strong></li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP的可靠数据传输"><a href="#TCP的可靠数据传输" class="headerlink" title="TCP的可靠数据传输"></a>TCP的可靠数据传输</h3><ul>
-<li><p>TCP发送方事件</p>
-<table>
-    <tr>
-        <th style="vertical-align:middle; text-align:center">事件</th>
-        <th style="vertical-align:middle; text-align:center">发送方动作</th>
-    </tr>
-    <tr>
-        <td rowspan="2" style="vertical-align:middle; text-align:center">从应用层收到数据</td>
-        <td align="center">创建序列号是第一个字节编号的Segment</td>
-    </tr>
-    <tr>
-        <td align="center">设置超时时间，开启计时器</td>
-    </tr>
-    <tr>
-        <td rowspan="2" style="vertical-align:middle; text-align:center">超时</td>
-        <td align="center">重传引起超时的Segment（单个）</td>
-    </tr>
-    <tr>
-        <td align="center">重启定时器</td>
-    </tr>
-    <tr>
-        <td style="vertical-align:middle; text-align:center">收到ACK</td>
-        <td style="vertical-align:middle; text-align:center">如果确认此前未确认的Segment：<br/>&nbsp&nbsp&nbsp&nbsp 1.更新SendBase<br/>&nbsp&nbsp&nbsp&nbsp 2.如果窗口中还有违背确认的分组，重新启动定时器</td>
-    </tr>
-</table>
-</li>
-<li><p>TCP接收方事件</p>
-<table>
-    <tr>
-        <th style="vertical-align:middle; text-align:center">事件</th>
-        <th style="vertical-align:middle; text-align:center">接受方动作</th>
-    </tr>
-    <tr>
-        <td style="vertical-align:middle; text-align:center">具有所期望序号的按序报文段到达，所有在期望序号及以前的数据都已经被确认</td>
-        <td style="vertical-align:middle; text-align:center">延迟的ACK，如果下一个按序报文段在500ms内没有到达，则发送一个ACK</td>
-    </tr>
-    <tr>
-        <td style="vertical-align:middle; text-align:center">具有所期望序号的按序报文段到达，另一个按序报文段等待ACK传输</td>
-        <td style="vertical-align:middle; text-align:center">立即发送单个累积ACK，以确认两个按序报文段</td>
-    </tr>
-    <tr>
-        <td style="vertical-align:middle; text-align:center">比期望序列号大的失序报文段到达，检测出间隔
-        <td style="vertical-align:middle; text-align:center">立即发送冗余ACK，指示下一个期待字节的序号（其为间隔低端的序号</td>
-    <tr>
-        <td style="vertical-align:middle; text-align:center">能部分或完全填充接收数据间隔的报文段到达</td>
-        <td style="vertical-align:middle; text-align:center">倘若该报文段起始于间隔的低端，则立即发送ACK</td>
-    </tr>
-</table>
-</li>
-<li><p>超时间隔加倍</p>
-<ul>
-<li>每次TCP重传时都会将下一次的超时间隔设为先前值的两倍，而定时器在另两个事件（即收到上层应用的数据和收到ACK）中的任意一个启动时，超时间隔由样本RTT和估计RTT推算得到</li>
-<li>这一机制防止了网络拥塞情况下，源持续重传分组加剧网络拥塞</li>
-</ul>
-</li>
-<li><p>快速重传</p>
-<ul>
-<li><strong>冗余ACK</strong>指再次确认某个报文段的ACK，而发送方先前已经收到对该报文段的确认</li>
-<li>一旦收到3个冗余ACK，则立即重传以该ACK字段值为序号的报文段</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h3><ul>
-<li>TCP为它的应用程序提供了<strong>流量控制服务</strong></li>
-<li>流量控制是一个速度匹配服务，即发送方的发送速率与接收方的接受速率相匹配</li>
-<li>流量控制服务用于消除发送方使接收方缓存溢出的可能性</li>
-<li>方法：<ul>
-<li>发送方维护一个<strong>接收窗口</strong>，用于给发送方指示接收方还有多少可用的缓存空间</li>
-<li>由于TCP是全双工通信，连接两端的发送方都各自维护一个接收窗口</li>
-<li>接收方在报文中将接收窗口大小告诉发送方，发送方限制自己已经发送的但还未收到的ACK的数据不超过接收方的接收窗口大小</li>
-<li>如果接收方的接收窗口为0时，发送方继续发送只有一个字节数据的报文段，防止被阻塞而不能再发送数据</li>
-</ul>
-</li>
-</ul>
-<h3 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h3><ul>
-<li>TCP连接建立流程（<strong>三次握手</strong>）<ol>
-<li>客户端的TCP首先向服务器端的TCP发送一个特殊的TCP报文段（<strong>SYN报文段</strong>）。该报文段不含应用层数据，其SYN标志位被置为1。另外，其随机选择一个初始序号，将其置于序号字段中</li>
-<li>服务器端接受SYN报文段，为该TCP连接分配TCP缓存和变量，并向客户端发送允许连接的报文段（<strong>SYNACK报文段</strong>）。该报文段不含应用层数据，其SYN标志位被置为1，其确认号字段被置为收到的SYN报文段的序号字段值+1。最后，服务器选择自己的初始序号，并将其放置到该报文段的序号字段中</li>
-<li>客户端接受SYNACK报文段，为该TCP连接分配TCP缓存和变量，并向服务器端发送确认的报文段。该报文段可以携带应用层数据，其SYN标志位被置为0，其确认号字段为SYNACK报文段中序号字段值+1</li>
-</ol>
-</li>
-<li>TCP连接关闭流程（<strong>四次挥手</strong>）<ol>
-<li>客户端向服务器发送TCP报文段，其中FIN标志位被置为1</li>
-<li>服务器端向客户端发送确认报文段，其中FIN标志位被置为1</li>
-<li>服务器端向客户端发送TCP报文段，其中FIN标志位被置为1</li>
-<li>客户端向服务器段发送确认报文段，其中FIN标志位被置为1</li>
-</ol>
-</li>
-</ul>
-<h3 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h3><ul>
-<li><p>由于IP不向端系统提供显式的网络拥塞反馈，TCP必须使用<strong>端到端拥塞控制</strong>，即端系统需要通过对网络行为的观察来推断网络拥塞的存在</p>
-</li>
-<li><p>TCP发送方感知网络拥塞程度并限制其能向连接发送流量的速率</p>
-<ul>
-<li>TCP发送方跟踪一个额外变量<strong>拥塞窗口</strong>（congestion window, cwnd），在发送方中违背确认的数据量不会超过拥塞窗口和接收窗口中的最小值</li>
-<li>TCP的发送方使用报文段成功交付的确认来增加窗口的长度，因此TCP是<strong>自计时</strong>的</li>
-</ul>
-</li>
-<li><p>TCP拥塞控制原则</p>
-<ul>
-<li>一个丢失的报文段意味着拥塞，丢失报文段时应当降低发送方的发送速率</li>
-<li>一个确认报文段指示该网络正在向接收方交付发送方的报文段，对先前未确认报文段的确认到达时应当增加发送方的发送速率</li>
-<li>带宽探测。TCP调节其传输速率的策略时增加其速率以响应到达的ACK，除非出现丢包事件，此时才减小传输速率</li>
-</ul>
-</li>
-<li><p>TCP拥塞控制算法</p>
-<ol>
-<li><strong>慢启动</strong><ul>
-<li>TCP连接开始时，cwnd的值初始置为一个MSS</li>
-<li>每当传输到报文段首次被确认就增加一个MSS</li>
-<li>当出现一个由超时指示的丢包事件时，TCP发送方将cwnd设置为1并重新开始慢启动过程，同时将ssthresh（慢启动阈值）置为cwnd/2</li>
-<li>当出现一个由3个冗余ACK指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd的值被设置为更新后的ssthresh+3MSS（经过3个RTT接受3个冗余ACK），进入快速恢复状态</li>
-<li>当cwnd到达慢启动阈值时，结束慢启动并转移到拥塞避免状态</li>
-</ul>
-</li>
-<li><strong>拥塞避免</strong><ul>
-<li>进入拥塞避免模式时，cwnd的值为上次遇到拥塞时的一半，此时距离拥塞可能并不遥远</li>
-<li>每经过一个RTT，cwnd的值增加一个MSS</li>
-<li>当出现一个由超时指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd的值被设置为1MSS，进入慢启动状态</li>
-<li>当出现一个由3个冗余ACK指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd的值被设置为更新后的ssthresh+3MSS（经过3个RTT接受3个冗余ACK），进入快速恢复状态</li>
-</ul>
-</li>
-<li><strong>快速恢复</strong><ul>
-<li>每接受到一个冗余ACK，cwnd增加1MSS</li>
-<li>当出现一个由超时指示的丢包事件时，ssthresh被更新为cwnd/2，cwnd被设置为1MSS，进入慢启动状态</li>
-<li>当发送方接受到一条新的确认报文段时，cwnd被设置为ssthresh，进入拥塞避免状态</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><em>为什么在快速恢复状态下接受冗余ACK要将cwnd增加1MSS？ 虽然接收到的是冗余ACK，但仍指示了网络中多了一条报文段的空间，允许发送端再发送一条报文段。由于当前序列号最小的报文丢失，拥塞窗口无法向前移动，因此将cwnd增加1MSS，提高网络利用率</em></li>
-</ul>
-</li>
-<li><p>对TCP吞吐量的宏观描述：$$一条连接的平均吞吐量 = \frac{0.75 \times W}{RTT}$$</p>
-<ul>
-<li>其中W是丢包事件发生时的窗口长度</li>
-<li>TCP吞吐量在0.5W/RTT到W/RTT之间线性变化</li>
-</ul>
-</li>
-<li><p>TCP拥塞控制的公平性</p>
-<ul>
-<li>TCP趋于在竞争的多条TCP连接之间提供对一段瓶颈链路带宽的平等分享</li>
-</ul>
-</li>
-<li><p>涉及TCP和IP协议的<strong>明确拥塞通告</strong></p>
-<ul>
-<li>新方案允许网络明确向TCP发送方和接收方发出拥塞信号，在接收方到发送方的ACK报文段中设置ECN回显比特</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/27/transport-layer-tcp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1439,7 +849,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-08 18:01:34" itemprop="dateModified" datetime="2020-07-08T18:01:34-04:00">2020-07-08</time>
+                <time title="Modified: 2020-07-24 18:41:19" itemprop="dateModified" datetime="2020-07-24T18:41:19-04:00">2020-07-24</time>
               </span>
 
           
@@ -1453,7 +863,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="DNS概况"><a href="#DNS概况" class="headerlink" title="DNS概况"></a>DNS概况</h3><ul>
+          <h2 id="1-DNS概况"><a href="#1-DNS概况" class="headerlink" title="1. DNS概况"></a>1. DNS概况</h2><ul>
 <li>DNS是：<ol>
 <li>一个由分层的DNS服务器实现的<strong>分布式数据库</strong></li>
 <li>一个使得主机能够查询分布式数据库的<strong>应用层协议</strong></li>
@@ -1468,106 +878,102 @@
 </ul>
 </li>
 </ul>
-<h3 id="DNS数据库"><a href="#DNS数据库" class="headerlink" title="DNS数据库"></a>DNS数据库</h3><ul>
-<li>DNS服务器是<strong>分布式</strong>、<strong>层次式</strong>的</li>
-<li>DNS服务器分类：<ul>
-<li><strong>根DNS服务器</strong></li>
-<li><strong>顶级域DNS服务器</strong></li>
-<li><strong>权威DNS服务器</strong></li>
-<li><em>本地DNS服务器</em>（不属于层次结构中，由ISP提供，起着代理的作用）</li>
-</ul>
-</li>
-<li>查询流程:<ol>
-<li>客户与根服务器之一联系，根服务器返回顶级域名服务器的IP地址</li>
-<li>客户与对应顶级域名服务器联系，顶级域名服务器返回权威服务器的IP地址</li>
-<li>客户与对应权威服务器联系，权威服务器返回待查询主机名的IP地址</li>
-</ol>
-</li>
-<li>DNS缓存<ul>
-<li>当某一个DNS服务器接收到一个DNS回答时，它能将映射缓存在本地服务器中</li>
-<li>改善了时延性能并减少了因特网上传输到DNS报文数量</li>
-</ul>
-</li>
-</ul>
-<h3 id="DNS记录和报文"><a href="#DNS记录和报文" class="headerlink" title="DNS记录和报文"></a>DNS记录和报文</h3><ul>
-<li><p><strong>资源记录</strong>（Resource Record, RR）</p>
-<ul>
-<li><p>格式：（Name, Value, Type, TTL)</p>
-<ul>
-<li><p>TTL是该记录的生存时间</p>
-</li>
-<li><p>Type决定了Name和Value值的含义：</p>
-<table>
-<thead>
-<tr>
-<th align="center">Type</th>
-<th align="center">Name</th>
-<th align="center">Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">A</td>
-<td align="center">主机名</td>
-<td align="center">该主机名对应的IP地址</td>
-</tr>
-<tr>
-<td align="center">NS</td>
-<td align="center">域</td>
-<td align="center">知道如何获得该域中主机IP地址的权威DNS服务器的主机名</td>
-</tr>
-<tr>
-<td align="center">CNAME</td>
-<td align="center">主机别名</td>
-<td align="center">别名为Name的主机的规范主机名</td>
-</tr>
-<tr>
-<td align="center">MX</td>
-<td align="center">主机别名</td>
-<td align="center">别名为Name的邮件服务器的规范主机名</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>DNS报文</p>
-<ul>
-<li><p>格式</p>
-<div class="tabletext">
-<table>
-    <tr>
-        <td align="center">标识符</td>
-        <td align="center">标志</td>
-    </tr>
-    <tr>
-        <td align="center">问题数</td>
-        <td align="center">回答RR数</td>
-    </tr>
-    <tr>
-        <td align="center">权威RR数</td>
-        <td align="center">附加RR数</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">问题（问题的变量数）</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">回答（资源记录的变量数）</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">权威服务器的记录（资源记录的变量数）</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">附加信息（资源记录的变量数）</td>
-    </tr>
-</table>
-</div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/26/application-layer-dns/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-</li>
-</ul>
-</li>
-</ul>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/transport-layer-udp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/26/transport-layer-udp/" class="post-title-link" itemprop="url">运输层：UDP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-26 21:01:34" itemprop="dateCreated datePublished" datetime="2020-06-26T21:01:34-04:00">2020-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-24 18:46:31" itemprop="dateModified" datetime="2020-07-24T18:46:31-04:00">2020-07-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-UDP概述"><a href="#1-UDP概述" class="headerlink" title="1. UDP概述"></a>1. UDP概述</h2><ul>
+<li>UDP（User Data Protocol, 用户数据报协议）是一个非链接的协议</li>
+<li>UDP使用<strong>尽最大努力交付</strong>，即<strong>不保证可靠交付</strong></li>
+<li>使用UDP的应用是可能实现可靠数据传输都，可通过在应用程序自身中建立可靠性机制来实现</li>
+<li>主要功能：<ul>
+<li><strong>多路复用</strong> + <strong>多路分解</strong></li>
+<li>少量的差错检查</li>
+</ul>
+</li>
+<li>优点：<ul>
+<li>关于发送什么数据以及何时发送的应用层控制更为精细（吞吐量不受拥塞控制算法的调节）</li>
+<li>无须建立连接</li>
+<li>无连接状态（不需要维护连接状态或跟踪参数）</li>
+<li>分组首部开销小（仅8字节）</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/26/transport-layer-udp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1651,7 +1057,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

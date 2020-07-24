@@ -122,7 +122,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">17</span></a>
 
   </li>
   </ul>
@@ -152,113 +152,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/transport-layer-udp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="icycoke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icycoke's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/26/transport-layer-udp/" class="post-title-link" itemprop="url">运输层：UDP</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-26 21:01:34 / Modified: 21:02:14" itemprop="dateCreated datePublished" datetime="2020-06-26T21:01:34-04:00">2020-06-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="UDP概述"><a href="#UDP概述" class="headerlink" title="UDP概述"></a>UDP概述</h3><ul>
-<li>UDP（User Data Protocol, 用户数据报协议）是一个非链接的协议</li>
-<li>UDP使用<strong>尽最大努力交付</strong>，即<strong>不保证可靠交付</strong></li>
-<li>使用UDP的应用是可能实现可靠数据传输都，可通过在应用程序自身中建立可靠性机制来实现</li>
-<li>主要功能：<ul>
-<li><strong>多路复用</strong> + <strong>多路分解</strong></li>
-<li>少量的差错检查</li>
-</ul>
-</li>
-<li>优点：<ul>
-<li>关于发送什么数据以及何时发送的应用层控制更为精细（吞吐量不受拥塞控制算法的调节）</li>
-<li>无须建立连接</li>
-<li>无连接状态（不需要维护连接状态或跟踪参数）</li>
-<li>分组首部开销小（仅8字节）</li>
-</ul>
-</li>
-</ul>
-<h3 id="UDP报文"><a href="#UDP报文" class="headerlink" title="UDP报文"></a>UDP报文</h3><ul>
-<li><p>报文结构</p>
-<table>
-    <tr>
-        <td align="center">源端口号</td>
-        <td align="center">目的端口号</td>
-    </tr>
-    <tr>
-        <td align="center">长度（首部+数据）</td>
-        <td align="center">校验和</td>
-    </tr>
-    <tr>
-        <td align="center" colspan='2'>应用数据（报文）</td>
-    </tr>
-</table>
-</li>
-<li><p>校验和</p>
-<ul>
-<li>原理：<ol>
-<li>发送方的UDP对报文段中的所有16比特字求和，溢出则回卷</li>
-<li>对该和取反码作为校验和</li>
-<li>接收方将所有的16比特字与校验和求和，若所有位数为1则校验成功</li>
-</ol>
-</li>
-<li>引入原因：<ul>
-<li>不能保证源和目的之间的所有链路都提供差错检测</li>
-<li>遵循<strong>端到端原则</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/application-layer-video-stream/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -282,10 +175,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-06-26 20:59:00 / Modified: 21:00:39" itemprop="dateCreated datePublished" datetime="2020-06-26T20:59:00-04:00">2020-06-26</time>
+              <time title="Created: 2020-06-26 20:59:00" itemprop="dateCreated datePublished" datetime="2020-06-26T20:59:00-04:00">2020-06-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-24 18:40:58" itemprop="dateModified" datetime="2020-07-24T18:40:58-04:00">2020-07-24</time>
+              </span>
 
           
 
@@ -298,50 +197,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="HTTP流和DASH"><a href="#HTTP流和DASH" class="headerlink" title="HTTP流和DASH"></a>HTTP流和DASH</h3><ul>
+          <h2 id="1-HTTP流和DASH"><a href="#1-HTTP流和DASH" class="headerlink" title="1. HTTP流和DASH"></a>1. HTTP流和DASH</h2><ul>
 <li>HTTP流中，视频只是存储在HTTP服务器中作为一个普通的文件</li>
 <li><strong>经HTTP的动态适应性流</strong>（Dynamic Adaptive Streaming over HTTP，DASH）<ul>
 <li>在DASH中，视频编码为几个不同的版本，每个版本具有不同的比特率</li>
 </ul>
 </li>
 </ul>
-<h3 id="内容分发网（Content-Distribution-Network，CDN）"><a href="#内容分发网（Content-Distribution-Network，CDN）" class="headerlink" title="内容分发网（Content Distribution Network，CDN）"></a>内容分发网（Content Distribution Network，CDN）</h3><ul>
-<li>CDN管理分布在多个地理位置上的服务器，在他的服务器中存储视频（和其他类型的Web内容，包括文档、图片和音频）的副本，并且试图将每个用户请求定向到一个将提供最好的用户体验的CDN位置。</li>
-<li>安置原则：<ol>
-<li><strong>深入</strong>。通过在遍及全球的接入ISP中部署服务器集群来深入到ISP的接入网中。较高的维护和管理开销。</li>
-<li><strong>邀请做客</strong>。通过在少量关键位置建造大集群来邀请ISP做客。较低的维护和管理开销，可能以对端用户的高时延和较低吞吐量作为代价。</li>
-</ol>
-</li>
-<li>CDN操作<ul>
-<li>当用户主机中的一个浏览器指令检索一个特定的视频（由URL标识）时，CDN必须截获该请求，以便能够：<ol>
-<li>确定此时适合用于该客户的CDN服务器集群</li>
-<li>将客户的请求重定向到该集群的某台服务器</li>
-</ol>
-</li>
-<li>大多数CDN利用DNS来截获和重定向请求</li>
-<li>操作流程：<ol>
-<li>用户访问位于某一Web网页</li>
-<li>当用户点击视频链接时，发送一个对对应服务器的DNS请求</li>
-<li>用户的本地DNS服务器将该DNS请求中继到一台用于视频提供服务器的权威DNS服务器，权威DNS服务器返回一个CDN域的主机名</li>
-<li>DNS请求进入CDN专用DNS基础设施，用户的本地DNS服务器发送对CDN域内某一主机的DNS请求，CDN的DNS系统返回内容服务器的IP地址</li>
-<li>本地DNS向用户主机转发内容服务CDN节点的IP地址</li>
-<li>客户与目标IP地址的服务器建立TCP链接，并且发出对该视频的HTTP GET请求</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><strong>集群选择策略</strong><ul>
-<li>集群选择策略是任何CDN部署的核心</li>
-<li>是动态地将客户定向到CDN中某个服务器集群或数据中心的机制</li>
-<li>常用策略<ul>
-<li>地理上最为临近</li>
-<li>实时测量</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/26/application-layer-video-stream/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -383,10 +253,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-06-26 20:56:49 / Modified: 20:58:25" itemprop="dateCreated datePublished" datetime="2020-06-26T20:56:49-04:00">2020-06-26</time>
+              <time title="Created: 2020-06-26 20:56:49" itemprop="dateCreated datePublished" datetime="2020-06-26T20:56:49-04:00">2020-06-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-24 18:40:09" itemprop="dateModified" datetime="2020-07-24T18:40:09-04:00">2020-07-24</time>
+              </span>
 
           
 
@@ -399,7 +275,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="电子邮件系统"><a href="#电子邮件系统" class="headerlink" title="电子邮件系统"></a>电子邮件系统</h3><ul>
+          <h2 id="1-电子邮件系统"><a href="#1-电子邮件系统" class="headerlink" title="1. 电子邮件系统"></a>1. 电子邮件系统</h2><ul>
 <li><p>组成部分：</p>
 <ol>
 <li><strong>用户代理</strong>（user agent）</li>
@@ -415,32 +291,14 @@
 </ol>
 </li>
 </ul>
-<h3 id="SMTP概况"><a href="#SMTP概况" class="headerlink" title="SMTP概况"></a>SMTP概况</h3><ul>
-<li>SMTP是因特网电子邮件中主要的应用层协议</li>
-<li>SMTP使用<strong>TCP</strong>可靠数据传输服务</li>
-<li>SMTP用于从发送方的邮件服务器发送报文到接收方的邮件服务器</li>
-<li>SMPT要求每个报文采用7比特ASCII码格式，如果某报文包含了非7比特ASCII码字符或二进制数据，则该报文必须按照7比特ASCII码进行编码</li>
-</ul>
-<h3 id="邮件报文格式"><a href="#邮件报文格式" class="headerlink" title="邮件报文格式"></a>邮件报文格式</h3><ul>
-<li>首部<ul>
-<li>From: 首部行</li>
-<li>To: 首部行</li>
-<li>Subject: 首部行</li>
-</ul>
-</li>
-<li>空行分隔</li>
-<li>报文体（以ASCII格式表示）</li>
-</ul>
-<h3 id="邮件访问协议"><a href="#邮件访问协议" class="headerlink" title="邮件访问协议"></a>邮件访问协议</h3><ul>
-<li>用于将邮件从接收方的邮件服务器传送到接收方的用户代理</li>
-<li>常见的邮件访问协议<ul>
-<li>第三版的邮局协议（Post Office Protocol - version 3, POP3）</li>
-<li>因特网邮件访问协议（Internet Mail Access Protocol, IMAP）</li>
-<li>HTTP</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/26/application-layer-email-and-smtp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -490,7 +348,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-29 14:48:54" itemprop="dateModified" datetime="2020-06-29T14:48:54-04:00">2020-06-29</time>
+                <time title="Modified: 2020-07-24 18:40:39" itemprop="dateModified" datetime="2020-07-24T18:40:39-04:00">2020-07-24</time>
               </span>
 
           
@@ -504,7 +362,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="HTTP概况"><a href="#HTTP概况" class="headerlink" title="HTTP概况"></a>HTTP概况</h3><ul>
+          <h2 id="1-HTTP概况"><a href="#1-HTTP概况" class="headerlink" title="1. HTTP概况"></a>1. HTTP概况</h2><ul>
 <li><p>Web的应用层协议是<strong>超文本传输协议（HyperText Transfer Protocol, HTTP）</strong>，它是Web的核心。</p>
 </li>
 <li><p>HTTP使用<strong>TCP</strong>作为它的支撑运输协议</p>
@@ -513,70 +371,19 @@
 </li>
 <li><p>两种连接方式:</p>
 <ol>
-<li><p><strong>非持续链接</strong>：每个请求/响应对经一个单独的TCP连接发送</p>
-</li>
-<li><p><strong>持续链接</strong>： 所有的请求及其响应经相同的TCP连接发送</p>
-</li>
+<li><strong>非持续链接</strong>：每个请求/响应对经一个单独的TCP连接发送</li>
+<li><strong>持续链接</strong>： 所有的请求及其响应经相同的TCP连接发送</li>
 </ol>
 </li>
 </ul>
-<h3 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h3><ol>
-<li>请求报文<ul>
-<li>请求行<ul>
-<li>方法字段</li>
-<li>URL字段</li>
-<li>HTTP版本字段</li>
-</ul>
-</li>
-<li>首部行<ul>
-<li>Host</li>
-<li>Connection</li>
-<li>User-agent</li>
-<li>Accept-language</li>
-</ul>
-</li>
-<li>实体体</li>
-</ul>
-</li>
-<li>响应报文<ul>
-<li>状态行<ul>
-<li>版本</li>
-<li>状态码</li>
-<li>短语</li>
-</ul>
-</li>
-<li>首部行<ul>
-<li>Connection</li>
-<li>Date</li>
-<li>Server</li>
-<li>Last-Modified</li>
-<li>Cotent-Length</li>
-<li>Content-Type</li>
-</ul>
-</li>
-<li>实体体</li>
-</ul>
-</li>
-</ol>
-<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><ul>
-<li>Cookie技术的四个组件：<ol>
-<li>在HTTP响应报文中的一个Cookie首部行（Set-Cookie: xxx）</li>
-<li>在HTTP请求报文中的一个Cookie首部行（Cookie: xxx）</li>
-<li>在用户端系统中保留由一个Cookie文件，由用户的浏览器进行管理</li>
-<li>位于Web站点的一个后端数据库</li>
-</ol>
-</li>
-</ul>
-<h3 id="Web缓存器（代理服务器）"><a href="#Web缓存器（代理服务器）" class="headerlink" title="Web缓存器（代理服务器）"></a>Web缓存器（代理服务器）</h3><ul>
-<li>是能够代表初始Web服务器来满足HTTP请求的网络实体</li>
-<li>在存储空间中保存最近请求过的对象的副本</li>
-<li>条件GET方法<ul>
-<li>请求报文中使用GET方法且请求报文中包含一个“If-Modified-Since:”</li>
-<li>允许缓存器证实它的对象是最新的</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/26/application-layer-web-and-http/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -618,10 +425,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-06-26 20:46:03 / Modified: 20:47:38" itemprop="dateCreated datePublished" datetime="2020-06-26T20:46:03-04:00">2020-06-26</time>
+              <time title="Created: 2020-06-26 20:46:03" itemprop="dateCreated datePublished" datetime="2020-06-26T20:46:03-04:00">2020-06-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-24 18:43:39" itemprop="dateModified" datetime="2020-07-24T18:43:39-04:00">2020-07-24</time>
+              </span>
 
           
 
@@ -634,7 +447,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="计算机网络结构"><a href="#计算机网络结构" class="headerlink" title="计算机网络结构"></a>计算机网络结构</h3><ul>
+          <h2 id="1-计算机网络结构"><a href="#1-计算机网络结构" class="headerlink" title="1. 计算机网络结构"></a>1. 计算机网络结构</h2><ul>
 <li><p>网络边缘</p>
 <ol>
 <li><p>主机（端系统）</p>
@@ -656,118 +469,15 @@
 </li>
 </ol>
 </li>
-<li><p>接入网络</p>
-<ol>
-<li>数字用户线路（DSL）<ul>
-<li>复用电话线路</li>
-<li>接入是独占的</li>
 </ul>
-</li>
-<li>同轴电缆网络（Cable）<ul>
-<li>复用电视线路</li>
-<li>接入是共享的</li>
-</ul>
-</li>
-<li>以太网</li>
-<li>无线局域网（LANs）</li>
-<li>广域无线接入</li>
-</ol>
-</li>
-<li><p>网络核心</p>
-<ol>
-<li><p>分组交换</p>
-<ol>
-<li><p>存储转发传输</p>
-<ul>
-<li>多数分组交换机在链路的输入端使用<em>存储转发传输</em>：在交换机能够开始向输出链路传输该分组的第一个比特之前，必须接收到整个分组</li>
-</ul>
-</li>
-<li><p>排队时延和分组丢失</p>
-<ul>
-<li><p>到达分组在输出缓存中排队等待引起<em>排队时延</em></p>
-</li>
-<li><p>缓存空间达到上限，出现<em>分组丢失（丢包）</em></p>
-</li>
-</ul>
-</li>
-<li><p>转发表和路由选择协议</p>
-<ul>
-<li><p>每台路由器具有一个<em>转发表</em>，用于将目的地址映射成为输出链路</p>
-</li>
-<li><p><em>路由选择协议</em>用于自动设置转发表</p>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>电路交换</p>
-<ol>
-<li>复用<ul>
-<li>时分复用</li>
-<li>频分复用</li>
-<li>波分复用</li>
-<li>码分复用</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="计算机网络性能"><a href="#计算机网络性能" class="headerlink" title="计算机网络性能"></a>计算机网络性能</h3><ol>
-<li>分组时延<ul>
-<li>处理时延</li>
-<li>排队时延</li>
-<li>传输时延</li>
-<li>传播时延</li>
-</ul>
-</li>
-<li>时延带宽积<ul>
-<li><em>时延带宽积 = 传播时延 × 带宽</em></li>
-<li>链路的<em>时延带宽积</em>又被称为以比特为单位的链路长度</li>
-</ul>
-</li>
-<li>吞吐量<ul>
-<li>表示在发送端与接收端之间传送数据的速率</li>
-</ul>
-</li>
-</ol>
-<h3 id="计算机网络体系"><a href="#计算机网络体系" class="headerlink" title="计算机网络体系"></a>计算机网络体系</h3><ol>
-<li><p>分层结构</p>
-<ul>
-<li>优点：<ul>
-<li>结构清晰，有利于识别复杂系统的部件及其关系</li>
-<li>模块化的分层易于系统更新、维护，任何一层的服务实现的改变对于系统其他层都是透明的，并不影响该系统的其他层</li>
-<li>有利于标准化</li>
-</ul>
-</li>
-<li>缺点：<ul>
-<li>层次过多效率降低，一层可能冗余较低层的功能</li>
-<li>某层的功能可能需要仅在其他层才出现的信息，这违反了层次分离的目标</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>协议</p>
-<ul>
-<li>通信计算机双方必须共同遵从的一组约定，是计算机之间相互通信交流的前提</li>
-<li>协议是“水平的”，是控制两个对等实体进行通信的规则的集合</li>
-<li>任一层实体需要使用下层服务，遵循本层协议，实现本层功能，向上层提供服务，服务是“垂直的”</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>下层协议的实现对上层的服务用户是透明的<ul>
-<li>协议的三要素<ol>
-<li>语法（Syntax）</li>
-<li>语义（Semantics）</li>
-<li>时序（Timing）</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/26/computer-network-basic-intro/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -817,7 +527,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-03 16:56:13" itemprop="dateModified" datetime="2020-07-03T16:56:13-04:00">2020-07-03</time>
+                <time title="Modified: 2020-07-24 18:44:00" itemprop="dateModified" datetime="2020-07-24T18:44:00-04:00">2020-07-24</time>
               </span>
 
           
@@ -831,7 +541,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><em>TreeMap</em>是一个红黑树。其映射基于键的自然排序或是构造时提供的比较器。</p>
+          <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p><em>TreeMap</em>是一个红黑树。其映射基于键的自然排序或是构造时提供的比较器。</p>
 <ul>
 <li>继承关系</n> <img src="https://icycoke.github.io/2020/06/18/java-source-study-treemap/treemap_type_hierarchy.png" alt="Type hierarchy"></li>
 <li>特点<ul>
@@ -840,24 +550,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用于保持有序性的比较器，如果该比较器为null,则会保持键的自然顺序</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Comparator&lt;? <span class="keyword">super</span> K&gt; comparator;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根节点</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> Entry&lt;K,V&gt; root;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 节点的数量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 包含一个节点集合视图的三个属性</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> EntrySet entrySet;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> KeySet&lt;K&gt; navigableKeySet;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> NavigableMap&lt;K,V&gt; descendingMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 节点类</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    K key;</span><br><span class="line">    V value;</span><br><span class="line">    Entry&lt;K,V&gt; left;</span><br><span class="line">    Entry&lt;K,V&gt; right;</span><br><span class="line">    Entry&lt;K,V&gt; parent;</span><br><span class="line">    <span class="keyword">boolean</span> color = BLACK;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造一个包含指定键、值以及父节点的黑节点</span></span><br><span class="line">    Entry(K key, V value, Entry&lt;K,V&gt; parent) &#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">        <span class="keyword">this</span>.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回键</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> K <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用指定值替代旧值，返回旧值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">setValue</span><span class="params">(V value)</span> </span>&#123;</span><br><span class="line">        V oldValue = <span class="keyword">this</span>.value;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">        <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断该节点与指定对象是否相等</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Map.Entry))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        Map.Entry&lt;?,?&gt; e = (Map.Entry&lt;?,?&gt;)o;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> valEquals(key,e.getKey()) &amp;&amp; valEquals(value,e.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回该节点的哈希值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> keyHash = (key==<span class="keyword">null</span> ? <span class="number">0</span> : key.hashCode());</span><br><span class="line">        <span class="keyword">int</span> valueHash = (value==<span class="keyword">null</span> ? <span class="number">0</span> : value.hashCode());</span><br><span class="line">        <span class="keyword">return</span> keyHash ^ valueHash;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 返回该节点的字符串表示</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key + <span class="string">"="</span> + value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><ul>
-<li>添加节点</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将指定键值对加入树中，并返回被替代的值，若没有被替代的值则返回null</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; t = root;</span><br><span class="line">    <span class="comment">// 如果根节点为null，则新节点为根节点</span></span><br><span class="line">    <span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 检查键的类型并检测是否为null</span></span><br><span class="line">        compare(key, key);</span><br><span class="line"></span><br><span class="line">        root = <span class="keyword">new</span> Entry&lt;&gt;(key, value, <span class="keyword">null</span>);</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        modCount++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> cmp;</span><br><span class="line">    Entry&lt;K,V&gt; parent;</span><br><span class="line">    <span class="comment">// 将指定键值对置于正确位置</span></span><br><span class="line">    Comparator&lt;? <span class="keyword">super</span> K&gt; cpr = comparator;</span><br><span class="line">    <span class="keyword">if</span> (cpr != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            parent = t;</span><br><span class="line">            cmp = cpr.compare(key, t.key);</span><br><span class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">                t = t.left;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</span><br><span class="line">                t = t.right;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> t.setValue(value);</span><br><span class="line">        &#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">            Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            parent = t;</span><br><span class="line">            cmp = k.compareTo(t.key);</span><br><span class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">                t = t.left;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</span><br><span class="line">                t = t.right;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> t.setValue(value);</span><br><span class="line">        &#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Entry&lt;K,V&gt; e = <span class="keyword">new</span> Entry&lt;&gt;(key, value, parent);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">        parent.left = e;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        parent.right = e;</span><br><span class="line">    fixAfterInsertion(e);</span><br><span class="line">    size++;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较两个键</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Object k1, Object k2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> comparator==<span class="keyword">null</span> ? ((Comparable&lt;? <span class="keyword">super</span> K&gt;)k1).compareTo((K)k2)</span><br><span class="line">        : comparator.compare((K)k1, (K)k2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新增节点后再平衡红黑树</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">fixAfterInsertion</span><span class="params">(Entry&lt;K,V&gt; x)</span> </span>&#123;</span><br><span class="line">    x.color = RED;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (x != <span class="keyword">null</span> &amp;&amp; x != root &amp;&amp; x.parent.color == RED) &#123;</span><br><span class="line">        <span class="keyword">if</span> (parentOf(x) == leftOf(parentOf(parentOf(x)))) &#123;</span><br><span class="line">            Entry&lt;K,V&gt; y = rightOf(parentOf(parentOf(x)));</span><br><span class="line">            <span class="keyword">if</span> (colorOf(y) == RED) &#123;</span><br><span class="line">                setColor(parentOf(x), BLACK);</span><br><span class="line">                setColor(y, BLACK);</span><br><span class="line">                setColor(parentOf(parentOf(x)), RED);</span><br><span class="line">                x = parentOf(parentOf(x));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (x == rightOf(parentOf(x))) &#123;</span><br><span class="line">                    x = parentOf(x);</span><br><span class="line">                    rotateLeft(x);</span><br><span class="line">                &#125;</span><br><span class="line">                setColor(parentOf(x), BLACK);</span><br><span class="line">                setColor(parentOf(parentOf(x)), RED);</span><br><span class="line">                rotateRight(parentOf(parentOf(x)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Entry&lt;K,V&gt; y = leftOf(parentOf(parentOf(x)));</span><br><span class="line">            <span class="keyword">if</span> (colorOf(y) == RED) &#123;</span><br><span class="line">                setColor(parentOf(x), BLACK);</span><br><span class="line">                setColor(y, BLACK);</span><br><span class="line">                setColor(parentOf(parentOf(x)), RED);</span><br><span class="line">                x = parentOf(parentOf(x));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (x == leftOf(parentOf(x))) &#123;</span><br><span class="line">                    x = parentOf(x);</span><br><span class="line">                    rotateRight(x);</span><br><span class="line">                &#125;</span><br><span class="line">                setColor(parentOf(x), BLACK);</span><br><span class="line">                setColor(parentOf(parentOf(x)), RED);</span><br><span class="line">                rotateLeft(parentOf(parentOf(x)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    root.color = BLACK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>查询元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询指定键对应的值，如果树中没有对应键则返回null</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; p = getEntry(key);</span><br><span class="line">    <span class="keyword">return</span> (p==<span class="keyword">null</span> ? <span class="keyword">null</span> : p.value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询指定键对应的节点，如果树中没有对应节点则返回null</span></span><br><span class="line"><span class="function"><span class="keyword">final</span> Entry&lt;K,V&gt; <span class="title">getEntry</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果有指定的比较器则用该比较器获取对应节点</span></span><br><span class="line">    <span class="keyword">if</span> (comparator != <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> getEntryUsingComparator(key);</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</span><br><span class="line">    Entry&lt;K,V&gt; p = root;</span><br><span class="line">    <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> cmp = k.compareTo(p.key);</span><br><span class="line">        <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">            p = p.left;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</span><br><span class="line">            p = p.right;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除指定键对应的节点，返回该键对应的旧值，若该键本来不在树中则返回null</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">remove</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; p = getEntry(key);</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保存旧值用于返回</span></span><br><span class="line">    V oldValue = p.value;</span><br><span class="line">    deleteEntry(p);</span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询指定键对应的节点，如果树中没有对应节点则返回null</span></span><br><span class="line"><span class="function"><span class="keyword">final</span> Entry&lt;K,V&gt; <span class="title">getEntry</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 如果有指定的比较器则用该比较器获取对应节点</span></span><br><span class="line">    <span class="keyword">if</span> (comparator != <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> getEntryUsingComparator(key);</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</span><br><span class="line">    Entry&lt;K,V&gt; p = root;</span><br><span class="line">    <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> cmp = k.compareTo(p.key);</span><br><span class="line">        <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">            p = p.left;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</span><br><span class="line">            p = p.right;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除指定节点并再平衡红黑树</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteEntry</span><span class="params">(Entry&lt;K,V&gt; p)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line">    size--;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If strictly internal, copy successor's element to p and then make p</span></span><br><span class="line">    <span class="comment">// point to successor.</span></span><br><span class="line">    <span class="keyword">if</span> (p.left != <span class="keyword">null</span> &amp;&amp; p.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">        Entry&lt;K,V&gt; s = successor(p);</span><br><span class="line">        p.key = s.key;</span><br><span class="line">        p.value = s.value;</span><br><span class="line">        p = s;</span><br><span class="line">    &#125; <span class="comment">// p has 2 children</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Start fixup at replacement node, if it exists.</span></span><br><span class="line">    Entry&lt;K,V&gt; replacement = (p.left != <span class="keyword">null</span> ? p.left : p.right);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (replacement != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// Link replacement to parent</span></span><br><span class="line">        replacement.parent = p.parent;</span><br><span class="line">        <span class="keyword">if</span> (p.parent == <span class="keyword">null</span>)</span><br><span class="line">            root = replacement;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p == p.parent.left)</span><br><span class="line">            p.parent.left  = replacement;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p.parent.right = replacement;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Null out links so they are OK to use by fixAfterDeletion.</span></span><br><span class="line">        p.left = p.right = p.parent = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Fix replacement</span></span><br><span class="line">        <span class="keyword">if</span> (p.color == BLACK)</span><br><span class="line">            fixAfterDeletion(replacement);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p.parent == <span class="keyword">null</span>) &#123; <span class="comment">// return if we are the only node.</span></span><br><span class="line">        root = <span class="keyword">null</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">//  No children. Use self as phantom replacement and unlink.</span></span><br><span class="line">        <span class="keyword">if</span> (p.color == BLACK)</span><br><span class="line">            fixAfterDeletion(p);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (p.parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p == p.parent.left)</span><br><span class="line">                p.parent.left = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (p == p.parent.right)</span><br><span class="line">                p.parent.right = <span class="keyword">null</span>;</span><br><span class="line">            p.parent = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>To be continued</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/18/java-source-study-treemap/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -907,7 +607,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-03 16:56:20" itemprop="dateModified" datetime="2020-07-03T16:56:20-04:00">2020-07-03</time>
+                <time title="Modified: 2020-07-24 18:42:48" itemprop="dateModified" datetime="2020-07-24T18:42:48-04:00">2020-07-24</time>
               </span>
 
           
@@ -921,7 +621,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><em>LinkedList</em>是一个双向链表，允许储存包括<em>null</em>在内的所有类型元素。</p>
+          <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p><em>LinkedList</em>是一个双向链表，允许储存包括<em>null</em>在内的所有类型元素。</p>
 <ul>
 <li>继承关系</n> <img src="https://icycoke.github.io/2020/06/17/java-source-study-linkedlist/linkedlist_type_hierarchy.png" alt="Type hierarchy"></li>
 <li>特点<ul>
@@ -934,21 +634,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 链表的当前大小</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 头指针</span></span><br><span class="line"><span class="keyword">transient</span> Node&lt;E&gt; first;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 尾指针</span></span><br><span class="line"><span class="keyword">transient</span> Node&lt;E&gt; last;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 链表中的节点</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    E item;</span><br><span class="line">    Node&lt;E&gt; next;</span><br><span class="line">    Node&lt;E&gt; prev;</span><br><span class="line"></span><br><span class="line">    Node(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next) &#123;</span><br><span class="line">        <span class="keyword">this</span>.item = element;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">        <span class="keyword">this</span>.prev = prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无参构造器</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造一个包含指定Collection中所有元素的LinkedList，元素顺序与集合迭代器返回顺序一致</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>();</span><br><span class="line">    addAll(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><ul>
-<li><p>添加元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将指定元素添加至链表末尾，若成功则返回true</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    linkLast(e);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将指定元素添加至链表末尾</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkLast</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Node&lt;E&gt; l = last;</span><br><span class="line">    <span class="keyword">final</span> Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;&gt;(l, e, <span class="keyword">null</span>);</span><br><span class="line">    last = newNode;</span><br><span class="line">    <span class="comment">// 当前链表为空，则新节点为头节点</span></span><br><span class="line">    <span class="keyword">if</span> (l == <span class="keyword">null</span>)</span><br><span class="line">        first = newNode;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        l.next = newNode;</span><br><span class="line">    size++;</span><br><span class="line">    modCount++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回指定索引处的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    checkElementIndex(index);</span><br><span class="line">    <span class="keyword">return</span> node(index).item;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查输入索引是否在有效范围内，若不是则抛出异常</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkElementIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!isElementIndex(index))</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查输入索引是否在有效范围内</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isElementIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> index &gt;= <span class="number">0</span> &amp;&amp; index &lt; size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回指定索引处不为null的Node</span></span><br><span class="line"><span class="function">Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; (size &gt;&gt; <span class="number">1</span>)) &#123;</span><br><span class="line">        Node&lt;E&gt; x = first;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">            x = x.next;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; x = last;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--)</span><br><span class="line">            x = x.prev;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除指定索引处的元素，并将其后续的元素左移</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    checkElementIndex(index);</span><br><span class="line">    <span class="keyword">return</span> unlink(node(index));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查输入索引是否在有效范围内，若不是则抛出异常</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkElementIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!isElementIndex(index))</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查输入索引是否在有效范围内</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isElementIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> index &gt;= <span class="number">0</span> &amp;&amp; index &lt; size;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回指定索引处不为null的Node</span></span><br><span class="line"><span class="function">Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 判断插入节点的位置在链表的前半段还是后半段，若插入位置在前半段则从头结点开始向后遍历，反之则从尾节点开始向前遍历</span></span><br><span class="line">    <span class="keyword">if</span> (index &lt; (size &gt;&gt; <span class="number">1</span>)) &#123;</span><br><span class="line">        Node&lt;E&gt; x = first;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">            x = x.next;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; x = last;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--)</span><br><span class="line">            x = x.prev;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除指定的Node</span></span><br><span class="line"><span class="function">E <span class="title">unlink</span><span class="params">(Node&lt;E&gt; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> E element = x.item;</span><br><span class="line">    <span class="keyword">final</span> Node&lt;E&gt; next = x.next;</span><br><span class="line">    <span class="keyword">final</span> Node&lt;E&gt; prev = x.prev;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果指定节点为头节点，则移除头节点并将一个节点作为新的头节点</span></span><br><span class="line">    <span class="keyword">if</span> (prev == <span class="keyword">null</span>) &#123;</span><br><span class="line">        first = next;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        prev.next = next;</span><br><span class="line">        x.prev = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果指定节点为尾节点，则移除尾节点并将前一个节点作为新的尾节点</span></span><br><span class="line">    <span class="keyword">if</span> (next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        last = prev;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        next.prev = prev;</span><br><span class="line">        x.next = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 防止对象游离</span></span><br><span class="line">    x.item = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    size--;</span><br><span class="line">    modCount++;</span><br><span class="line">    <span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/17/java-source-study-linkedlist/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -998,7 +691,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-03 16:55:56" itemprop="dateModified" datetime="2020-07-03T16:55:56-04:00">2020-07-03</time>
+                <time title="Modified: 2020-07-24 18:42:24" itemprop="dateModified" datetime="2020-07-24T18:42:24-04:00">2020-07-24</time>
               </span>
 
           
@@ -1013,7 +706,7 @@
 
       
           <hr>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><em>ArrayList</em>是一个容量可动态调整的数组。</p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p><em>ArrayList</em>是一个容量可动态调整的数组。</p>
 <ul>
 <li>继承关系</n><img src="https://icycoke.github.io/2020/06/16/java-source-study-arraylist/arraylist_type_hierarchy.png" alt="Type hierarchy"></li>
 <li>特点<ul>
@@ -1027,19 +720,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认初始容量为10</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无参数构造时的共享空数组</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 有参数构造时的共享空数组</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 存放元素的数组</span></span><br><span class="line"><span class="keyword">transient</span> Object[] elementData;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组的当前大小</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组可分配的最大容量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_ARRAY_SIZE = Integer.MAX_VALUE - <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无参构造器</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造一个包含指定Collection中所有元素的ArrayList，元素顺序与集合迭代器返回顺序一致</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">    elementData = c.toArray();</span><br><span class="line">    <span class="keyword">if</span> ((size = elementData.length) != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 判断c.toArray()是否正确返回Object[]类型</span></span><br><span class="line">        <span class="keyword">if</span> (elementData.getClass() != Object[]<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">            <span class="title">elementData</span> </span>= Arrays.copyOf(elementData, size, Object[]<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果c为空，将elementData置空</span></span><br><span class="line">        <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造一个指定初始容量的ArrayList</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><ul>
-<li><p>添加元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加指定元素到数组末尾</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 确认当前容量是否足够</span></span><br><span class="line">    ensureCapacityInternal(size + <span class="number">1</span>);</span><br><span class="line">    elementData[size++] = e;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 确认内部容量</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacityInternal</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算所需要的容量，默认为10</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calculateCapacity</span><span class="params">(Object[] elementData, <span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">        <span class="keyword">return</span> Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minCapacity;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 确认当前容量是否足够，若不够则进行扩容</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对数组进行扩容</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="comment">// 新容量为旧容量的1.5倍</span></span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 如果新容量小于所需最小容量，则扩容至所需最小容量</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="comment">// 判断新容量是否超出最大容量</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算大容量数组所需容量</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hugeCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 若溢出则抛出异常</span></span><br><span class="line">    <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> OutOfMemoryError();</span><br><span class="line">    <span class="comment">// 仅当元素超出MAX_ARRAY_SIZE时才尝试以Integer.MAX_VALUE为最大容量（在部分JVM上可能会失败）</span></span><br><span class="line">    <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ?</span><br><span class="line">        Integer.MAX_VALUE :</span><br><span class="line">        MAX_ARRAY_SIZE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>查询元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取指定索引处的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> elementData(index);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查指定的索引是否在有效范围内</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rangeCheck</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= size)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>删除元素</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除指定索引位置的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line"></span><br><span class="line">    modCount++;</span><br><span class="line">    E oldValue = elementData(index);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 确定要移动的元素数量并进行元素移动</span></span><br><span class="line">    <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">        System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</span><br><span class="line">                         numMoved);</span><br><span class="line">    <span class="comment">// 防止对象游离，确保整个数组不使用之后会被回收</span></span><br><span class="line">    elementData[--size] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> oldValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取指定索引处的元素</span></span><br><span class="line"><span class="function">E <span class="title">elementData</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (E) elementData[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查指定的索引是否在有效范围内</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rangeCheck</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= size)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/16/java-source-study-arraylist/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1123,7 +811,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
