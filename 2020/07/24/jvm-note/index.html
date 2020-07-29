@@ -22,20 +22,17 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. DNS概况 DNS是： 一个由分层的DNS服务器实现的分布式数据库 一个使得主机能够查询分布式数据库的应用层协议   提供主机名到IP地址的转换 DNS协议运行在UDP之上 其它服务： 主机别名 邮件服务器别名 负载分配">
-<meta property="og:type" content="article">
-<meta property="og:title" content="应用层：DNS">
-<meta property="og:url" content="http://yoursite.com/2020/06/26/application-layer-dns/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="jvm-note">
+<meta property="og:url" content="http://yoursite.com/2020/07/24/jvm-note/index.html">
 <meta property="og:site_name" content="icycoke&#39;s blog">
-<meta property="og:description" content="1. DNS概况 DNS是： 一个由分层的DNS服务器实现的分布式数据库 一个使得主机能够查询分布式数据库的应用层协议   提供主机名到IP地址的转换 DNS协议运行在UDP之上 其它服务： 主机别名 邮件服务器别名 负载分配">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-27T01:19:53.000Z">
-<meta property="article:modified_time" content="2020-07-24T22:41:19.603Z">
+<meta property="article:published_time" content="2020-07-25T00:44:09.000Z">
+<meta property="article:modified_time" content="2020-07-25T00:44:09.603Z">
 <meta property="article:author" content="icycoke">
-<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/26/application-layer-dns/">
+<link rel="canonical" href="http://yoursite.com/2020/07/24/jvm-note/">
 
 
 <script id="page-configurations">
@@ -48,7 +45,7 @@
   };
 </script>
 
-  <title>应用层：DNS | icycoke's blog</title>
+  <title>jvm-note | icycoke's blog</title>
   
 
 
@@ -158,7 +155,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/26/application-layer-dns/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/24/jvm-note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -171,7 +168,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          应用层：DNS
+          jvm-note
         </h1>
 
         <div class="post-meta">
@@ -181,15 +178,8 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-06-26 21:19:53" itemprop="dateCreated datePublished" datetime="2020-06-26T21:19:53-04:00">2020-06-26</time>
+              <time title="Created: 2020-07-24 20:44:09" itemprop="dateCreated datePublished" datetime="2020-07-24T20:44:09-04:00">2020-07-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-24 18:41:19" itemprop="dateModified" datetime="2020-07-24T18:41:19-04:00">2020-07-24</time>
-              </span>
 
           
 
@@ -202,123 +192,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-DNS概况"><a href="#1-DNS概况" class="headerlink" title="1. DNS概况"></a>1. DNS概况</h2><ul>
-<li>DNS是：<ol>
-<li>一个由分层的DNS服务器实现的<strong>分布式数据库</strong></li>
-<li>一个使得主机能够查询分布式数据库的<strong>应用层协议</strong></li>
-</ol>
-</li>
-<li>提供<strong>主机名到IP地址的转换</strong></li>
-<li>DNS协议运行在<strong>UDP</strong>之上</li>
-<li>其它服务：<ul>
-<li><strong>主机别名</strong></li>
-<li><strong>邮件服务器别名</strong></li>
-<li><strong>负载分配</strong></li>
-</ul>
-</li>
-</ul>
-<a id="more"></a>
-
-<h2 id="2-DNS数据库"><a href="#2-DNS数据库" class="headerlink" title="2. DNS数据库"></a>2. DNS数据库</h2><ul>
-<li>DNS服务器是<strong>分布式</strong>、<strong>层次式</strong>的</li>
-<li>DNS服务器分类：<ul>
-<li><strong>根DNS服务器</strong></li>
-<li><strong>顶级域DNS服务器</strong></li>
-<li><strong>权威DNS服务器</strong></li>
-<li><em>本地DNS服务器</em>（不属于层次结构中，由ISP提供，起着代理的作用）</li>
-</ul>
-</li>
-<li>查询流程:<ol>
-<li>客户与根服务器之一联系，根服务器返回顶级域名服务器的IP地址</li>
-<li>客户与对应顶级域名服务器联系，顶级域名服务器返回权威服务器的IP地址</li>
-<li>客户与对应权威服务器联系，权威服务器返回待查询主机名的IP地址</li>
-</ol>
-</li>
-<li>DNS缓存<ul>
-<li>当某一个DNS服务器接收到一个DNS回答时，它能将映射缓存在本地服务器中</li>
-<li>改善了时延性能并减少了因特网上传输到DNS报文数量</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-DNS记录和报文"><a href="#3-DNS记录和报文" class="headerlink" title="3. DNS记录和报文"></a>3. DNS记录和报文</h2><ul>
-<li><p><strong>资源记录</strong>（Resource Record, RR）</p>
-<ul>
-<li><p>格式：（Name, Value, Type, TTL)</p>
-<ul>
-<li><p>TTL是该记录的生存时间</p>
-</li>
-<li><p>Type决定了Name和Value值的含义：</p>
-<table>
-<thead>
-<tr>
-<th align="center">Type</th>
-<th align="center">Name</th>
-<th align="center">Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">A</td>
-<td align="center">主机名</td>
-<td align="center">该主机名对应的IP地址</td>
-</tr>
-<tr>
-<td align="center">NS</td>
-<td align="center">域</td>
-<td align="center">知道如何获得该域中主机IP地址的权威DNS服务器的主机名</td>
-</tr>
-<tr>
-<td align="center">CNAME</td>
-<td align="center">主机别名</td>
-<td align="center">别名为Name的主机的规范主机名</td>
-</tr>
-<tr>
-<td align="center">MX</td>
-<td align="center">主机别名</td>
-<td align="center">别名为Name的邮件服务器的规范主机名</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>DNS报文</p>
-<ul>
-<li><p>格式</p>
-<div class="tabletext">
-<table>
-    <tr>
-        <td align="center">标识符</td>
-        <td align="center">标志</td>
-    </tr>
-    <tr>
-        <td align="center">问题数</td>
-        <td align="center">回答RR数</td>
-    </tr>
-    <tr>
-        <td align="center">权威RR数</td>
-        <td align="center">附加RR数</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">问题（问题的变量数）</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">回答（资源记录的变量数）</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">权威服务器的记录（资源记录的变量数）</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">附加信息（资源记录的变量数）</td>
-    </tr>
-</table>
-</div>
-
-</li>
-</ul>
-</li>
-</ul>
-
+        
     </div>
 
     
@@ -326,9 +200,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
-          </div>
 
         
 
@@ -336,12 +207,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/26/transport-layer-udp/" rel="prev" title="运输层：UDP">
-      <i class="fa fa-chevron-left"></i> 运输层：UDP
+    <a href="/2020/07/13/binary-search-conclusion/" rel="prev" title="二分搜索总结">
+      <i class="fa fa-chevron-left"></i> 二分搜索总结
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/27/transport-layer-tcp/" rel="next" title="运输层：TCP">
-      运输层：TCP <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/25/string-related-notes/" rel="next" title="String相关知识点笔记">
+      String相关知识点笔记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -401,7 +272,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DNS概况"><span class="nav-number">1.</span> <span class="nav-text">1. DNS概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DNS数据库"><span class="nav-number">2.</span> <span class="nav-text">2. DNS数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DNS记录和报文"><span class="nav-number">3.</span> <span class="nav-text">3. DNS记录和报文</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
