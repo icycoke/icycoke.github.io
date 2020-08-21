@@ -29,14 +29,17 @@
 <meta property="og:site_name" content="icycoke&#39;s blog">
 <meta property="og:description" content="1. 操作系统概述1.1 操作系统概念 操作系统时管理计算机硬件与软件资源的计算机程序">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/process_status.png">
+<meta property="og:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/process_status.jpg">
 <meta property="og:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/multi_thread_process.jpg">
+<meta property="og:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/process_scheduling.jpg">
+<meta property="og:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/paging.jpg">
+<meta property="og:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/address_mapping.jpg">
 <meta property="article:published_time" content="2020-07-28T18:16:09.000Z">
-<meta property="article:modified_time" content="2020-07-29T20:27:28.888Z">
+<meta property="article:modified_time" content="2020-08-15T23:46:55.564Z">
 <meta property="article:author" content="icycoke">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/process_status.png">
+<meta name="twitter:image" content="https://icycoke.github.io/2020/07/28/operating-system-note/process_status.jpg">
 
 <link rel="canonical" href="http://yoursite.com/2020/07/28/operating-system-note/">
 
@@ -191,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-29 16:27:28" itemprop="dateModified" datetime="2020-07-29T16:27:28-04:00">2020-07-29</time>
+                <time title="Modified: 2020-08-15 19:46:55" itemprop="dateModified" datetime="2020-08-15T19:46:55-04:00">2020-08-15</time>
               </span>
 
           
@@ -260,7 +263,7 @@
 <li><p><strong>就绪</strong>：进程正等待分配处理器</p>
 </li>
 <li><p><strong>终止</strong>：进程运行结束</p>
-<p><img src="https://icycoke.github.io/2020/07/28/operating-system-note/process_status.png" alt="进程状态转换图"></p>
+<p><img src="https://icycoke.github.io/2020/07/28/operating-system-note/process_status.jpg" alt="进程状态转换图"></p>
 </li>
 </ul>
 <h4 id="2-1-2-进程控制块（Process-Control-Block-PCB）"><a href="#2-1-2-进程控制块（Process-Control-Block-PCB）" class="headerlink" title="2.1.2 进程控制块（Process Control Block, PCB）"></a>2.1.2 进程控制块（Process Control Block, PCB）</h4><ul>
@@ -337,6 +340,9 @@
 </ul>
 <h4 id="2-3-4-生产者-消费者模型"><a href="#2-3-4-生产者-消费者模型" class="headerlink" title="2.3.4 生产者-消费者模型"></a>2.3.4 生产者-消费者模型</h4><ul>
 <li>生产者进程“生产”信息，存储在缓冲区（阻塞队列），供消费者进程“消费”</li>
+<li>在缓冲区为空时，消费者不能再进行消费</li>
+<li>在缓冲区为满时，生产者不能再进行生产</li>
+<li>在一个进程进行生产或消费时，其余进程不能再进行生产或消费等操作，即保持同步</li>
 </ul>
 <h4 id="2-3-5-同步通信和异步通信"><a href="#2-3-5-同步通信和异步通信" class="headerlink" title="2.3.5 同步通信和异步通信"></a>2.3.5 同步通信和异步通信</h4><ul>
 <li><strong>同步通信</strong><ul>
@@ -351,11 +357,429 @@
 </li>
 </ul>
 <h3 id="2-4-线程"><a href="#2-4-线程" class="headerlink" title="2.4 线程"></a>2.4 线程</h3><ul>
-<li><p>线程是进程内一个执行单元或一个可调度实体</p>
-</li>
+<li>线程是进程内一个执行单元或一个可调度实体</li>
+</ul>
+<h4 id="2-4-1-多线程进程"><a href="#2-4-1-多线程进程" class="headerlink" title="2.4.1 多线程进程"></a>2.4.1 多线程进程</h4><ul>
 <li><p>多线程的进程在同一地址空间内包括多个不同的控制流，也即属于同一进程下的线程，它们共享进程拥有的资源，如代码、数据、文件等</p>
 <p><img src="https://icycoke.github.io/2020/07/28/operating-system-note/multi_thread_process.jpg" alt="单线程进程与多线程进程"></p>
 </li>
+<li><p>多线程的优点</p>
+<ul>
+<li>更高效地利用CPU</li>
+<li>减少额外开销（如频繁切换进程上下文）</li>
+<li>缩短响应时间。例如，在显示页面时，可以将整个页面分为多个单元，交由不同的线程处理，可以更快地先反馈出第一个单元</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-4-2-多线程模型"><a href="#2-4-2-多线程模型" class="headerlink" title="2.4.2 多线程模型"></a>2.4.2 多线程模型</h4><ul>
+<li>线程分为<strong>用户级线程</strong>和<strong>内核级线程</strong><ul>
+<li>用户级线程：对内核来说是未知的，线程管理不依赖操作系统内核</li>
+<li>内核级线程：由操作系统支持和管理</li>
+</ul>
+</li>
+<li>有三种不同模型将用户级线程和内核级线程关联起来：<ol>
+<li><strong>多对一模型</strong>：将多个用户线程映射到一个内核线程<ul>
+<li>缺点：一个线程出错，整个进程就会交出CPU资源，该进程下的其它线程正常工作</li>
+</ul>
+</li>
+<li><strong>一对一模型</strong>：将每个用户线程映射到一个相应的内核线程</li>
+<li><strong>多对多模型</strong>：将多个用户线程在同样（或更少）数量的内核线程之间切换</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-5-CPU调度"><a href="#2-5-CPU调度" class="headerlink" title="2.5 CPU调度"></a>2.5 CPU调度</h3><ul>
+<li><strong>CPU调度</strong>负责动态地把处理器分配给进程或内核级线程</li>
+</ul>
+<h4 id="2-5-1-调度时机"><a href="#2-5-1-调度时机" class="headerlink" title="2.5.1 调度时机"></a>2.5.1 调度时机</h4><ul>
+<li><p>发生CPU调度的四种情况：</p>
+<ol>
+<li>一个进程终止时</li>
+<li>一个进程从运行状态转换到等待状态时</li>
+<li>一个进程从运行状态转换到就绪状态时（例如：高优先级的进程抢占了CPU资源，原本运行的进程只能进入就绪队列）</li>
+<li>一个进程从等待状态转换到运行状态时</li>
+</ol>
+<p><img src="https://icycoke.github.io/2020/07/28/operating-system-note/process_scheduling.jpg" alt="进程在各队列中的迁移"></p>
+</li>
+</ul>
+<h4 id="2-5-2-调度方式"><a href="#2-5-2-调度方式" class="headerlink" title="2.5.2 调度方式"></a>2.5.2 调度方式</h4><ul>
+<li><strong>非抢占方式</strong>：不允许其它进程抢占已经分配出去的CPU，一旦分配给某进程后，便让该进程一直执行，直到该进程完成或发生某事件而被阻塞</li>
+<li><strong>抢占方式</strong>：允许进程调度程序根据某个原则，去停止某个正在执行的进程，将已分配给进程的CPU，重新分配给另一个进程</li>
+</ul>
+<h4 id="2-5-3-经典调度算法"><a href="#2-5-3-经典调度算法" class="headerlink" title="2.5.3 经典调度算法"></a>2.5.3 经典调度算法</h4><ul>
+<li><strong>先来先服务</strong>（First Come First Served，FCFS）<ul>
+<li>按照进程进入就绪队列的先后次序来挑选进程，先进入就绪队列的进程优先被挑中</li>
+<li>优点<ul>
+<li>是最简单的调度算法</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>会让短进程等待非常长的进程，提高了平均等待时间、平均周转时间、平均响应时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>优先级</strong>（Priority）<ul>
+<li>根据确定的优先级来选取进程，每次总是选择优先级高的进程</li>
+<li>缺点<ul>
+<li>进程饥饿（Starvation）：优先级较低的进程可能永远得不到CPU。可以通过将就绪队列中的进程优先级逐渐提高解决这一问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>时间片轮转</strong>（Round Robin，RR）<ul>
+<li>每次把CPU分配给就绪队列首进程使用一个时间片，就绪队列中的每个进程轮流地运行一个这样的时间片</li>
+<li>优点<ul>
+<li>假设n个就绪程序，时间片大小为q，任何就绪进程最多等待(n-1)q单位时间，保证了响应时间</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>难以选择时间片大小：如果时间片太大，那么RR调度就成了FCFS调度；如果时间片太小，那么因上下文切换而引起的调度开销就过大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>最短作业/进程优先</strong>（Shortest Job/Process First，SJF/SPF）<ul>
+<li>总是选取估计计算时间最短的进程投入运行</li>
+<li>是优先权调度算法的特例</li>
+<li>优点<ul>
+<li>是局部最佳的方法，它满足最短平均等待时间的要求</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>预测进程的下一个CPU需求区间的长度有难度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>高响应比优先</strong>（Highest Response Ratio Next，HRRN）<ul>
+<li>调度时总是选择响应比最高的就绪进程得到CPU。响应比=（进程已等待时间＋进程要求运行时间）／进程要求运行时间</li>
+<li>此调度算法首先有利于短进程，但也兼顾到等待时间长的进程，是FCFS算法和SJF算法的折衷</li>
+</ul>
+</li>
+<li><strong>多级队列</strong>（Multilevel Queue，MQ）<ul>
+<li>根据进程的性质和类型的不同，将就绪队列再分为若干个子队列，所有进程根据不同情况排入相应的队列中，而不同的就绪队列采用不同的调度算法</li>
+<li>最为常用的是前台交互队列（需要交互性，使用RR调度）和后台批处理队列（使用FCFS调度）的组合</li>
+</ul>
+</li>
+<li><strong>多级反馈队列</strong>（Multilevel Feedback Queue Scheduling，MFQ）<ul>
+<li>在多级队列算法的基础上，允许就绪进程在队列之间迁移</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-进程同步"><a href="#3-进程同步" class="headerlink" title="3. 进程同步"></a>3. 进程同步</h2><h3 id="3-1-临界区问题"><a href="#3-1-临界区问题" class="headerlink" title="3.1 临界区问题"></a>3.1 临界区问题</h3><h4 id="3-1-1-相关概念"><a href="#3-1-1-相关概念" class="headerlink" title="3.1.1 相关概念"></a>3.1.1 相关概念</h4><ul>
+<li>每个进程中<strong>访问共享数据的代码段</strong>称为<strong>临界区</strong></li>
+<li>对共享数据的并发访问，可能导致数据不一致问题</li>
+<li>当至少存在一个进程修改了共享数据时，出现临界区问题</li>
+</ul>
+<h4 id="3-1-2-处理原则"><a href="#3-1-2-处理原则" class="headerlink" title="3.1.2 处理原则"></a>3.1.2 处理原则</h4><ul>
+<li>临界区问题的解决方案必须满足3个条件：<ul>
+<li><strong>互斥</strong>（mutual exclusion）：如果某个进程正在其临界区内执行，那么其他进程都不能在其临界区内执行</li>
+<li><strong>空闲让进</strong>（progress）：如果当前没有进程在其临界区内执行且有进程想进入临界区，那么应该选择这些想进入临界区的进程中的一个，允许其进入临界区，且这种选择不能无限推迟</li>
+<li><strong>有限等待</strong>（bounded waiting）：一个进程提出进入临界区的请求，在该请求被允许之前，其他进程允许进入其临界区的次数应该有一个上限</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-1-3-临界区互斥软件实现算法"><a href="#3-1-3-临界区互斥软件实现算法" class="headerlink" title="3.1.3 临界区互斥软件实现算法"></a>3.1.3 临界区互斥软件实现算法</h4><ul>
+<li><p>算法一（错误的）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    flag[i] = TRUE;</span><br><span class="line">    <span class="keyword">while</span> (flag[j] == TRUE); <span class="comment">// 进入区</span></span><br><span class="line">    <span class="comment">// 临界区</span></span><br><span class="line">    flag[i] = FALSE; <span class="comment">// 退出区</span></span><br><span class="line">    <span class="comment">// 剩余区</span></span><br><span class="line">&#125; <span class="keyword">while</span> (True);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该算法无法满足空闲让进条件，因为它严格要求了两个进程必须以交替的方式进入临界区执行，而不能让CPU在空闲时让某个进程连续两次进入临界区</li>
+</ul>
+</li>
+<li><p>算法二（错误的）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    flag[i] = TRUE;</span><br><span class="line">    <span class="keyword">while</span> (flag[i] == TRUE); <span class="comment">// 进入区</span></span><br><span class="line">    <span class="comment">// 临界区</span></span><br><span class="line">    flag[i] = FALSE; <span class="comment">// 退出区</span></span><br><span class="line">    <span class="comment">// 剩余区</span></span><br><span class="line">&#125; <span class="keyword">while</span> (TRUE);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该算法无法满足空闲让进条件，假设在进程P0执行了flag[0] = TRUE语句之后，就发生了进程切换，然后P<sub>1</sub>执行了flag[1] = TURE，从此以后，两个进程都将在进入区的while语句上无限循环下去了</li>
+</ul>
+</li>
+<li><p>Peterson算法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    flag[i] = TRUE;</span><br><span class="line">    <span class="built_in">turn</span> = j;</span><br><span class="line">    <span class="keyword">while</span> (flag[j] &amp;&amp; <span class="built_in">turn</span> == j); <span class="comment">// 进入区</span></span><br><span class="line">    <span class="comment">// 临界区</span></span><br><span class="line">    flag[i] = FALSE; <span class="comment">// 退出区</span></span><br><span class="line">    <span class="comment">// 剩余区</span></span><br><span class="line">&#125; <span class="keyword">while</span> (TRUE);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="3-1-4-临界区互斥硬件实现算法"><a href="#3-1-4-临界区互斥硬件实现算法" class="headerlink" title="3.1.4 临界区互斥硬件实现算法"></a>3.1.4 临界区互斥硬件实现算法</h4><ul>
+<li>软件解法之所以困难是因为在一个进程进入临界区之前，它需要完成两件工作：一是检查是否有别的进程正在请求进入临界区或者正在临界区，二是设置自己想进入临界区的标志。由于检查他人的标志和设置自己的标志无法成为原子操作，在软件层面解决这一问题很困难</li>
+<li>硬件实现依赖于硬件厂商提供检测一个标志和设置这个标志同时完成的机器指令（TestAndSet），或是交换两个变量值的机器指令（Swap）</li>
+</ul>
+<h4 id="3-1-5-信号量"><a href="#3-1-5-信号量" class="headerlink" title="3.1.5 信号量"></a>3.1.5 信号量</h4><ul>
+<li><p><strong>信号量</strong>S是一个整型变量，只允许两个标准操作，且他们都是原子操作，即<code>wait()</code>（P操作）和<code>signal()</code>（V操作）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wait(S) &#123;</span><br><span class="line">    S--;</span><br><span class="line">    <span class="keyword">if</span> (S &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 将此进程加入到等待队列中</span></span><br><span class="line">        block();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">signal(S) &#123;</span><br><span class="line">    S++;</span><br><span class="line">    <span class="keyword">if</span> (S &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 将进程P从等待队列中移除</span></span><br><span class="line">        wakeup(P);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3-2-经典进程同步问题"><a href="#3-2-经典进程同步问题" class="headerlink" title="3.2 经典进程同步问题"></a>3.2 经典进程同步问题</h3><h4 id="3-2-1-生产者-消费者问题"><a href="#3-2-1-生产者-消费者问题" class="headerlink" title="3.2.1 生产者-消费者问题"></a>3.2.1 生产者-消费者问题</h4><ul>
+<li><p>问题描述</p>
+<ul>
+<li>假定缓冲池有n个缓冲项，每个缓冲区存放一个消息</li>
+<li>缓冲池只允许一个生产者投入消息，或者一个消费者取出消息，即生产者之间、生产者与消费者之间、消费者之间都必须互斥使用缓冲池</li>
+</ul>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>线程之间需要互斥，设置互斥信号量<code>mutex = 1</code></p>
+</li>
+<li><p>生产者和消费者之间需要同步，设置同步信号量<code>full = 0</code>，同步信号量<code>empty = n</code>（空缓冲区池不能消费，满缓冲池不能生产）</p>
+</li>
+<li><p>进程实现</p>
+<ul>
+<li><p>生产者进程P</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wait(empty);</span><br><span class="line">wait(mutex);</span><br><span class="line">produce();</span><br><span class="line">V(mutex);</span><br><span class="line">V(full);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>消费者进程C</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wait(full);</span><br><span class="line">wait(mutex);</span><br><span class="line">produce();</span><br><span class="line">V(mutex);</span><br><span class="line">V(empty);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-2-读者-写者问题"><a href="#3-2-2-读者-写者问题" class="headerlink" title="3.2.2 读者-写者问题"></a>3.2.2 读者-写者问题</h4><ul>
+<li><p>问题描述</p>
+<ul>
+<li>一个数据集被几个并行进程所共享</li>
+<li>有些进程只要求读取数据内容，称为读者</li>
+<li>有些进程只要求修改数据内容，称为写者</li>
+<li>几个读者可以同时读取数据集而不需要互斥</li>
+<li>一个写者不能和其它进程同时访问数据集，它们之间必须互斥</li>
+</ul>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>写者与写者、写者与读者之间需要互斥，设置互斥信号量<code>wrt = 1</code></p>
+</li>
+<li><p>设置变量<code>readcount = 0</code>来记录读者数。由于<code>readcount</code>时读者间共享变量，因此也需要互斥，设置互斥信号量<code>mutex = 1</code></p>
+</li>
+<li><p>进程实现</p>
+<ul>
+<li><p>写者进程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wait(wrt);</span><br><span class="line"><span class="built_in">write</span>();</span><br><span class="line">signal(wrt);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读者进程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">wait(mutex);</span><br><span class="line">readcount++;</span><br><span class="line"><span class="keyword">if</span> (readcount == <span class="number">1</span>) &#123;</span><br><span class="line">    wait(wrt);</span><br><span class="line">&#125;</span><br><span class="line">signal(mutex);</span><br><span class="line"><span class="built_in">read</span>();</span><br><span class="line">wait(mutex);</span><br><span class="line">readcount--;</span><br><span class="line"><span class="keyword">if</span> (readcount == <span class="number">0</span>) &#123;</span><br><span class="line">    signal(wrt);</span><br><span class="line">&#125;</span><br><span class="line">signal(mutex);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-死锁"><a href="#4-死锁" class="headerlink" title="4. 死锁"></a>4. 死锁</h2><h3 id="4-1-死锁现象"><a href="#4-1-死锁现象" class="headerlink" title="4.1 死锁现象"></a>4.1 死锁现象</h3><ul>
+<li><strong>死锁</strong>指多个进程因竞争共享资源而造成的一种僵局，若无外力作用，这些进程都将永远不能再向前推进</li>
+</ul>
+<h3 id="4-2-产生死锁的原因"><a href="#4-2-产生死锁的原因" class="headerlink" title="4.2 产生死锁的原因"></a>4.2 产生死锁的原因</h3><ul>
+<li>竞争资源引起死锁</li>
+<li>程序推进顺序不当引起死锁</li>
+</ul>
+<h3 id="4-3-产生死锁的条件"><a href="#4-3-产生死锁的条件" class="headerlink" title="4.3 产生死锁的条件"></a>4.3 产生死锁的条件</h3><ul>
+<li><p>死锁的出现必须具备4个必要条件：</p>
+<ol>
+<li><p><strong>互斥条件</strong>（mutual exclusion）：进程对所分配到的资源进行排它性使用，即在一段时间内某资源只由一个进程占用。如果此时还有其它进程请求资源，则请求者只能等待，直至占有资源的进程用毕释放</p>
+</li>
+<li><p><strong>占有并等待</strong>（hold and wait）：一个进程已经持有至少一个资源，并等待另一个资源的释放</p>
+</li>
+<li><p><strong>非抢占</strong>（non-preemptive）：资源不能被抢占，即资源只能在进程完成任务后主动释放</p>
+</li>
+<li><p><strong>循环等待</strong>（circular wait）：有一组等待进程，P<sub>0</sub>等待的资源为P<sub>1</sub>所占有，P<sub>1</sub>等待的资源为P<sub>2</sub>所占有…P<sub>n-1</sub>等待的资源为P<sub>n</sub>所占有，P<sub>n</sub>等待的资源为P<sub>0</sub>所占有</p>
+<p><em>所有4个条件必须同时满足才会出现死锁。其中，循环等待条件隐含着占有并等待条件，所以这4个条件并不完全独立</em></p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-4-资源分配图"><a href="#4-4-资源分配图" class="headerlink" title="4.4 资源分配图"></a>4.4 资源分配图</h3><ul>
+<li>资源分配图是可用于表示系统资源分配的有向图，由一个节点集合V（包括进程和资源）和一个边集合E（包括请求边和分配边）表示</li>
+<li>由进程指向资源的边为请求边，表示该进程请求该资源</li>
+<li>由资源指向进程的边为分配便，表示该资源分配给该进程</li>
+<li>如果资源分配图没有环，则不可能有死锁</li>
+<li>如果资源分配图有环<ul>
+<li>如果每一种资源类型只有一个实例，则死锁发生</li>
+<li>如果每一种资源类型有多个实例，则死锁可能发生</li>
+</ul>
+</li>
+<li><strong>死锁定理</strong>：S为死锁状态的充分条件是当且仅当S状态的资源分配图是不可完全简化的</li>
+</ul>
+<h3 id="4-5-死锁的处理"><a href="#4-5-死锁的处理" class="headerlink" title="4.5  死锁的处理"></a>4.5  死锁的处理</h3><h4 id="4-5-1-死锁的预防"><a href="#4-5-1-死锁的预防" class="headerlink" title="4.5.1 死锁的预防"></a>4.5.1 死锁的预防</h4><ul>
+<li>静态方法：在进程执行前采取的措施，通过设置某些限制条件，破坏产生死锁的四个必要条件之一<ol>
+<li>破坏互斥条件<ul>
+<li>有的资源本身的特征就决定了它就是非共享的，因此通过破坏“互斥”条件来预防死锁不可行</li>
+</ul>
+</li>
+<li>破坏占有并等待条件<ul>
+<li>保证当一个进程申请一个资源时，它不能占有其他资源，会引起资源利用率大幅度下降，并可能诱发饥饿现象，因此不可行</li>
+</ul>
+</li>
+<li>破坏非抢占条件<ul>
+<li>让已分配的资源可以被抢占，这个方法通常可用于那些状态可以保存和恢复的资源，如CPU寄存器和内存。但它一般不适用于其他资源，如打印机和磁带驱动器</li>
+</ul>
+</li>
+<li>破坏循环等待条件<ul>
+<li>令所有进程对资源的请求必须严格按照资源序号递增的次序提出，防止资源分配图中出现环路，该方法可以提高资源利用率，但对用户的要求太高</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="4-5-2-死锁的避免"><a href="#4-5-2-死锁的避免" class="headerlink" title="4.5.2 死锁的避免"></a>4.5.2 死锁的避免</h4><ul>
+<li>动态方法：在进程执行过程中采取的措施，在进程申请资源时用某种方法去防止系统进入不安全状态</li>
+<li><strong>安全状态</strong><ul>
+<li>如果系统能按某个顺序为每个进程分配资源（不超过其最大值）并能避免死锁，那么系统状态就是安全的</li>
+<li><strong>安全序列</strong>：假设有进程序列&lt;P<sub>1</sub>，P<sub>2</sub>，…，P<sub>n</sub>&gt;，如果对于每个P<sub>i</sub>，P<sub>i</sub>仍然可以申请的资源数小于当前可用资源加上所有进程P<sub>j</sub> (其中j&lt;i) 所占有的资源，那么这一顺序称为安全序列</li>
+<li>安全状态一定不会导致死锁，而不安全状态不一定会导致死锁</li>
+</ul>
+</li>
+<li><strong>银行家算法</strong><ul>
+<li>数据结构<ul>
+<li>可利用资源向量Available<ul>
+<li>长度为m的向量，表示每种资源的现有实例的数量。如果Available[j]=k, 那么资源类型R<sub>j</sub>现有k个实例</li>
+</ul>
+</li>
+<li>最大需求矩阵Max<ul>
+<li>n×m矩阵，定义每个进程的最大需求。如果Max[i] [j]=k，那么进程P<sub>i</sub>最多可申请k个资源类型R<sub>j</sub>的实例</li>
+</ul>
+</li>
+<li>分配矩阵Allocation<ul>
+<li>n×m的矩阵，它定义了系统中每一类资源当前已分配给每一进程的资源数。如果Allocation[i,j]=K，则表示进程i当前已分得R<sub>j</sub>类资源的 数目为K</li>
+</ul>
+</li>
+<li>需求矩阵Need<ul>
+<li>这也是一个n×m的矩阵，用以表示每一个进程尚需的各类资源数。如果Need[i,j]=K，则表示进程i还需要R<sub>j</sub>类资源K个，方能完成其任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>安全状态判定算法</strong><ol>
+<li>设Work和Finish分别为长度为m和n的向量。按如下方式进行初始化：Work=Available且对于i=0，1，…，n-1，设置Finish[i]=false</li>
+<li>查找这样的i使其满足：Finish[i]=false且Need[i]≤Work，如果没有这样的i存在，那么就转到第4步</li>
+<li>Work = Work+Allocation[i]，Finish[i] = true，返回到第2步</li>
+<li>如果对所有i，Finish[i]=true，那么系统处于安全状态</li>
+</ol>
+</li>
+<li><strong>资源请求批准算法</strong><ul>
+<li>只有少于该进程最大请求，且有足够可用资源的情况下才批准该资源请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-5-3-死锁的检测和恢复"><a href="#4-5-3-死锁的检测和恢复" class="headerlink" title="4.5.3 死锁的检测和恢复"></a>4.5.3 死锁的检测和恢复</h4><ul>
+<li>允许系统在运行过程中发生死锁，但可以通过系统设置的检测机构及时检测死锁的发生</li>
+<li>解除死锁状态的方法：<ol>
+<li>进程终止</li>
+<li>资源抢占</li>
+</ol>
+</li>
+</ul>
+<h4 id="4-5-4-鸵鸟算法"><a href="#4-5-4-鸵鸟算法" class="headerlink" title="4.5.4 鸵鸟算法"></a>4.5.4 鸵鸟算法</h4><ul>
+<li>在操作系统的设计和实现中忽略死锁这一问题，理由是死锁极少发生且预防成本太高，把责任留给应用程序设计者。大部分的操作系统采用这一种方法</li>
+</ul>
+<h2 id="5-内存管理"><a href="#5-内存管理" class="headerlink" title="5.内存管理"></a>5.内存管理</h2><h3 id="5-1-内存管理概述"><a href="#5-1-内存管理概述" class="headerlink" title="5.1 内存管理概述"></a>5.1 内存管理概述</h3><h4 id="5-1-1-源程序的常规处理流程"><a href="#5-1-1-源程序的常规处理流程" class="headerlink" title="5.1.1 源程序的常规处理流程"></a>5.1.1 源程序的常规处理流程</h4><ul>
+<li>通常程序以二进制可执行文件的形式存储在磁盘上，由于CPU 所能直接访问的存储器只有内存和处理器内的寄存器那么在执行前，程序会被调入内存并放在进程空间内</li>
+<li>用户程序在成为进程前，需要经过好几个步骤的准备工作<ol>
+<li><strong>编辑</strong>：形成源文件（用符号地址表示）</li>
+<li><strong>编译</strong>：形成目标模块（模块内符号地址解析）</li>
+<li><strong>链接</strong>：由多个目标模块或程序库生成可执行文件（模块间符号地址解析）</li>
+<li><strong>装入</strong>：构造PCB，形成进程（使用物理地址）</li>
+</ol>
+</li>
+</ul>
+<h4 id="5-1-2-逻辑地址和物理地址"><a href="#5-1-2-逻辑地址和物理地址" class="headerlink" title="5.1.2 逻辑地址和物理地址"></a>5.1.2 逻辑地址和物理地址</h4><ul>
+<li><strong>逻辑地址</strong>：CPU产生的地址，也称虚拟地址<ul>
+<li>逻辑地址空间由<strong>基地址</strong>（base）寄存器和<strong>界限</strong>（limit）寄存器共同划定[基地址, 基地址 + 界限]</li>
+<li>不能通过逻辑地址在内存中读取信息</li>
+<li>用户进程只能处理逻辑地址，无法获取真正的物理地址</li>
+</ul>
+</li>
+<li><strong>物理地址</strong>：内存单元所接收到的地址，是在地址总线上的地址，以二进制形式表达</li>
+</ul>
+<h4 id="5-1-3-地址绑定"><a href="#5-1-3-地址绑定" class="headerlink" title="5.1.3 地址绑定"></a>5.1.3 地址绑定</h4><ul>
+<li>源程序中的地址通常是用符号地址来表示的。编译器将这些符号地址绑定（映射）到可重定位的模块内符号地址（类似“从本模块开始的第X个字节”）。链接程序或加载程序再将这些模块内符号地址绑定（映射）成绝对地址，例如“74014”</li>
+<li>通常，将指令和数据地址绑定到内存地址可以在源程序处理流程的三个不同的阶段发生：<ol>
+<li>编译时期(compile time)： 如果在编译时就知道进程将在内存中的驻留地址，那么就可以生成绝对代码(absolute code)。如果将来开始地址发生变化，那么就必须重新编译代码</li>
+<li>装入时期(load time)： 如果在编译时并不知道进程将驻留在内存的什么地方，那么编译器就必须生成可重定位代码(relocatable code)。如果开始地址发生变化，只需重新加载用户代码以引入改变值</li>
+<li>执行时期(execution time)： 如果进程在执行时可以从一个内存段移到另一个内存段，那么绑定必须延迟到执行时才进行。采用这种方案需要特定的硬件对地址映射的支持。目前绝大多数通用计算机操作系统采用这种方法</li>
+</ol>
+</li>
+<li>程序执行之前，即编译时期和装入时期进行地址绑定属于<strong>静态绑定</strong>；程序执行时期进行的地址绑定属于动态绑定</li>
+</ul>
+<h4 id="5-1-4-内存管理单元（Memory-Management-Unit，MMU）"><a href="#5-1-4-内存管理单元（Memory-Management-Unit，MMU）" class="headerlink" title="5.1.4 内存管理单元（Memory-Management Unit，MMU）"></a>5.1.4 内存管理单元（Memory-Management Unit，MMU）</h4><ul>
+<li>内存管理单元是CPU内部的硬件装置，其功能是将逻辑地址转为成物理地址</li>
+<li>一个简单的实现映射的MMU方案：动态重定位<ul>
+<li>通过一个<strong>重定位寄存器</strong>来实现地址的转换</li>
+<li>用户进程所生成的地址在送交内存之前，都将加上重定位寄存器的值。例如，如果基地址为14000 ，那么用户对位置0的访问将动态地重定位为位置14000；对地址346的访问将映射为位置14346</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-1-5-动态装入"><a href="#5-1-5-动态装入" class="headerlink" title="5.1.5 动态装入"></a>5.1.5 动态装入</h4><ul>
+<li>如果一个进程的整个程序和数据必须处于物理内存中才能执行，那么进程的大小就受物理内存大小的限制。因此为了获得更好的内存空间使用率，可以使用<strong>动态装入</strong></li>
+<li>采用动态装入时，一个子程序在调用之前不需要被装入，只有在调用时才被装入</li>
+<li>不用的子程序决不会被装入，当需要大量的代码来处理不经常发生的事情（如异常处理）时是非常有用的</li>
+</ul>
+<h4 id="5-1-6-动态链接"><a href="#5-1-6-动态链接" class="headerlink" title="5.1.6 动态链接"></a>5.1.6 动态链接</h4><ul>
+<li>将链接延迟到运行时，只有到真正调用某代码段的时候才将其链接入程序</li>
+<li>设计一小段代码作为<strong>存根</strong>（stub），用来指出如何定位适当的内存驻留库程序，或如果该程序不在内存时应如何装入库</li>
+<li>需要操作系统的特别支持</li>
+</ul>
+<h4 id="5-1-7-交换技术"><a href="#5-1-7-交换技术" class="headerlink" title="5.1.7 交换技术"></a>5.1.7 交换技术</h4><ul>
+<li>进程可以暂时从内存中交换（swap）到备份区（backing store）上，当需要再次执行时再换回到内存中</li>
+<li>与内存访问相比，交换需要很大的时间开销，其中主要部分是传输时间，总的传输时间直接同内存交换的数量成正比</li>
+</ul>
+<h3 id="5-2-页式内存管理"><a href="#5-2-页式内存管理" class="headerlink" title="5.2 页式内存管理"></a>5.2 页式内存管理</h3><h4 id="5-2-1-分页基本方法"><a href="#5-2-1-分页基本方法" class="headerlink" title="5.2.1 分页基本方法"></a>5.2.1 分页基本方法</h4><ul>
+<li><p>把物理空间分成长度一致的数据块，称为<strong>页帧</strong>（frames），操作系统对空闲页帧进行统一管理</p>
+</li>
+<li><p>把逻辑空间分成长度一致的数据块，称为<strong>页</strong>（pages），并且与页帧长度相等</p>
+</li>
+<li><p><strong>页表</strong>是操作系统为进程建立的，是进程的逻辑页和主存对应物理帧的对照表。页表包含每页所在物理内存的基地址，其每一栏指明进程中的一个页和分得的帧之间的对应关系</p>
+<p><img src="https://icycoke.github.io/2020/07/28/operating-system-note/paging.jpg" alt="逻辑内存和物理内存的分页模型"></p>
+</li>
+</ul>
+<h4 id="5-2-2-地址映射机制"><a href="#5-2-2-地址映射机制" class="headerlink" title="5.2.2 地址映射机制"></a>5.2.2 地址映射机制</h4><ul>
+<li><p>假设逻辑地址空间2<sup>m</sup>，页长P为2<sup>n</sup>。CPU提供的逻辑二进制地址addr分为两个部分：</p>
+<ol>
+<li><strong>页号</strong>（p）：p = addr / P</li>
+<li><strong>页偏移</strong>（d）：d = addr % P</li>
+</ol>
+<p>通过页表中的基地址和逻辑地址的页内偏移两部分的组合就可以把逻辑地址转换为物理地址</p>
+<p><img src="https://icycoke.github.io/2020/07/28/operating-system-note/address_mapping.jpg" alt="逻辑内存和物理内存的地址映射模型"></p>
+</li>
+</ul>
+<h3 id="5-3-段式内存管理"><a href="#5-3-段式内存管理" class="headerlink" title="5.3 段式内存管理"></a>5.3 段式内存管理</h3><h4 id="5-3-1-段式内存管理概述"><a href="#5-3-1-段式内存管理概述" class="headerlink" title="5.3.1 段式内存管理概述"></a>5.3.1 段式内存管理概述</h4><ul>
+<li>段式内存管理是一种顺应用户视角的内存管理机制，程序一定是由多段代码、数据组成的，因此“段”是很自然的逻辑单元</li>
+<li>分段 （segmentation）就是支持这种用户视角的内存管理方案</li>
+</ul>
+<h4 id="5-3-2-地址映射机制"><a href="#5-3-2-地址映射机制" class="headerlink" title="5.3.2 地址映射机制"></a>5.3.2 地址映射机制</h4><ul>
+<li>用户通过两个量来指定地址：<strong>段号</strong>和<strong>偏移</strong></li>
+</ul>
+<h2 id="6-虚拟存储"><a href="#6-虚拟存储" class="headerlink" title="6. 虚拟存储"></a>6. 虚拟存储</h2><h3 id="6-1虚拟存储思想"><a href="#6-1虚拟存储思想" class="headerlink" title="6.1虚拟存储思想"></a>6.1虚拟存储思想</h3><ul>
+<li><p>逻辑空间可以独立于物理空间</p>
+</li>
+<li><p>通过观察进程对于物理空间的需求：</p>
+<ul>
+<li>进程只需要一小部分的代码（请求CPU执行的代码部分）驻留内存</li>
+<li>进程的逻辑空间可以远大于（分配给它的）物理空间</li>
+</ul>
+<p>于是， 物理空间被更多的进程共享</p>
+</li>
+</ul>
+<h4 id="6-1-1-虚拟存储流程"><a href="#6-1-1-虚拟存储流程" class="headerlink" title="6.1.1 虚拟存储流程"></a>6.1.1 虚拟存储流程</h4><ol>
+<li>在程序装入时，不必将其全部读入到内存，而只需将当前需要执行的部分页或段读入到内存，就可让程序开始执行</li>
+<li>在程序执行过程中，如果需执行的指令或访问的数据尚未在内存（称为缺页或缺段），则由处理器通知操作系统将相应的页或段调入到内存，然后继续执行程序</li>
+<li>操作系统将内存中暂时不使用的页或段调出保存在外存上，从而腾出空间存放将要装入的程序以及将要调入的页或段――具有请求调入和置换功能，只需程序的一部分在内存就可执行，对于动态链接库也可以请求调入</li>
+</ol>
+<h4 id="6-1-2-按需调页"><a href="#6-1-2-按需调页" class="headerlink" title="6.1.2 按需调页"></a>6.1.2 按需调页</h4><ul>
+<li>CPU指令包含内存访问，即访问该内存地址所在页面，称作<strong>页面引用</strong></li>
+<li>页引用时可能出现3种情况：<ol>
+<li>页面已经装入内存，由对应页帧，则CPU完成操作</li>
+<li>页面引用非法，操作中止</li>
+<li>页面引用合法，但是页面不在内存中，则把该页装入内存</li>
+</ol>
+</li>
+</ul>
+<h4 id="6-1-3-页面置换"><a href="#6-1-3-页面置换" class="headerlink" title="6.1.3 页面置换"></a>6.1.3 页面置换</h4><ul>
+<li>当按需调页进行且没有空闲帧时，操作系统可以使用<strong>页面置换</strong>，即从内存中调出一页程序或数据送到磁盘的对换区，再将需要的页面调入内存</li>
 </ul>
 
     </div>
@@ -437,7 +861,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-操作系统概述"><span class="nav-number">1.</span> <span class="nav-text">1. 操作系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-操作系统概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 操作系统概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-中断"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-指令"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-运行状态"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 运行状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-操作系统特征"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 操作系统特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-进程管理"><span class="nav-number">2.</span> <span class="nav-text">2. 进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-进程概述"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 进程概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-进程状态"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 进程状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-进程控制块（Process-Control-Block-PCB）"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 进程控制块（Process Control Block, PCB）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-进程上下文切换"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 进程上下文切换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-进程操作"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 进程操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-进程创建"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 进程创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-进程终止"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 进程终止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-进程阻塞"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 进程阻塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-进程唤醒"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.2.4 进程唤醒</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-进程间通信"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 进程间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-共享存储机制"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 共享存储机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-消息传递机制"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 消息传递机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-管道通信机制"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 管道通信机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-生产者-消费者模型"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4 生产者-消费者模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5-同步通信和异步通信"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5 同步通信和异步通信</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-线程"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 线程</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-操作系统概述"><span class="nav-number">1.</span> <span class="nav-text">1. 操作系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-操作系统概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 操作系统概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-中断"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 中断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-指令"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-运行状态"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 运行状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-操作系统特征"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 操作系统特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-进程管理"><span class="nav-number">2.</span> <span class="nav-text">2. 进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-进程概述"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 进程概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-进程状态"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 进程状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-进程控制块（Process-Control-Block-PCB）"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 进程控制块（Process Control Block, PCB）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-进程上下文切换"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 进程上下文切换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-进程操作"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 进程操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-进程创建"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 进程创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-进程终止"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 进程终止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-进程阻塞"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 进程阻塞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4-进程唤醒"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.2.4 进程唤醒</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-进程间通信"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 进程间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-共享存储机制"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 共享存储机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-消息传递机制"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 消息传递机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-管道通信机制"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 管道通信机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-生产者-消费者模型"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4 生产者-消费者模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5-同步通信和异步通信"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5 同步通信和异步通信</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-线程"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-多线程进程"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 多线程进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-多线程模型"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2 多线程模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-CPU调度"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 CPU调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-调度时机"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1 调度时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-2-调度方式"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2 调度方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-3-经典调度算法"><span class="nav-number">2.5.3.</span> <span class="nav-text">2.5.3 经典调度算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-进程同步"><span class="nav-number">3.</span> <span class="nav-text">3. 进程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-临界区问题"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 临界区问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-相关概念"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 相关概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-处理原则"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 处理原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-临界区互斥软件实现算法"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3 临界区互斥软件实现算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-4-临界区互斥硬件实现算法"><span class="nav-number">3.1.4.</span> <span class="nav-text">3.1.4 临界区互斥硬件实现算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-5-信号量"><span class="nav-number">3.1.5.</span> <span class="nav-text">3.1.5 信号量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-经典进程同步问题"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 经典进程同步问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-生产者-消费者问题"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1 生产者-消费者问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-读者-写者问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2 读者-写者问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-死锁"><span class="nav-number">4.</span> <span class="nav-text">4. 死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-死锁现象"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 死锁现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-产生死锁的原因"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 产生死锁的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-产生死锁的条件"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 产生死锁的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-资源分配图"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 资源分配图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-死锁的处理"><span class="nav-number">4.5.</span> <span class="nav-text">4.5  死锁的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-1-死锁的预防"><span class="nav-number">4.5.1.</span> <span class="nav-text">4.5.1 死锁的预防</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-2-死锁的避免"><span class="nav-number">4.5.2.</span> <span class="nav-text">4.5.2 死锁的避免</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-3-死锁的检测和恢复"><span class="nav-number">4.5.3.</span> <span class="nav-text">4.5.3 死锁的检测和恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-4-鸵鸟算法"><span class="nav-number">4.5.4.</span> <span class="nav-text">4.5.4 鸵鸟算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-内存管理"><span class="nav-number">5.</span> <span class="nav-text">5.内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-内存管理概述"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 内存管理概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-源程序的常规处理流程"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 源程序的常规处理流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-逻辑地址和物理地址"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 逻辑地址和物理地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-3-地址绑定"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 地址绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-4-内存管理单元（Memory-Management-Unit，MMU）"><span class="nav-number">5.1.4.</span> <span class="nav-text">5.1.4 内存管理单元（Memory-Management Unit，MMU）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-5-动态装入"><span class="nav-number">5.1.5.</span> <span class="nav-text">5.1.5 动态装入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-6-动态链接"><span class="nav-number">5.1.6.</span> <span class="nav-text">5.1.6 动态链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-7-交换技术"><span class="nav-number">5.1.7.</span> <span class="nav-text">5.1.7 交换技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-页式内存管理"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 页式内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-1-分页基本方法"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1 分页基本方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-2-地址映射机制"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2 地址映射机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-段式内存管理"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 段式内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-1-段式内存管理概述"><span class="nav-number">5.3.1.</span> <span class="nav-text">5.3.1 段式内存管理概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-2-地址映射机制"><span class="nav-number">5.3.2.</span> <span class="nav-text">5.3.2 地址映射机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-虚拟存储"><span class="nav-number">6.</span> <span class="nav-text">6. 虚拟存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1虚拟存储思想"><span class="nav-number">6.1.</span> <span class="nav-text">6.1虚拟存储思想</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-1-虚拟存储流程"><span class="nav-number">6.1.1.</span> <span class="nav-text">6.1.1 虚拟存储流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-2-按需调页"><span class="nav-number">6.1.2.</span> <span class="nav-text">6.1.2 按需调页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-页面置换"><span class="nav-number">6.1.3.</span> <span class="nav-text">6.1.3 页面置换</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
