@@ -22,15 +22,17 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="计算机安全笔记">
+  <meta name="description" content="IntrosWhat is Computer Security? Computer security is the protection of valued assets of a computer system The value of an asset depends on the owner’s or user’s perspective Also time-dependent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Security">
 <meta property="og:url" content="http://yoursite.com/2020/08/27/computer-security-note/index.html">
 <meta property="og:site_name" content="icycoke&#39;s blog">
+<meta property="og:description" content="IntrosWhat is Computer Security? Computer security is the protection of valued assets of a computer system The value of an asset depends on the owner’s or user’s perspective Also time-dependent">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-27T22:27:06.000Z">
-<meta property="article:modified_time" content="2020-08-27T22:30:42.898Z">
+<meta property="article:modified_time" content="2020-08-30T03:52:09.822Z">
 <meta property="article:author" content="icycoke">
-<meta property="article:tag" content="计算机安全">
+<meta property="article:tag" content="Course Note">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/08/27/computer-security-note/">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>计算机安全笔记 | icycoke's blog</title>
+  <title>Computer Security | icycoke's blog</title>
   
 
 
@@ -125,7 +127,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">24</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">25</span></a>
 
   </li>
   </ul>
@@ -169,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          计算机安全笔记
+          Computer Security
         </h1>
 
         <div class="post-meta">
@@ -178,10 +180,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-27 18:27:06 / Modified: 18:30:42" itemprop="dateCreated datePublished" datetime="2020-08-27T18:27:06-04:00">2020-08-27</time>
+              <time title="Created: 2020-08-27 18:27:06" itemprop="dateCreated datePublished" datetime="2020-08-27T18:27:06-04:00">2020-08-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-29 23:52:09" itemprop="dateModified" datetime="2020-08-29T23:52:09-04:00">2020-08-29</time>
+              </span>
 
           
 
@@ -194,7 +202,83 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h2 id="Intros"><a href="#Intros" class="headerlink" title="Intros"></a>Intros</h2><h3 id="What-is-Computer-Security"><a href="#What-is-Computer-Security" class="headerlink" title="What is Computer Security?"></a>What is Computer Security?</h3><ul>
+<li>Computer security is the protection of <strong>valued assets</strong> of a computer system</li>
+<li>The value of an asset depends on the owner’s or user’s <strong>perspective</strong></li>
+<li>Also <strong>time-dependent</strong></li>
+</ul>
+<a id="more"></a>
+
+<h3 id="Basic-Components-of-Security"><a href="#Basic-Components-of-Security" class="headerlink" title="Basic Components of Security"></a>Basic Components of Security</h3><h4 id="Confidentiality"><a href="#Confidentiality" class="headerlink" title="Confidentiality"></a>Confidentiality</h4><ul>
+<li>Keeping data and resources hidden</li>
+<li>Only authorized people or systems can access protected data</li>
+</ul>
+<h4 id="Integrity"><a href="#Integrity" class="headerlink" title="Integrity"></a>Integrity</h4><ul>
+<li>Data integrity (integrity)</li>
+<li>Origin integrity (authentication)</li>
+</ul>
+<h4 id="Availability"><a href="#Availability" class="headerlink" title="Availability"></a>Availability</h4><ul>
+<li>Enabling access to data and services</li>
+<li>Achieving availability may require <strong>concurrency control</strong> and <strong>fault tolerance</strong></li>
+</ul>
+<h3 id="Threat-Classes"><a href="#Threat-Classes" class="headerlink" title="Threat Classes"></a>Threat Classes</h3><h4 id="Disclosure"><a href="#Disclosure" class="headerlink" title="Disclosure"></a>Disclosure</h4><ul>
+<li>Unauthorized access to information<ul>
+<li>Snooping: unauthorized interception of information</li>
+</ul>
+</li>
+</ul>
+<h4 id="Deception"><a href="#Deception" class="headerlink" title="Deception"></a>Deception</h4><ul>
+<li>Acceptance of false data<ul>
+<li>Modification, spoofing, repudiation of origin, denial of receipt</li>
+</ul>
+</li>
+</ul>
+<h4 id="Disruption"><a href="#Disruption" class="headerlink" title="Disruption"></a>Disruption</h4><ul>
+<li>Interruption or prevention of correct operations</li>
+</ul>
+<h4 id="Usurpation"><a href="#Usurpation" class="headerlink" title="Usurpation"></a>Usurpation</h4><ul>
+<li>Unauthorized control of part of a system<ul>
+<li>Modification, spoofing, delay, denial of service</li>
+</ul>
+</li>
+</ul>
+<h3 id="General-Categories-of-Security-Attack"><a href="#General-Categories-of-Security-Attack" class="headerlink" title="General Categories of Security Attack"></a>General Categories of Security Attack</h3><ul>
+<li><p>Spoofing attack (<em>Disclosure</em>)</p>
+<ul>
+<li>IP address spoofing</li>
+<li>ARP spoofing</li>
+<li>DNS spoofing</li>
+</ul>
+</li>
+<li><p>Snooping/Sniffing (<em>Deception, Disruption, Usurpation</em>)</p>
+</li>
+<li><p>Modification/Alternation (<em>Deception, Usurpation</em>)</p>
+</li>
+<li><p>Repudiation of origin (<em>Deception</em>)</p>
+</li>
+<li><p>Denial of receipt (<em>Usurpation</em>)</p>
+</li>
+<li><p>Delay (<em>Usurpation</em>)</p>
+</li>
+<li><p>Denial of service (<em>Usurpation</em>)</p>
+</li>
+</ul>
+<h3 id="Goals-of-Security"><a href="#Goals-of-Security" class="headerlink" title="Goals of Security"></a>Goals of Security</h3><ul>
+<li>Prevention<ul>
+<li>Prevent attackers from violating security policy</li>
+</ul>
+</li>
+<li>Detection<ul>
+<li>Detect attackers’ violation of security policy</li>
+</ul>
+</li>
+<li>Recovery<ul>
+<li>Stop attack, assess and repair damage</li>
+<li>Continue to function correctly even if attack succeeds</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -203,7 +287,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8/" rel="tag"># 计算机安全</a>
+              <a href="/tags/Course-Note/" rel="tag"># Course Note</a>
           </div>
 
         
@@ -215,7 +299,10 @@
     <a href="/2020/08/27/hpc-note/" rel="prev" title="高性能计算学习笔记">
       <i class="fa fa-chevron-left"></i> 高性能计算学习笔记
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/01/fsm-note/" rel="next" title="有限状态机及其算法题应用">
+      有限状态机及其算法题应用 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -274,6 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intros"><span class="nav-number">1.</span> <span class="nav-text">Intros</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Computer-Security"><span class="nav-number">1.1.</span> <span class="nav-text">What is Computer Security?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Components-of-Security"><span class="nav-number">1.2.</span> <span class="nav-text">Basic Components of Security</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Confidentiality"><span class="nav-number">1.2.1.</span> <span class="nav-text">Confidentiality</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integrity"><span class="nav-number">1.2.2.</span> <span class="nav-text">Integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Availability"><span class="nav-number">1.2.3.</span> <span class="nav-text">Availability</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threat-Classes"><span class="nav-number">1.3.</span> <span class="nav-text">Threat Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disclosure"><span class="nav-number">1.3.1.</span> <span class="nav-text">Disclosure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deception"><span class="nav-number">1.3.2.</span> <span class="nav-text">Deception</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disruption"><span class="nav-number">1.3.3.</span> <span class="nav-text">Disruption</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usurpation"><span class="nav-number">1.3.4.</span> <span class="nav-text">Usurpation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Categories-of-Security-Attack"><span class="nav-number">1.4.</span> <span class="nav-text">General Categories of Security Attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goals-of-Security"><span class="nav-number">1.5.</span> <span class="nav-text">Goals of Security</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -287,7 +375,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
