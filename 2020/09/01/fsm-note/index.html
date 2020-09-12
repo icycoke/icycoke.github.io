@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://icycoke.github.io/2020/09/01/fsm-note/example1_fsm_image.png">
 <meta property="article:published_time" content="2020-09-01T23:13:11.000Z">
-<meta property="article:modified_time" content="2020-09-01T23:38:01.991Z">
+<meta property="article:modified_time" content="2020-09-02T01:48:39.199Z">
 <meta property="article:author" content="icycoke">
 <meta property="article:tag" content="算法与数据结构">
 <meta name="twitter:card" content="summary">
@@ -124,12 +124,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">11</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">25</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">27</span></a>
 
   </li>
   </ul>
@@ -184,7 +184,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-01 19:13:11 / Modified: 19:38:01" itemprop="dateCreated datePublished" datetime="2020-09-01T19:13:11-04:00">2020-09-01</time>
+              <time title="Created: 2020-09-01 19:13:11 / Modified: 21:48:39" itemprop="dateCreated datePublished" datetime="2020-09-01T19:13:11-04:00">2020-09-01</time>
             </span>
 
           
@@ -236,6 +236,115 @@
 <li><p>定义<strong>转移规则</strong></p>
 <p><img src="https://icycoke.github.io/2020/09/01/fsm-note/example1_fsm_image.png" alt=""></p>
 </li>
+<li><p>列出状态表（1-10状态分别对应序号0-9以便在数组中使用，-1代表非法状态）</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">+/-</th>
+<th align="center">0~9</th>
+<th align="center">.</th>
+<th align="center">e/E</th>
+<th align="center">空格</th>
+<th align="center">其它字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">-1</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">-1</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">-1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">6</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">-1</td>
+<td align="center">5</td>
+<td align="center">-1</td>
+<td align="center">6</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">-1</td>
+<td align="center">5</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">-1</td>
+<td align="center">5</td>
+<td align="center">-1</td>
+<td align="center">6</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">7</td>
+<td align="center">8</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">-1</td>
+<td align="center">8</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">-1</td>
+<td align="center">8</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>编写代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 枚举所有条件类型</span></span><br><span class="line">    <span class="keyword">enum</span> CharType &#123;</span><br><span class="line">        CHAR_SIGN,</span><br><span class="line">        CHAR_NUM,</span><br><span class="line">        CHAR_POINT,</span><br><span class="line">        CHAR_EXP,</span><br><span class="line">        CHAR_SPACE,</span><br><span class="line">        CHAR_OTHER</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 状态表</span></span><br><span class="line">        <span class="keyword">int</span>[][] stateTable = &#123;</span><br><span class="line">                &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, -<span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, <span class="number">5</span>, -<span class="number">1</span>, <span class="number">6</span>, <span class="number">9</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, <span class="number">5</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, <span class="number">5</span>, -<span class="number">1</span>, <span class="number">6</span>, <span class="number">9</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;<span class="number">7</span>, <span class="number">8</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, <span class="number">8</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, <span class="number">8</span>, -<span class="number">1</span>, -<span class="number">1</span>, <span class="number">9</span>, -<span class="number">1</span>&#125;,</span><br><span class="line">                &#123;-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, <span class="number">9</span>, -<span class="number">1</span>&#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建从状态到序号的映射</span></span><br><span class="line">        Map&lt;CharType, Integer&gt; charTypeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        charTypeMap.put(CharType.CHAR_SIGN, <span class="number">0</span>);</span><br><span class="line">        charTypeMap.put(CharType.CHAR_NUM, <span class="number">1</span>);</span><br><span class="line">        charTypeMap.put(CharType.CHAR_POINT, <span class="number">2</span>);</span><br><span class="line">        charTypeMap.put(CharType.CHAR_EXP, <span class="number">3</span>);</span><br><span class="line">        charTypeMap.put(CharType.CHAR_SPACE, <span class="number">4</span>);</span><br><span class="line">        charTypeMap.put(CharType.CHAR_OTHER, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 接受状态的集合</span></span><br><span class="line">        Set&lt;Integer&gt; legalStates = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        legalStates.add(<span class="number">2</span>);</span><br><span class="line">        legalStates.add(<span class="number">3</span>);</span><br><span class="line">        legalStates.add(<span class="number">5</span>);</span><br><span class="line">        legalStates.add(<span class="number">8</span>);</span><br><span class="line">        legalStates.add(<span class="number">9</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始状态设为0</span></span><br><span class="line">        <span class="keyword">int</span> state = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            CharType charType = getCharType(s.charAt(i));</span><br><span class="line">            state = stateTable[state][charTypeMap.get(charType)];</span><br><span class="line">            <span class="comment">// 如果出现非法状态，返回false</span></span><br><span class="line">            <span class="keyword">if</span> (state == -<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> legalStates.contains(state);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取当前字符对应的条件类型</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CharType <span class="title">getCharType</span><span class="params">(<span class="keyword">char</span> ch)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'+'</span> || ch == <span class="string">'-'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CharType.CHAR_SIGN;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CharType.CHAR_NUM;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'.'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CharType.CHAR_POINT;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'e'</span> || ch == <span class="string">'E'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CharType.CHAR_EXP;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">' '</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CharType.CHAR_SPACE;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> CharType.CHAR_OTHER;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
 </li>
 </ul>
@@ -260,7 +369,10 @@
     <a href="/2020/08/27/computer-security-note/" rel="prev" title="Computer Security">
       <i class="fa fa-chevron-left"></i> Computer Security
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/02/android-development-note/" rel="next" title="安卓开发笔记">
+      安卓开发笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -333,14 +445,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

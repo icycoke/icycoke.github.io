@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. Android 应用基础知识 Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中  默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件  Android 系统实现了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安卓开发笔记">
+<meta property="og:url" content="http://yoursite.com/2020/09/02/android-development-note/index.html">
+<meta property="og:site_name" content="icycoke&#39;s blog">
+<meta property="og:description" content="1. Android 应用基础知识 Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中  默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件  Android 系统实现了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://icycoke.github.io/2020/09/08/android-development-note/content_provider_overview.png">
+<meta property="article:published_time" content="2020-09-02T22:43:32.000Z">
+<meta property="article:modified_time" content="2020-09-09T00:45:35.017Z">
+<meta property="article:author" content="icycoke">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://icycoke.github.io/2020/09/08/android-development-note/content_provider_overview.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/09/02/android-development-note/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>安卓开发笔记 | icycoke's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">icycoke's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">27</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/android-development-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安卓开发笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-02 18:43:32" itemprop="dateCreated datePublished" datetime="2020-09-02T18:43:32-04:00">2020-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-08 20:45:35" itemprop="dateModified" datetime="2020-09-08T20:45:35-04:00">2020-09-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-Android-应用基础知识"><a href="#1-Android-应用基础知识" class="headerlink" title="1. Android 应用基础知识"></a>1. Android 应用基础知识</h2><ul>
+<li><p>Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中</p>
+</li>
+<li><p>默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件</p>
+</li>
+<li><p>Android 系统实现了<strong>最小权限原则</strong>。换言之，默认情况下，每个应用只能访问执行其工作所需的组件，而不能访问其他组件</p>
+</li>
+<li><blockquote>
+<p>Android 系统设计的独特之处在于，任何应用都可启动其他应用的组件。例如，当您想让用户使用设备相机拍摄照片时，另一个应用可能也可执行该操作，因而您的应用便可使用该应用，而非自行产生一个 Activity 来拍摄照片。您无需加入甚至链接到该相机应用的代码。只需启动拍摄照片的相机应用中的 Activity 即可。完成拍摄时，系统甚至会将照片返回您的应用，以便您使用。对用户而言，这就如同相机是您应用的一部分。</p>
+</blockquote>
+</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="1-1-应用组件"><a href="#1-1-应用组件" class="headerlink" title="1.1 应用组件"></a>1.1 应用组件</h3><ul>
+<li>应用组件是 Android 应用的基本构建块，每个组件都是一个** **，系统或用户可通过该入口点进入应用</li>
+<li>共有四种不同类型的应用组件类型：<ul>
+<li>Activity</li>
+<li>Service</li>
+<li>Broadcast receiver</li>
+<li>Content provider</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-1-1-Activity"><a href="#1-1-1-Activity" class="headerlink" title="1.1.1 Activity"></a>1.1.1 Activity</h4><ul>
+<li><em>Activity</em> 是与用户交互的入口点</li>
+<li>它表示拥有界面的单个屏幕。例如，电子邮件应用可能有一个显示新电子邮件列表的 <em>Activity</em> 、一个用于撰写电子邮件的  <em>Activity</em> 以及一个用于阅读电子邮件的  <em>Activity</em> 。尽管这些 <em>Activity</em> 通过协作在电子邮件应用中形成一种紧密结合的用户体验，但每个 <em>Activity</em> 都独立于其他 <em>Activity</em> 而存在</li>
+<li><em>Activity</em>  有助于完成系统和应用程序之间的以下重要交互：<ul>
+<li>追踪用户当前关心的内容（屏幕上显示的内容），以确保系统继续运行托管 <em>Activity</em> 的进程</li>
+<li>了解先前使用的进程包含用户可能返回的内容（已停止的 <em>Activity</em> ），从而更优先保留这些进程</li>
+<li>帮助应用处理终止其进程的情况，以便用户可以返回已恢复其先前状态的 <em>Activity</em> </li>
+<li>提供一种途径，让应用实现彼此之间的用户流，并让系统协调这些用户流</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-1-2-Service"><a href="#1-1-2-Service" class="headerlink" title="1.1.2 Service"></a>1.1.2 Service</h4><ul>
+<li><p><em>Service</em> 是一种在后台运行的组件，不提供界面，用于因各种原因使应用在后台保持运行状态</p>
+</li>
+<li><p>诸如 <em>Activity</em> 等其他组件可以启动服务，使该 <em>Service</em> 运行或绑定到该 <em>Service</em> ，以便与其进行交互</p>
+</li>
+<li><p>已启动的服务通常分为两种：</p>
+<ul>
+<li>用户可以感知的服务，例如后台音乐播放。这种情况下，系统明白它应尽全力维持该服务进程运行，因为进程消失会令用户感到不快</li>
+<li>用户意识不到的服务。这种情况下，系统可以更自由地管理其进程。例如如果系统需要使用 RAM 来处理用户更迫切关注的内容，则其可能允许终止服务</li>
+</ul>
+</li>
+<li><p>绑定服务之所以能运行，原因是某些其他应用（或系统）已表示希望使用该服务。从根本上讲，这是为另一个进程提供 API 的服务。因此，系统会知晓这些进程之间存在依赖关系，所以如果进程 A 绑定到进程 B 中的服务，系统便知道自己需使进程 B（及其服务）为进程 A 保持运行状态</p>
+</li>
+</ul>
+<h4 id="1-1-3-Broadcast-receiver"><a href="#1-1-3-Broadcast-receiver" class="headerlink" title="1.1.3 Broadcast receiver"></a>1.1.3 Broadcast receiver</h4><ul>
+<li><em>Broadcast receiver</em> 使得系统能够在常规用户流之外向应用传递事件，从而允许应用响应系统范围内的广播通知，例如屏幕已关闭、电池电量不足等</li>
+<li><em>Broadcast receiver</em> 作为 <code>BroadcastReceiver</code> 的子类实现，并且每条广播都作为 <code>Intent</code>对象进行传递</li>
+<li><em>Broadcast receiver</em> 最为常见的用途只是作为通向其他组件的<em>通道</em>，旨在执行极少量的工作</li>
+</ul>
+<h4 id="1-1-4-Content-provider"><a href="#1-1-4-Content-provider" class="headerlink" title="1.1.4 Content provider"></a>1.1.4 Content provider</h4><ul>
+<li><p><em>Content provider</em> 管理一组共享的应用数据</p>
+</li>
+<li><p>其他应用可通过 <em>Content provider</em> 查询或修改数据（如果内容提供程序允许）</p>
+<p><img src="https://icycoke.github.io/2020/09/08/android-development-note/content_provider_overview.png" alt="Content provider示意图"></p>
+</li>
+</ul>
+<h3 id="1-2-启动应用组件"><a href="#1-2-启动应用组件" class="headerlink" title="1.2 启动应用组件"></a>1.2 启动应用组件</h3><ul>
+<li><em>Activity</em> 、<em>Service</em> 和<em>Broadcast receiver</em> 均通过异步消息 <em>Intent</em> 进行启动。<em>Intent</em> 会在运行时对各个组件进行互相绑定，可以将 Intent 视为从其他组件请求操作的信使</li>
+<li><em>Content receiver</em> 并非由 <em>Intent</em> 启动。相反，它会在成为 <code>ContentResolver</code> 的请求目标时启动</li>
+<li>启动方法：<ul>
+<li><em>Activity</em><ul>
+<li>向 <code>startActivity()</code> 或 <code>startActivityForResult()</code> 传递 <code>Intent</code>（当您想让 Activity 返回结果时）</li>
+<li>为其安排新任务</li>
+</ul>
+</li>
+<li><em>Service</em><ul>
+<li>在 Android 5.0（API 级别 21）及更高版本中，可以使用 <code>JobScheduler</code> 类来调度操作</li>
+<li>对于早期 Android 版本，可以通过向 <code>startService()</code> 传递 <code>Intent</code> 来启动 <em>Service*（或对执行中的 *Service</em> 下达新指令）</li>
+<li>也可通过向将 <code>bindService()</code> 传递 <code>Intent</code> 来绑定到该 <em>Service</em></li>
+</ul>
+</li>
+<li><em>Broadcast</em><ul>
+<li>通过向 <code>sendBroadcast()</code>、<code>sendOrderedBroadcast()</code> 或 <code>sendStickyBroadcast()</code> 等方法传递 <code>Intent</code> 来发起 <em>Broadcast</em></li>
+</ul>
+</li>
+<li><em>Content provider</em><ul>
+<li>通过在 <code>ContentResolver</code> 上调用 <code>query()</code>，对 <em>Content provider</em> 执行查询</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-清单文件"><a href="#1-3-清单文件" class="headerlink" title="1.3  清单文件"></a>1.3  清单文件</h3><ul>
+<li>在 Android 系统启动应用组件之前，系统必须通过读取应用的清单文件（<code>AndroidManifest.xml</code>）确认组件存在</li>
+<li></li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="1-2-Activity的调用"><a href="#1-2-Activity的调用" class="headerlink" title="1.2 Activity的调用"></a>1.2 Activity的调用</h3><ul>
+<li><code>MainActivity</code>是应用程序的入口，当构建和运行应用时，系统会启用该<code>Activity</code>的实例并加载其布局</li>
+</ul>
+<h4 id="1-2-1-Intent"><a href="#1-2-1-Intent" class="headerlink" title="1.2.1 Intent"></a>1.2.1 Intent</h4><ul>
+<li><code>Intent</code>是一个消息传递对象，其基本用法主要是：<ul>
+<li>启动<code>Activity</code></li>
+<li>启动<code>Service</code></li>
+<li>传递广播</li>
+</ul>
+</li>
+<li><code>Intent</code>携带 Android 系统用来确定要启动哪个组件的信息（例如，准确的组件名称或应当接收该<code>Intent</code>的组件类别），以及收件人组件为了正确执行操作而使用的信息（例如，要采取的操作以及要处理的数据）</li>
+</ul>
+<h4 id="1-2-2-示例"><a href="#1-2-2-示例" class="headerlink" title="1.2.2 示例"></a>1.2.2 示例</h4><ul>
+<li><p>编写<code>MainApplication</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 加入应用的软件包名称作为前缀</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String EXTRA_MESSAGE = <span class="string">"com.icycoke.myfirstapplication.MESSAGE"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 必须为public，且唯一参数view即为点击的View对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建一个新的Intent实例，传入Context参数和想要启动的Activity的类</span></span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, DisplayMessageActivity<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">// 通过id获取EditText实例</span></span><br><span class="line">        EditText editText = findViewById(R.id.editText);</span><br><span class="line">        <span class="comment">// 获取EditText实例中的文本并转为字符串</span></span><br><span class="line">        String message = editText.getText().toString();</span><br><span class="line">        <span class="comment">// 将获取到的字符串以键值对形式存入Intent实例中，其中键往往具有包名前缀，类似命名空间</span></span><br><span class="line">        intent.putExtra(EXTRA_MESSAGE, message);</span><br><span class="line">        <span class="comment">// 传入intent并启动目标activity</span></span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写<code>DisplayMessageActivity</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DisplayMessageActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_display_message);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取调用本Activity的Intent实例</span></span><br><span class="line">        Intent intent = getIntent();</span><br><span class="line">        <span class="comment">// 提取该Intent实例中储存的String</span></span><br><span class="line">        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取布局中的目标TextView并将其文本内容设定为目标内容</span></span><br><span class="line">        TextView textView = findViewById(R.id.textView);</span><br><span class="line">        textView.setText(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加向上导航功能</p>
+<ul>
+<li><p>不是主入口点的每个屏幕（所有不是主屏幕的屏幕）都必须提供导航功能，以便将用户引导至应用层次结构中的逻辑父级屏幕</p>
+</li>
+<li><p>需要在 <code>AndroidManifest.xml</code> 文件中声明哪个<code>Activity</code>是逻辑父级。打开<em>app &gt; manifests &gt; AndroidManifest.xml</em>文件，找到 <code>DisplayMessageActivity</code> 的 <code>&lt;activity&gt;</code> 标记并添加如下内容</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".DisplayMessageActivity"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:parentActivityName</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">"android.support.PARENT_ACTIVITY"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:value</span>=<span class="string">".MainActivity"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/01/fsm-note/" rel="prev" title="有限状态机及其算法题应用">
+      <i class="fa fa-chevron-left"></i> 有限状态机及其算法题应用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/11/postgresql-note/" rel="next" title="postgresql-note">
+      postgresql-note <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Android-应用基础知识"><span class="nav-number">1.</span> <span class="nav-text">1. Android 应用基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-应用组件"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 应用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-Activity"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 Activity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-Service"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 Service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-Broadcast-receiver"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 Broadcast receiver</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-4-Content-provider"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.1.4 Content provider</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-启动应用组件"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 启动应用组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-清单文件"><span class="nav-number">1.3.</span> <span class="nav-text">1.3  清单文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">1.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Activity的调用"><span class="nav-number">1.5.</span> <span class="nav-text">1.2 Activity的调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-Intent"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.2.1 Intent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-示例"><span class="nav-number">1.5.2.</span> <span class="nav-text">1.2.2 示例</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">icycoke</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/icycoke" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;icycoke" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/reviveclsun@outlook.com" title="E-Mail → reviveclsun@outlook.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">icycoke</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

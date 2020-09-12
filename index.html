@@ -117,12 +117,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">11</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">25</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">27</span></a>
 
   </li>
   </ul>
@@ -152,6 +152,146 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/11/postgresql-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/11/postgresql-note/" class="post-title-link" itemprop="url">postgresql-note</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-11 20:06:16" itemprop="dateCreated datePublished" datetime="2020-09-11T20:06:16-04:00">2020-09-11</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/android-development-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="icycoke">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="icycoke's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/02/android-development-note/" class="post-title-link" itemprop="url">安卓开发笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-02 18:43:32" itemprop="dateCreated datePublished" datetime="2020-09-02T18:43:32-04:00">2020-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-08 20:45:35" itemprop="dateModified" datetime="2020-09-08T20:45:35-04:00">2020-09-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-Android-应用基础知识"><a href="#1-Android-应用基础知识" class="headerlink" title="1. Android 应用基础知识"></a>1. Android 应用基础知识</h2><ul>
+<li><p>Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中</p>
+</li>
+<li><p>默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件</p>
+</li>
+<li><p>Android 系统实现了<strong>最小权限原则</strong>。换言之，默认情况下，每个应用只能访问执行其工作所需的组件，而不能访问其他组件</p>
+</li>
+<li><blockquote>
+<p>Android 系统设计的独特之处在于，任何应用都可启动其他应用的组件。例如，当您想让用户使用设备相机拍摄照片时，另一个应用可能也可执行该操作，因而您的应用便可使用该应用，而非自行产生一个 Activity 来拍摄照片。您无需加入甚至链接到该相机应用的代码。只需启动拍摄照片的相机应用中的 Activity 即可。完成拍摄时，系统甚至会将照片返回您的应用，以便您使用。对用户而言，这就如同相机是您应用的一部分。</p>
+</blockquote>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/02/android-development-note/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/fsm-note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -177,7 +317,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-01 19:13:11 / Modified: 19:38:01" itemprop="dateCreated datePublished" datetime="2020-09-01T19:13:11-04:00">2020-09-01</time>
+              <time title="Created: 2020-09-01 19:13:11 / Modified: 21:48:39" itemprop="dateCreated datePublished" datetime="2020-09-01T19:13:11-04:00">2020-09-01</time>
             </span>
 
           
@@ -258,7 +398,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-29 23:52:09" itemprop="dateModified" datetime="2020-08-29T23:52:09-04:00">2020-08-29</time>
+                <time title="Modified: 2020-09-11 20:06:25" itemprop="dateModified" datetime="2020-09-11T20:06:25-04:00">2020-09-11</time>
               </span>
 
           
@@ -334,7 +474,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-01 00:04:17" itemprop="dateModified" datetime="2020-09-01T00:04:17-04:00">2020-09-01</time>
+                <time title="Modified: 2020-09-04 23:46:48" itemprop="dateModified" datetime="2020-09-04T23:46:48-04:00">2020-09-04</time>
               </span>
 
           
@@ -539,7 +679,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-01 01:23:16" itemprop="dateModified" datetime="2020-09-01T01:23:16-04:00">2020-09-01</time>
+                <time title="Modified: 2020-09-07 01:35:41" itemprop="dateModified" datetime="2020-09-07T01:35:41-04:00">2020-09-07</time>
               </span>
 
           
@@ -741,178 +881,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/13/binary-search-conclusion/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="icycoke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icycoke's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/13/binary-search-conclusion/" class="post-title-link" itemprop="url">二分搜索总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-13 01:59:18" itemprop="dateCreated datePublished" datetime="2020-07-13T01:59:18-04:00">2020-07-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-14 13:29:16" itemprop="dateModified" datetime="2020-07-14T13:29:16-04:00">2020-07-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="二分搜索"><a href="#二分搜索" class="headerlink" title="二分搜索"></a>二分搜索</h2><ul>
-<li><p>关键点在于<strong>开闭区间和判断条件的匹配</strong></p>
-</li>
-<li><p>两种方法</p>
-<ul>
-<li><p>方法一</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二分搜索。若有一个元素与目标值相等，返回该元素的索引；若有多个元素与目标值相等，</span></span><br><span class="line"><span class="comment"> * 返回索引最小的元素；若没有元素与目标值相等，返回大于目标值的最小元素的索引。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchLeft</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 要点1：搜索区间为[left, right]左闭右闭区间</span></span><br><span class="line">    <span class="keyword">int</span> right = arr.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 要点2：结束搜索的条件为left == right</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="comment">// 要点3：仅有两个待搜索值时，mid指向较小值，因此收缩搜索区间时应为left = mid + 1，避免死循环</span></span><br><span class="line">        <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &lt; target) &#123;</span><br><span class="line">            <span class="comment">// 要点4：与mid的计算方式相匹配</span></span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 要点5：此时left == right，若没有目标值，则搜索区间从左侧向右收缩至结束，返回大于目标值的最小元素索引</span></span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法二</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 二分搜索。若有一个元素与目标值相等，返回该元素的索引；若有多个元素与目标值相等，</span></span><br><span class="line"><span class="comment"> * 返回索引最大的元素；若没有元素与目标值相等，返回小于目标值的最大元素的索引。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchRight</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 要点1：搜索区间为[left, right]左闭右闭区间</span></span><br><span class="line">    <span class="keyword">int</span> right = arr.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 要点2：结束搜索的条件为left == right</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="comment">// 要点3：仅有两个待搜索值时，mid指向较大值，因此收缩搜索区间时应为right = mid - 1，避免死循环</span></span><br><span class="line">        <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &gt; target) &#123;</span><br><span class="line">            <span class="comment">// 要点4：与mid的计算方式相匹配</span></span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            left = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 要点5：此时left == right，若没有目标值，则搜索区间从右侧向左收缩至结束，返回小于目标值的最大元素索引</span></span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/segment-tree-intro-and-application/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="icycoke">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="icycoke's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/10/segment-tree-intro-and-application/" class="post-title-link" itemprop="url">线段树辑及其应用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-10 16:28:44" itemprop="dateCreated datePublished" datetime="2020-07-10T16:28:44-04:00">2020-07-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-24 18:49:07" itemprop="dateModified" datetime="2020-07-24T18:49:07-04:00">2020-07-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1-线段树概述"><a href="#1-线段树概述" class="headerlink" title="1. 线段树概述"></a>1. 线段树概述</h2><ul>
-<li>线段树是一种特殊的二叉搜索树，它将一个区间（数组arr）划分成一些单元区间，每个单元区间对应线段树中的一个节点</li>
-<li>对于线段树中的每一个节点[l, r]，它对应的值代表了arr[l…r]的区间和</li>
-<li>对于线段树中的每一个非叶子节点[l, r]，令mid = (l + r) / 2，它的左儿子表示的区间为[l, mid]，右儿子表示的区间为[mid + 1, r]</li>
-<li>线段树可以高效地处理连续区间的动态查询问题</li>
-<li>提供操作<ul>
-<li>查询 O(logn)<ul>
-<li>查询区间和</li>
-</ul>
-</li>
-<li>更新 O(logn)<ul>
-<li>更新单个位置的值</li>
-<li>插入/删除一条线段<ul>
-<li>如果插入操作是在一条线段上每个位置均加上k，为了使所有sum保持正确，每一次插入操作可能要更新O(n)个值，从而使时间复杂度退化</li>
-<li>为了保证时间复杂度不退化，可以使用Lazy思想：对整个节点进行的操作，先在节点上做标记，而不真正执行，知道根据查询操作的需要分成两部分</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/10/segment-tree-intro-and-application/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -982,14 +950,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
