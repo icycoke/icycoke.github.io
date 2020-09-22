@@ -31,8 +31,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://icycoke.github.io/2020/09/08/android-development-note/content_provider_overview.png">
 <meta property="og:image" content="https://icycoke.github.io/2020/09/02/android-development-note/activity_lifecycle.png">
+<meta property="og:image" content="https://icycoke.github.io/2020/09/02/android-development-note/lifecycle-states.svg">
 <meta property="article:published_time" content="2020-09-02T22:43:32.000Z">
-<meta property="article:modified_time" content="2020-09-22T22:29:06.933Z">
+<meta property="article:modified_time" content="2020-09-22T22:37:12.048Z">
 <meta property="article:author" content="icycoke">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
@@ -191,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-22 18:29:06" itemprop="dateModified" datetime="2020-09-22T18:29:06-04:00">2020-09-22</time>
+                <time title="Modified: 2020-09-22 18:37:12" itemprop="dateModified" datetime="2020-09-22T18:37:12-04:00">2020-09-22</time>
               </span>
 
           
@@ -241,9 +242,9 @@
 </li>
 </ul>
 <h4 id="1-1-2-Service"><a href="#1-1-2-Service" class="headerlink" title="1.1.2 Service"></a>1.1.2 Service</h4><ul>
-<li><p><em>Service</em> 是一种在后台运行的组件，不提供界面，用于因各种原因使应用在后台保持运行状态</p>
+<li><p>Service 是一种在后台运行的组件，不提供界面，用于因各种原因使应用在后台保持运行状态</p>
 </li>
-<li><p>诸如 <em>Activity</em> 等其他组件可以启动服务，使该 <em>Service</em> 运行或绑定到该 <em>Service</em> ，以便与其进行交互</p>
+<li><p>诸如 Activity 等其他组件可以启动服务，使该 Service 运行或绑定到该 Service ，以便与其进行交互</p>
 </li>
 <li><p>已启动的服务通常分为两种：</p>
 <ul>
@@ -255,14 +256,14 @@
 </li>
 </ul>
 <h4 id="1-1-3-Broadcast-receiver"><a href="#1-1-3-Broadcast-receiver" class="headerlink" title="1.1.3 Broadcast receiver"></a>1.1.3 Broadcast receiver</h4><ul>
-<li><em>Broadcast receiver</em> 使得系统能够在常规用户流之外向应用传递事件，从而允许应用响应系统范围内的广播通知，例如屏幕已关闭、电池电量不足等</li>
-<li><em>Broadcast receiver</em> 作为 <code>BroadcastReceiver</code> 的子类实现，并且每条广播都作为 <code>Intent</code>对象进行传递</li>
-<li><em>Broadcast receiver</em> 最为常见的用途只是作为通向其他组件的<em>通道</em>，旨在执行极少量的工作</li>
+<li>Broadcast receiver 使得系统能够在常规用户流之外向应用传递事件，从而允许应用响应系统范围内的广播通知，例如屏幕已关闭、电池电量不足等</li>
+<li>Broadcast receiver 作为 <code>BroadcastReceiver</code> 的子类实现，并且每条广播都作为 <code>Intent</code>对象进行传递</li>
+<li>Broadcast receiver 最为常见的用途只是作为通向其他组件的通道，旨在执行极少量的工作</li>
 </ul>
 <h4 id="1-1-4-Content-provider"><a href="#1-1-4-Content-provider" class="headerlink" title="1.1.4 Content provider"></a>1.1.4 Content provider</h4><ul>
-<li><p><em>Content provider</em> 管理一组共享的应用数据</p>
+<li><p>Content provider 管理一组共享的应用数据</p>
 </li>
-<li><p>其他应用可通过 <em>Content provider</em> 查询或修改数据（如果内容提供程序允许）</p>
+<li><p>其他应用可通过 Content provider 查询或修改数据（如果内容提供程序允许）</p>
 <p><img src="https://icycoke.github.io/2020/09/08/android-development-note/content_provider_overview.png" alt="Content provider示意图"></p>
 </li>
 </ul>
@@ -270,22 +271,22 @@
 <li>Activity 、Service 和Broadcast receiver 均通过异步消息 <em>Intent</em> 进行启动。<em>Intent</em> 会在运行时对各个组件进行互相绑定，可以将 Intent 视为从其他组件请求操作的信使</li>
 <li><em>Content receiver</em> 并非由 <em>Intent</em> 启动。相反，它会在成为 <code>ContentResolver</code> 的请求目标时启动</li>
 <li>启动方法：<ul>
-<li><em>Activity</em><ul>
+<li>Activity<ul>
 <li>向 <code>startActivity()</code> 或 <code>startActivityForResult()</code> 传递 <code>Intent</code>（当您想让 Activity 返回结果时）</li>
 <li>为其安排新任务</li>
 </ul>
 </li>
-<li><em>Service</em><ul>
+<li>Service<ul>
 <li>在 Android 5.0（API 级别 21）及更高版本中，可以使用 <code>JobScheduler</code> 类来调度操作</li>
 <li>对于早期 Android 版本，可以通过向 <code>startService()</code> 传递 <code>Intent</code> 来启动 <em>Service*（或对执行中的 *Service</em> 下达新指令）</li>
 <li>也可通过向将 <code>bindService()</code> 传递 <code>Intent</code> 来绑定到该 <em>Service</em></li>
 </ul>
 </li>
-<li><em>Broadcast</em><ul>
+<li>Broadcast<ul>
 <li>通过向 <code>sendBroadcast()</code>、<code>sendOrderedBroadcast()</code> 或 <code>sendStickyBroadcast()</code> 等方法传递 <code>Intent</code> 来发起 Broadcast</li>
 </ul>
 </li>
-<li><em>Content provider</em><ul>
+<li>Content provider<ul>
 <li>通过在 <code>ContentResolver</code> 上调用 <code>query()</code>，对 Content provider 执行查询</li>
 </ul>
 </li>
@@ -434,7 +435,13 @@
 <h3 id="3-1-Lifecycle类"><a href="#3-1-Lifecycle类" class="headerlink" title="3.1 Lifecycle类"></a>3.1 Lifecycle类</h3><ul>
 <li><p><code>Lifecycle</code> 是一个类，用于存储有关组件（如 Activity 或 Fragment）的生命周期状态的信息，并允许其他对象观察此状态</p>
 </li>
-<li></li>
+<li><p><strong>状态</strong>和<strong>事件</strong></p>
+<p><img src="https://icycoke.github.io/2020/09/02/android-development-note/lifecycle-states.svg" alt=""></p>
+<ul>
+<li>状态指由 <code>Lifecycle</code> 对象跟踪的组件的当前状态</li>
+<li>事件</li>
+</ul>
+</li>
 </ul>
 
     </div>
