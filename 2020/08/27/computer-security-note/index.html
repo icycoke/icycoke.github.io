@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://icycoke.github.io/2020/08/27/computer-security-note/access_control_matrix.png">
 <meta property="article:published_time" content="2020-08-27T22:27:06.000Z">
-<meta property="article:modified_time" content="2020-09-14T21:26:15.252Z">
+<meta property="article:modified_time" content="2020-09-15T00:07:50.648Z">
 <meta property="article:author" content="icycoke">
 <meta property="article:tag" content="Course Note">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-14 17:26:15" itemprop="dateModified" datetime="2020-09-14T17:26:15-04:00">2020-09-14</time>
+                <time title="Modified: 2020-09-14 20:07:50" itemprop="dateModified" datetime="2020-09-14T20:07:50-04:00">2020-09-14</time>
               </span>
 
           
@@ -353,9 +353,79 @@
 </ul>
 <h3 id="Access-Control-Matrix-Model"><a href="#Access-Control-Matrix-Model" class="headerlink" title="Access Control Matrix Model"></a>Access Control Matrix Model</h3><p><img src="https://icycoke.github.io/2020/08/27/computer-security-note/access_control_matrix.png" alt="Access control matrix model"></p>
 <ul>
+<li>Access control matrix is the simplest abstraction mechanism for representing protection state<ul>
 <li>Describes protection state precisely</li>
 <li>Describes rights of subjects</li>
 <li>State transitions change elements of matrix</li>
+</ul>
+</li>
+</ul>
+<h5 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h5><ul>
+<li>6 primitive operations alter matrix<ol>
+<li>create subject</li>
+<li>create object</li>
+<li>destroy subject</li>
+<li>destroy object</li>
+<li>enter<ul>
+<li>enter <em>r</em> into <em>A[s, o]</em> means adds <em>r</em> right for subject <em>s</em> over object <em>o</em></li>
+</ul>
+</li>
+<li>delete<ul>
+<li>delete <em>r</em> from <em>A[s, o]</em> means remove <em>r</em> right from subject <em>s</em> over object <em>o</em></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Safety-amp-Security"><a href="#Safety-amp-Security" class="headerlink" title="Safety &amp; Security"></a>Safety &amp; Security</h3><ul>
+<li>Safety refers to the <strong>abstract model</strong> and security refers to the <strong>actual implementation</strong><ul>
+<li>A secure system corresponds to a model safe with respect to all rights</li>
+</ul>
+</li>
+</ul>
+<h3 id="Access-Control-List-amp-Capability-List"><a href="#Access-Control-List-amp-Capability-List" class="headerlink" title="Access Control List &amp; Capability List"></a>Access Control List &amp; Capability List</h3><h4 id="Access-Control-List"><a href="#Access-Control-List" class="headerlink" title="Access Control List"></a>Access Control List</h4><ul>
+<li><p>Focus on columns of access control matrix</p>
+<ul>
+<li>e.g. file1: { (Andy, rx) (Betty, rwxo) (Charlie, rx) }</li>
+</ul>
+</li>
+<li><p>ACLs can be long</p>
+<ul>
+<li>User ACLs + Abbreviations</li>
+</ul>
+</li>
+<li><p>Revocation:</p>
+<ul>
+<li>Owner deletes subject’s entries from ACL, or rights from subject’s entry in ACL</li>
+</ul>
+</li>
+</ul>
+<h4 id="Capability-List"><a href="#Capability-List" class="headerlink" title="Capability List"></a>Capability List</h4><ul>
+<li>Focus on rows of access control matrix<ul>
+<li>e.g. Andy: { (file1, rx) (file2, r) (file3, rwo) }</li>
+</ul>
+</li>
+<li>Revocation:<ul>
+<li>Scanning all C-lists to remove relevant capabilities is far too expensive</li>
+<li>It’s better to use indirection<ul>
+<li>Each object has entry in a global object table</li>
+<li>Names in capabilities name the entry, not the object<ul>
+<li>To revoke, zap the entry in the table</li>
+<li>Can have multiple entries for a single object to allow control of different sets of rights and/or groups of users for each object</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="ACL-v-s-C-List"><a href="#ACL-v-s-C-List" class="headerlink" title="ACL v.s. C-List"></a>ACL v.s. C-List</h4><ul>
+<li>Both theoretically equivalent<ul>
+<li>ACL easily answers given a subject, what objects and how it can access</li>
+<li>C-List easily answers given an object, what subjects can access it and how</li>
+</ul>
+</li>
+<li>ACL-based systems are more common than C-List-based systems</li>
 </ul>
 <h2 id="Confidentiality-Policy"><a href="#Confidentiality-Policy" class="headerlink" title="Confidentiality Policy"></a>Confidentiality Policy</h2>
     </div>
@@ -440,7 +510,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intros"><span class="nav-number">1.</span> <span class="nav-text">Intros</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Computer-Security"><span class="nav-number">1.1.</span> <span class="nav-text">What is Computer Security?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Components-of-Security"><span class="nav-number">1.2.</span> <span class="nav-text">Basic Components of Security</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Confidentiality"><span class="nav-number">1.2.1.</span> <span class="nav-text">Confidentiality</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integrity"><span class="nav-number">1.2.2.</span> <span class="nav-text">Integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Availability"><span class="nav-number">1.2.3.</span> <span class="nav-text">Availability</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threat-Classes"><span class="nav-number">1.3.</span> <span class="nav-text">Threat Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disclosure"><span class="nav-number">1.3.1.</span> <span class="nav-text">Disclosure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deception"><span class="nav-number">1.3.2.</span> <span class="nav-text">Deception</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disruption"><span class="nav-number">1.3.3.</span> <span class="nav-text">Disruption</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usurpation"><span class="nav-number">1.3.4.</span> <span class="nav-text">Usurpation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Categories-of-Security-Attack"><span class="nav-number">1.4.</span> <span class="nav-text">General Categories of Security Attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goals-of-Security"><span class="nav-number">1.5.</span> <span class="nav-text">Goals of Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Policy-and-Mechanism"><span class="nav-number">1.6.</span> <span class="nav-text">Policy and Mechanism</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Policy"><span class="nav-number">1.6.1.</span> <span class="nav-text">Policy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mechanism"><span class="nav-number">1.6.2.</span> <span class="nav-text">Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assurance"><span class="nav-number">1.7.</span> <span class="nav-text">Assurance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operation-Issues"><span class="nav-number">1.8.</span> <span class="nav-text">Operation Issues</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Control"><span class="nav-number">2.</span> <span class="nav-text">Access Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminology"><span class="nav-number">2.1.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#States-and-State-Transition"><span class="nav-number">2.2.</span> <span class="nav-text">States and State Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#States"><span class="nav-number">2.2.1.</span> <span class="nav-text">States</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#State-Transition"><span class="nav-number">2.2.2.</span> <span class="nav-text">State Transition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-Matrix-Model"><span class="nav-number">2.3.</span> <span class="nav-text">Access Control Matrix Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confidentiality-Policy"><span class="nav-number">3.</span> <span class="nav-text">Confidentiality Policy</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intros"><span class="nav-number">1.</span> <span class="nav-text">Intros</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Computer-Security"><span class="nav-number">1.1.</span> <span class="nav-text">What is Computer Security?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Components-of-Security"><span class="nav-number">1.2.</span> <span class="nav-text">Basic Components of Security</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Confidentiality"><span class="nav-number">1.2.1.</span> <span class="nav-text">Confidentiality</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integrity"><span class="nav-number">1.2.2.</span> <span class="nav-text">Integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Availability"><span class="nav-number">1.2.3.</span> <span class="nav-text">Availability</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threat-Classes"><span class="nav-number">1.3.</span> <span class="nav-text">Threat Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disclosure"><span class="nav-number">1.3.1.</span> <span class="nav-text">Disclosure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deception"><span class="nav-number">1.3.2.</span> <span class="nav-text">Deception</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disruption"><span class="nav-number">1.3.3.</span> <span class="nav-text">Disruption</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usurpation"><span class="nav-number">1.3.4.</span> <span class="nav-text">Usurpation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Categories-of-Security-Attack"><span class="nav-number">1.4.</span> <span class="nav-text">General Categories of Security Attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goals-of-Security"><span class="nav-number">1.5.</span> <span class="nav-text">Goals of Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Policy-and-Mechanism"><span class="nav-number">1.6.</span> <span class="nav-text">Policy and Mechanism</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Policy"><span class="nav-number">1.6.1.</span> <span class="nav-text">Policy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mechanism"><span class="nav-number">1.6.2.</span> <span class="nav-text">Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assurance"><span class="nav-number">1.7.</span> <span class="nav-text">Assurance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operation-Issues"><span class="nav-number">1.8.</span> <span class="nav-text">Operation Issues</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Control"><span class="nav-number">2.</span> <span class="nav-text">Access Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminology"><span class="nav-number">2.1.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#States-and-State-Transition"><span class="nav-number">2.2.</span> <span class="nav-text">States and State Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#States"><span class="nav-number">2.2.1.</span> <span class="nav-text">States</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#State-Transition"><span class="nav-number">2.2.2.</span> <span class="nav-text">State Transition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-Matrix-Model"><span class="nav-number">2.3.</span> <span class="nav-text">Access Control Matrix Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Operations"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">Operations</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Safety-amp-Security"><span class="nav-number">2.4.</span> <span class="nav-text">Safety &amp; Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-List-amp-Capability-List"><span class="nav-number">2.5.</span> <span class="nav-text">Access Control List &amp; Capability List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Access-Control-List"><span class="nav-number">2.5.1.</span> <span class="nav-text">Access Control List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Capability-List"><span class="nav-number">2.5.2.</span> <span class="nav-text">Capability List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACL-v-s-C-List"><span class="nav-number">2.5.3.</span> <span class="nav-text">ACL v.s. C-List</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confidentiality-Policy"><span class="nav-number">3.</span> <span class="nav-text">Confidentiality Policy</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
