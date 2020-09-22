@@ -22,17 +22,17 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1. Android 应用基础知识Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中 默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件 Android 系统实现了最小权">
+  <meta name="description" content="1. Android 应用基础知识 Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中  默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件  Android 系统实现了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安卓开发笔记">
 <meta property="og:url" content="http://yoursite.com/2020/09/02/android-development-note/index.html">
 <meta property="og:site_name" content="icycoke&#39;s blog">
-<meta property="og:description" content="1. Android 应用基础知识Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中 默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件 Android 系统实现了最小权">
+<meta property="og:description" content="1. Android 应用基础知识 Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中  默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件  Android 系统实现了">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://icycoke.github.io/2020/09/08/android-development-note/content_provider_overview.png">
 <meta property="og:image" content="https://icycoke.github.io/2020/09/02/android-development-note/activity_lifecycle.png">
 <meta property="article:published_time" content="2020-09-02T22:43:32.000Z">
-<meta property="article:modified_time" content="2020-09-22T22:25:15.906Z">
+<meta property="article:modified_time" content="2020-09-22T22:29:06.933Z">
 <meta property="article:author" content="icycoke">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-22 18:25:15" itemprop="dateModified" datetime="2020-09-22T18:25:15-04:00">2020-09-22</time>
+                <time title="Modified: 2020-09-22 18:29:06" itemprop="dateModified" datetime="2020-09-22T18:29:06-04:00">2020-09-22</time>
               </span>
 
           
@@ -205,21 +205,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-Android-应用基础知识"><a href="#1-Android-应用基础知识" class="headerlink" title="1. Android 应用基础知识"></a>1. Android 应用基础知识</h2><p>Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中</p>
-<p>默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件</p>
-<p>Android 系统实现了<strong>最小权限原则</strong>。换言之，默认情况下，每个应用只能访问执行其工作所需的组件，而不能访问其他组件</p>
-<blockquote>
+        <h2 id="1-Android-应用基础知识"><a href="#1-Android-应用基础知识" class="headerlink" title="1. Android 应用基础知识"></a>1. Android 应用基础知识</h2><ul>
+<li><p>Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中</p>
+</li>
+<li><p>默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件</p>
+</li>
+<li><p>Android 系统实现了<strong>最小权限原则</strong>。换言之，默认情况下，每个应用只能访问执行其工作所需的组件，而不能访问其他组件</p>
+</li>
+<li><blockquote>
 <p>Android 系统设计的独特之处在于，任何应用都可启动其他应用的组件。例如，当您想让用户使用设备相机拍摄照片时，另一个应用可能也可执行该操作，因而您的应用便可使用该应用，而非自行产生一个 Activity 来拍摄照片。您无需加入甚至链接到该相机应用的代码。只需启动拍摄照片的相机应用中的 Activity 即可。完成拍摄时，系统甚至会将照片返回您的应用，以便您使用。对用户而言，这就如同相机是您应用的一部分。</p>
 </blockquote>
+</li>
+</ul>
 <a id="more"></a>
 
-<h3 id="1-1-应用组件"><a href="#1-1-应用组件" class="headerlink" title="1.1 应用组件"></a>1.1 应用组件</h3><p>应用组件是 Android 应用的基本构建块，每个组件都是一个** **，系统或用户可通过该入口点进入应用</p>
-<p>共有四种不同类型的应用组件类型：</p>
-<ul>
+<h3 id="1-1-应用组件"><a href="#1-1-应用组件" class="headerlink" title="1.1 应用组件"></a>1.1 应用组件</h3><ul>
+<li>应用组件是 Android 应用的基本构建块，每个组件都是一个入口顶啊，系统或用户可通过该入口点进入应用</li>
+<li>共有四种不同类型的应用组件类型：<ul>
 <li>Activity</li>
 <li>Service</li>
 <li>Broadcast receiver</li>
 <li>Content provider</li>
+</ul>
+</li>
 </ul>
 <h4 id="1-1-1-Activity"><a href="#1-1-1-Activity" class="headerlink" title="1.1.1 Activity"></a>1.1.1 Activity</h4><ul>
 <li><em>Activity</em> 是与用户交互的入口点</li>
@@ -259,7 +267,7 @@
 </li>
 </ul>
 <h3 id="1-2-启动应用组件"><a href="#1-2-启动应用组件" class="headerlink" title="1.2 启动应用组件"></a>1.2 启动应用组件</h3><ul>
-<li><em>Activity</em> 、<em>Service</em> 和<em>Broadcast receiver</em> 均通过异步消息 <em>Intent</em> 进行启动。<em>Intent</em> 会在运行时对各个组件进行互相绑定，可以将 Intent 视为从其他组件请求操作的信使</li>
+<li>Activity 、Service 和Broadcast receiver 均通过异步消息 <em>Intent</em> 进行启动。<em>Intent</em> 会在运行时对各个组件进行互相绑定，可以将 Intent 视为从其他组件请求操作的信使</li>
 <li><em>Content receiver</em> 并非由 <em>Intent</em> 启动。相反，它会在成为 <code>ContentResolver</code> 的请求目标时启动</li>
 <li>启动方法：<ul>
 <li><em>Activity</em><ul>
@@ -274,11 +282,11 @@
 </ul>
 </li>
 <li><em>Broadcast</em><ul>
-<li>通过向 <code>sendBroadcast()</code>、<code>sendOrderedBroadcast()</code> 或 <code>sendStickyBroadcast()</code> 等方法传递 <code>Intent</code> 来发起 <em>Broadcast</em></li>
+<li>通过向 <code>sendBroadcast()</code>、<code>sendOrderedBroadcast()</code> 或 <code>sendStickyBroadcast()</code> 等方法传递 <code>Intent</code> 来发起 Broadcast</li>
 </ul>
 </li>
 <li><em>Content provider</em><ul>
-<li>通过在 <code>ContentResolver</code> 上调用 <code>query()</code>，对 <em>Content provider</em> 执行查询</li>
+<li>通过在 <code>ContentResolver</code> 上调用 <code>query()</code>，对 Content provider 执行查询</li>
 </ul>
 </li>
 </ul>
@@ -426,8 +434,7 @@
 <h3 id="3-1-Lifecycle类"><a href="#3-1-Lifecycle类" class="headerlink" title="3.1 Lifecycle类"></a>3.1 Lifecycle类</h3><ul>
 <li><p><code>Lifecycle</code> 是一个类，用于存储有关组件（如 Activity 或 Fragment）的生命周期状态的信息，并允许其他对象观察此状态</p>
 </li>
-<li><p>事件</p>
-</li>
+<li></li>
 </ul>
 
     </div>

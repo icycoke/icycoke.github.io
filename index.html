@@ -244,7 +244,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-22 18:25:15" itemprop="dateModified" datetime="2020-09-22T18:25:15-04:00">2020-09-22</time>
+                <time title="Modified: 2020-09-22 18:29:06" itemprop="dateModified" datetime="2020-09-22T18:29:06-04:00">2020-09-22</time>
               </span>
 
           
@@ -258,12 +258,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="1-Android-应用基础知识"><a href="#1-Android-应用基础知识" class="headerlink" title="1. Android 应用基础知识"></a>1. Android 应用基础知识</h2><p>Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中</p>
-<p>默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件</p>
-<p>Android 系统实现了<strong>最小权限原则</strong>。换言之，默认情况下，每个应用只能访问执行其工作所需的组件，而不能访问其他组件</p>
-<blockquote>
+          <h2 id="1-Android-应用基础知识"><a href="#1-Android-应用基础知识" class="headerlink" title="1. Android 应用基础知识"></a>1. Android 应用基础知识</h2><ul>
+<li><p>Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户，每个 Android 应用都处于各自的安全沙盒中</p>
+</li>
+<li><p>默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID（该 ID 仅由系统使用，应用并不知晓）。系统会为应用中的所有文件设置权限，使得只有分配给该应用的用户 ID 才能访问这些文件</p>
+</li>
+<li><p>Android 系统实现了<strong>最小权限原则</strong>。换言之，默认情况下，每个应用只能访问执行其工作所需的组件，而不能访问其他组件</p>
+</li>
+<li><blockquote>
 <p>Android 系统设计的独特之处在于，任何应用都可启动其他应用的组件。例如，当您想让用户使用设备相机拍摄照片时，另一个应用可能也可执行该操作，因而您的应用便可使用该应用，而非自行产生一个 Activity 来拍摄照片。您无需加入甚至链接到该相机应用的代码。只需启动拍摄照片的相机应用中的 Activity 即可。完成拍摄时，系统甚至会将照片返回您的应用，以便您使用。对用户而言，这就如同相机是您应用的一部分。</p>
 </blockquote>
+</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/09/02/android-development-note/#more" rel="contents">
