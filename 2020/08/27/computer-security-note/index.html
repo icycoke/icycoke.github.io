@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://icycoke.github.io/2020/08/27/computer-security-note/access_control_matrix.png">
 <meta property="article:published_time" content="2020-08-27T22:27:06.000Z">
-<meta property="article:modified_time" content="2020-09-15T00:07:50.648Z">
+<meta property="article:modified_time" content="2020-10-11T23:59:44.069Z">
 <meta property="article:author" content="icycoke">
 <meta property="article:tag" content="Course Note">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-14 20:07:50" itemprop="dateModified" datetime="2020-09-14T20:07:50-04:00">2020-09-14</time>
+                <time title="Modified: 2020-10-11 19:59:44" itemprop="dateModified" datetime="2020-10-11T19:59:44-04:00">2020-10-11</time>
               </span>
 
           
@@ -427,7 +427,238 @@
 </li>
 <li>ACL-based systems are more common than C-List-based systems</li>
 </ul>
-<h2 id="Confidentiality-Policy"><a href="#Confidentiality-Policy" class="headerlink" title="Confidentiality Policy"></a>Confidentiality Policy</h2>
+<h2 id="Security-Policy-Models-Intro"><a href="#Security-Policy-Models-Intro" class="headerlink" title="Security Policy Models Intro"></a>Security Policy Models Intro</h2><h3 id="What-is-a-Secure-System"><a href="#What-is-a-Secure-System" class="headerlink" title="What is a Secure System?"></a>What is a Secure System?</h3><ul>
+<li>Starts in authorized state</li>
+<li>Never enters unauthorized state<ul>
+<li>A breach of security occurs when a system enters an unauthorized state</li>
+</ul>
+</li>
+</ul>
+<h3 id="Access-Control-Administration"><a href="#Access-Control-Administration" class="headerlink" title="Access Control Administration"></a>Access Control Administration</h3><h4 id="Discretionary-Access-Control-DAC"><a href="#Discretionary-Access-Control-DAC" class="headerlink" title="Discretionary Access Control (DAC)"></a>Discretionary Access Control (DAC)</h4><ul>
+<li>Object owners define policy (like in UNIX file system)</li>
+</ul>
+<h4 id="Mandatory-Access-Control-MAC"><a href="#Mandatory-Access-Control-MAC" class="headerlink" title="Mandatory Access Control (MAC)"></a>Mandatory Access Control (MAC)</h4><ul>
+<li>Environment enforces static policy (like process labeling)</li>
+</ul>
+<h3 id="Security-Models"><a href="#Security-Models" class="headerlink" title="Security Models"></a>Security Models</h3><ul>
+<li>A security model is a model that represents a particular policy or set of policies</li>
+<li>Security models focus on specific characteristics of policies</li>
+<li>There are many different models focus on different characteristics of policies. It’s difficult to perfectly build a model</li>
+</ul>
+<h2 id="Confidentiality-Policy"><a href="#Confidentiality-Policy" class="headerlink" title="Confidentiality Policy"></a>Confidentiality Policy</h2><ul>
+<li>Goal: prevent the unauthorized disclosure of information</li>
+<li>Multi-level security (MLS) models are best-known examples<ul>
+<li>Bell-LaPadula Model (BLP model), 1970s</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bell-LaPadula-Model-BLP-Model"><a href="#Bell-LaPadula-Model-BLP-Model" class="headerlink" title="Bell-LaPadula Model (BLP Model)"></a>Bell-LaPadula Model (BLP Model)</h3><ul>
+<li>Focus on <strong>confidentiality</strong></li>
+<li>Principle: information cannot flow from high to low</li>
+</ul>
+<h3 id="Security-Levels"><a href="#Security-Levels" class="headerlink" title="Security Levels"></a>Security Levels</h3><ul>
+<li>Subjects have security clearance</li>
+<li>Objects have security classification</li>
+<li>High level subjects can read same level and lower level objects</li>
+<li>Lower subjects can only write to same level objects or higher level objects (forbid one subject firstly read from high level objects and write to low level objects)</li>
+</ul>
+<h3 id="Lattice-Model"><a href="#Lattice-Model" class="headerlink" title="Lattice Model"></a>Lattice Model</h3><ul>
+<li>Lattice model expands normal security levels</li>
+<li>Express by a tuple (clearance <strong>L</strong>evel, <strong>C</strong>ategory)</li>
+</ul>
+<h2 id="Integrity-Policy"><a href="#Integrity-Policy" class="headerlink" title="Integrity Policy"></a>Integrity Policy</h2><h3 id="BIBA-Model"><a href="#BIBA-Model" class="headerlink" title="BIBA Model"></a>BIBA Model</h3><ul>
+<li><strong>No read down, no write up</strong></li>
+<li>Information flows from top to bottom</li>
+<li>Focus on who can “write or make change to” a document</li>
+<li>Integrity labels are different from security labels<ul>
+<li>Security labels limit the flow of information<ul>
+<li>Subjects have security clearance L(s)</li>
+<li>Objects have security classification L(o) </li>
+</ul>
+</li>
+<li>Integrity labels inhibit modification of information<ul>
+<li>Subjects have integrity level I(s) </li>
+<li>Objects have integrity level I(o)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Clark-Wilson-Integrity-Model"><a href="#Clark-Wilson-Integrity-Model" class="headerlink" title="Clark-Wilson Integrity Model"></a>Clark-Wilson Integrity Model</h3><ul>
+<li>Focus on the consistency and validity of the data</li>
+</ul>
+<h4 id="Entities"><a href="#Entities" class="headerlink" title="Entities"></a>Entities</h4><ul>
+<li>CDI: Constraint Data Item<ul>
+<li>Data subject to integrity controls</li>
+</ul>
+</li>
+<li>UDI: Unconstrained Data Item<ul>
+<li>Data not subject to integrity controls</li>
+</ul>
+</li>
+<li>IVP: Integrity Verification Procedures<ul>
+<li>Procedures that test the CDIs conform to the integrity constraints</li>
+</ul>
+</li>
+<li>TP: Transaction Procedures<ul>
+<li>Procedures that take the system from one valid state to another </li>
+</ul>
+</li>
+</ul>
+<h4 id="Certification-Rules"><a href="#Certification-Rules" class="headerlink" title="Certification Rules"></a>Certification Rules</h4><ol>
+<li>Certification rule 1: When any IVP is run, it must ensure all CDIs are in a valid state</li>
+<li>Certification rule 2: For some associated set of CDIs, a TP must transform those CDIs in a valid state into a (possibly different) valid state</li>
+<li>…</li>
+</ol>
+<h3 id="BIBA-Model-v-s-Clark-Wilson-Model"><a href="#BIBA-Model-v-s-Clark-Wilson-Model" class="headerlink" title="BIBA Model v.s. Clark-Wilson Model"></a>BIBA Model v.s. Clark-Wilson Model</h3><ul>
+<li>BIBA model<ul>
+<li>No notion of certification rules</li>
+<li>Trusted subjects ensure actions obey rules</li>
+<li>Untrusted data examined before being made trusted</li>
+</ul>
+</li>
+<li>Clark-Wilson model<ul>
+<li>Explicit requirements that actions must meet</li>
+<li>Trusted entity must certify method to upgrade untrusted data (and not certify the data itself)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hybrid-Policy"><a href="#Hybrid-Policy" class="headerlink" title="Hybrid Policy"></a>Hybrid Policy</h2><h3 id="Chinese-Wall"><a href="#Chinese-Wall" class="headerlink" title="Chinese Wall"></a>Chinese Wall</h3><ul>
+<li>A model of a security policy that refers equally to confidentiality and integrity</li>
+<li>Kind of Mandatory Access Control (MAC) model</li>
+<li>Deals with conflict of interest situations</li>
+<li>The access of subject can depends on the history of past accesses (dynamic)</li>
+</ul>
+<h4 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h4><ul>
+<li>The objects are items of information related to a company</li>
+<li>A company dataset (CD) contains objects related to a single company</li>
+<li>A conflict of interest (COI) class contains the datasets of companies in competition</li>
+<li>CD(O): the company dataset that contains object O</li>
+<li>COI(O): the COI class that contains object O</li>
+</ul>
+<h4 id="Security-Conditions"><a href="#Security-Conditions" class="headerlink" title="Security Conditions"></a>Security Conditions</h4><ul>
+<li>Read<ul>
+<li>S can read O if and only if any of the following holds<ul>
+<li>There is an object O’ such that S has accessed O’ and CD(O’) = CD(O)</li>
+<li>For all objects O’, O’ belongs to PR(S) -&gt; COI(O’) doesn’t equal COI(O)<ul>
+<li>PR(S) is the set of objects S has read</li>
+</ul>
+</li>
+<li>O is a sanitized object (i.e., public objects)</li>
+<li>Initially, PR(s) = ∅, so any initial read request is granted</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Write<ul>
+<li>Scan write to O if and only if both of the following hold<ul>
+<li>The CW-simple security condition permits S to read O</li>
+<li>For all objects O’, if Scan read  O’, then CD(O’) = CD(O)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Comparison-to-Bell-LaPadula"><a href="#Comparison-to-Bell-LaPadula" class="headerlink" title="Comparison to Bell-LaPadula"></a>Comparison to Bell-LaPadula</h4><ul>
+<li>Fundamentally different<ul>
+<li>CW has no security labels, BLP does</li>
+<li>CW has notion of “past accesses”, BLP does not</li>
+</ul>
+</li>
+<li>BLP can capture state at any time, but cannot track changes over time</li>
+<li>Access constraints of CW change over time</li>
+</ul>
+<h3 id="RBAC-Role-Based-Access-Control"><a href="#RBAC-Role-Based-Access-Control" class="headerlink" title="RBAC: Role-Based Access Control"></a>RBAC: Role-Based Access Control</h3><ul>
+<li>Use role to decide access but not identity</li>
+<li>Role indicates set of users, is a collection of privileges/permissions associated with some function or affiliation</li>
+<li>Role hierarchy<ul>
+<li>Partial order of roles</li>
+<li>Each role gets permissions of roles below</li>
+<li>List only new permissions given to each role</li>
+</ul>
+</li>
+<li>The permissions are static, the user-role membership is transient</li>
+<li>Not direct MAC and DAC, but may be either of these (i.e.,considering roles as labels)</li>
+</ul>
+<h2 id="Cryptography"><a href="#Cryptography" class="headerlink" title="Cryptography"></a>Cryptography</h2><h3 id="Cryptosystem"><a href="#Cryptosystem" class="headerlink" title="Cryptosystem"></a>Cryptosystem</h3><ul>
+<li>Consists of five tuples<ul>
+<li><strong>P</strong>: Set of plaintexts</li>
+<li><strong>K</strong>: Set of keys</li>
+<li><strong>C</strong>: Set of ciphertexts</li>
+<li><strong>E</strong>: Set of encryption functions </li>
+<li><strong>D</strong>: Set of decryption functions</li>
+</ul>
+</li>
+<li>Attacks<ul>
+<li>Assume adversary knows algorithm used, but not key</li>
+<li>Three types of attacks<ul>
+<li>ciphertext only: adversary has only ciphertext; goal is to find plaintext, possibly key</li>
+<li>known plaintext: adversary has ciphertext, corresponding plaintext; goal is to find key</li>
+<li>chosen plaintext: adversary may supply plaintexts and obtain corresponding ciphertext; goal is to find key (adversary can decide the input and get the output)</li>
+</ul>
+</li>
+<li>Basis for attacks<ul>
+<li>Mathematical attacks<ul>
+<li>Based on analysis of underlying mathematics</li>
+</ul>
+</li>
+<li>Statistical attacks<ul>
+<li>Make assumptions about the distribution of letters, pairs of letters (digrams), triplets of letters (trigrams), etc.</li>
+<li>Examine ciphertext, correlate properties with the assumptions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Communication-Channel"><a href="#Communication-Channel" class="headerlink" title="Communication Channel"></a>Communication Channel</h3><ul>
+<li>Communication channel is a basic cryptography problem</li>
+<li>Ingredients for a secure channel<ul>
+<li>Confidentiality: attacker can’t see the message</li>
+<li>Integrity: attacker can’t modify the message</li>
+</ul>
+</li>
+</ul>
+<h3 id="Classical-Cryptography"><a href="#Classical-Cryptography" class="headerlink" title="Classical Cryptography"></a>Classical Cryptography</h3><ul>
+<li>Sender, receiver share common key<ul>
+<li>Keys may be the same, or trivial to derive from one another</li>
+<li>Sometimes called symmetric cryptography</li>
+</ul>
+</li>
+<li>Two basic types<ul>
+<li>Transposition ciphers</li>
+<li>Substitution ciphers</li>
+<li><em>Combinations are called product ciphers</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="Transposition-Cipher"><a href="#Transposition-Cipher" class="headerlink" title="Transposition Cipher"></a>Transposition Cipher</h4><ul>
+<li>Rearrange letters in plaintext to produce ciphertext</li>
+<li>Usually use anagramming to attack the cipher</li>
+<li>Terms<ul>
+<li>period: length of key</li>
+<li>tableau: table used to encipher and decipher</li>
+<li>polyalphabetic: the key has several different letters</li>
+</ul>
+</li>
+<li>The key of a Vigenère cipher should be at least as long as the message and the key must be random</li>
+</ul>
+<h4 id="Substitution-Cipher"><a href="#Substitution-Cipher" class="headerlink" title="Substitution Cipher"></a>Substitution Cipher</h4><ul>
+<li>Change characters in plaintext to produce ciphertext</li>
+<li>Usually use exhaustive search or statistical analysis to attack the cipher</li>
+</ul>
+<h4 id="DES-Algorithm"><a href="#DES-Algorithm" class="headerlink" title="DES Algorithm"></a>DES Algorithm</h4><ul>
+<li>Steps:<ul>
+<li>Divide input into 64-bit blocks</li>
+<li>Generate 16 round keys</li>
+<li>Use IP table to generate the <strong>Initial Permutation</strong> of plaintexts</li>
+<li>Evenly split IP into $L_0$ and $R_0$</li>
+<li>Iterate 16 times using round keys and function $f$</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -510,7 +741,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intros"><span class="nav-number">1.</span> <span class="nav-text">Intros</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Computer-Security"><span class="nav-number">1.1.</span> <span class="nav-text">What is Computer Security?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Components-of-Security"><span class="nav-number">1.2.</span> <span class="nav-text">Basic Components of Security</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Confidentiality"><span class="nav-number">1.2.1.</span> <span class="nav-text">Confidentiality</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integrity"><span class="nav-number">1.2.2.</span> <span class="nav-text">Integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Availability"><span class="nav-number">1.2.3.</span> <span class="nav-text">Availability</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threat-Classes"><span class="nav-number">1.3.</span> <span class="nav-text">Threat Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disclosure"><span class="nav-number">1.3.1.</span> <span class="nav-text">Disclosure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deception"><span class="nav-number">1.3.2.</span> <span class="nav-text">Deception</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disruption"><span class="nav-number">1.3.3.</span> <span class="nav-text">Disruption</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usurpation"><span class="nav-number">1.3.4.</span> <span class="nav-text">Usurpation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Categories-of-Security-Attack"><span class="nav-number">1.4.</span> <span class="nav-text">General Categories of Security Attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goals-of-Security"><span class="nav-number">1.5.</span> <span class="nav-text">Goals of Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Policy-and-Mechanism"><span class="nav-number">1.6.</span> <span class="nav-text">Policy and Mechanism</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Policy"><span class="nav-number">1.6.1.</span> <span class="nav-text">Policy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mechanism"><span class="nav-number">1.6.2.</span> <span class="nav-text">Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assurance"><span class="nav-number">1.7.</span> <span class="nav-text">Assurance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operation-Issues"><span class="nav-number">1.8.</span> <span class="nav-text">Operation Issues</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Control"><span class="nav-number">2.</span> <span class="nav-text">Access Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminology"><span class="nav-number">2.1.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#States-and-State-Transition"><span class="nav-number">2.2.</span> <span class="nav-text">States and State Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#States"><span class="nav-number">2.2.1.</span> <span class="nav-text">States</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#State-Transition"><span class="nav-number">2.2.2.</span> <span class="nav-text">State Transition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-Matrix-Model"><span class="nav-number">2.3.</span> <span class="nav-text">Access Control Matrix Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Operations"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">Operations</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Safety-amp-Security"><span class="nav-number">2.4.</span> <span class="nav-text">Safety &amp; Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-List-amp-Capability-List"><span class="nav-number">2.5.</span> <span class="nav-text">Access Control List &amp; Capability List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Access-Control-List"><span class="nav-number">2.5.1.</span> <span class="nav-text">Access Control List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Capability-List"><span class="nav-number">2.5.2.</span> <span class="nav-text">Capability List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACL-v-s-C-List"><span class="nav-number">2.5.3.</span> <span class="nav-text">ACL v.s. C-List</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confidentiality-Policy"><span class="nav-number">3.</span> <span class="nav-text">Confidentiality Policy</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intros"><span class="nav-number">1.</span> <span class="nav-text">Intros</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Computer-Security"><span class="nav-number">1.1.</span> <span class="nav-text">What is Computer Security?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Components-of-Security"><span class="nav-number">1.2.</span> <span class="nav-text">Basic Components of Security</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Confidentiality"><span class="nav-number">1.2.1.</span> <span class="nav-text">Confidentiality</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Integrity"><span class="nav-number">1.2.2.</span> <span class="nav-text">Integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Availability"><span class="nav-number">1.2.3.</span> <span class="nav-text">Availability</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threat-Classes"><span class="nav-number">1.3.</span> <span class="nav-text">Threat Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disclosure"><span class="nav-number">1.3.1.</span> <span class="nav-text">Disclosure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deception"><span class="nav-number">1.3.2.</span> <span class="nav-text">Deception</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Disruption"><span class="nav-number">1.3.3.</span> <span class="nav-text">Disruption</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usurpation"><span class="nav-number">1.3.4.</span> <span class="nav-text">Usurpation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Categories-of-Security-Attack"><span class="nav-number">1.4.</span> <span class="nav-text">General Categories of Security Attack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goals-of-Security"><span class="nav-number">1.5.</span> <span class="nav-text">Goals of Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Policy-and-Mechanism"><span class="nav-number">1.6.</span> <span class="nav-text">Policy and Mechanism</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Policy"><span class="nav-number">1.6.1.</span> <span class="nav-text">Policy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mechanism"><span class="nav-number">1.6.2.</span> <span class="nav-text">Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assurance"><span class="nav-number">1.7.</span> <span class="nav-text">Assurance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operation-Issues"><span class="nav-number">1.8.</span> <span class="nav-text">Operation Issues</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-Control"><span class="nav-number">2.</span> <span class="nav-text">Access Control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminology"><span class="nav-number">2.1.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#States-and-State-Transition"><span class="nav-number">2.2.</span> <span class="nav-text">States and State Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#States"><span class="nav-number">2.2.1.</span> <span class="nav-text">States</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#State-Transition"><span class="nav-number">2.2.2.</span> <span class="nav-text">State Transition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-Matrix-Model"><span class="nav-number">2.3.</span> <span class="nav-text">Access Control Matrix Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Operations"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">Operations</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Safety-amp-Security"><span class="nav-number">2.4.</span> <span class="nav-text">Safety &amp; Security</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-List-amp-Capability-List"><span class="nav-number">2.5.</span> <span class="nav-text">Access Control List &amp; Capability List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Access-Control-List"><span class="nav-number">2.5.1.</span> <span class="nav-text">Access Control List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Capability-List"><span class="nav-number">2.5.2.</span> <span class="nav-text">Capability List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACL-v-s-C-List"><span class="nav-number">2.5.3.</span> <span class="nav-text">ACL v.s. C-List</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Security-Policy-Models-Intro"><span class="nav-number">3.</span> <span class="nav-text">Security Policy Models Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-Secure-System"><span class="nav-number">3.1.</span> <span class="nav-text">What is a Secure System?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Control-Administration"><span class="nav-number">3.2.</span> <span class="nav-text">Access Control Administration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Discretionary-Access-Control-DAC"><span class="nav-number">3.2.1.</span> <span class="nav-text">Discretionary Access Control (DAC)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mandatory-Access-Control-MAC"><span class="nav-number">3.2.2.</span> <span class="nav-text">Mandatory Access Control (MAC)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Models"><span class="nav-number">3.3.</span> <span class="nav-text">Security Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Confidentiality-Policy"><span class="nav-number">4.</span> <span class="nav-text">Confidentiality Policy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bell-LaPadula-Model-BLP-Model"><span class="nav-number">4.1.</span> <span class="nav-text">Bell-LaPadula Model (BLP Model)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Levels"><span class="nav-number">4.2.</span> <span class="nav-text">Security Levels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lattice-Model"><span class="nav-number">4.3.</span> <span class="nav-text">Lattice Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integrity-Policy"><span class="nav-number">5.</span> <span class="nav-text">Integrity Policy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BIBA-Model"><span class="nav-number">5.1.</span> <span class="nav-text">BIBA Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clark-Wilson-Integrity-Model"><span class="nav-number">5.2.</span> <span class="nav-text">Clark-Wilson Integrity Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Entities"><span class="nav-number">5.2.1.</span> <span class="nav-text">Entities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Certification-Rules"><span class="nav-number">5.2.2.</span> <span class="nav-text">Certification Rules</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BIBA-Model-v-s-Clark-Wilson-Model"><span class="nav-number">5.3.</span> <span class="nav-text">BIBA Model v.s. Clark-Wilson Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hybrid-Policy"><span class="nav-number">6.</span> <span class="nav-text">Hybrid Policy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Chinese-Wall"><span class="nav-number">6.1.</span> <span class="nav-text">Chinese Wall</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definitions"><span class="nav-number">6.1.1.</span> <span class="nav-text">Definitions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Security-Conditions"><span class="nav-number">6.1.2.</span> <span class="nav-text">Security Conditions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Comparison-to-Bell-LaPadula"><span class="nav-number">6.1.3.</span> <span class="nav-text">Comparison to Bell-LaPadula</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RBAC-Role-Based-Access-Control"><span class="nav-number">6.2.</span> <span class="nav-text">RBAC: Role-Based Access Control</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cryptography"><span class="nav-number">7.</span> <span class="nav-text">Cryptography</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cryptosystem"><span class="nav-number">7.1.</span> <span class="nav-text">Cryptosystem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Communication-Channel"><span class="nav-number">7.2.</span> <span class="nav-text">Communication Channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classical-Cryptography"><span class="nav-number">7.3.</span> <span class="nav-text">Classical Cryptography</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Transposition-Cipher"><span class="nav-number">7.3.1.</span> <span class="nav-text">Transposition Cipher</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Substitution-Cipher"><span class="nav-number">7.3.2.</span> <span class="nav-text">Substitution Cipher</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DES-Algorithm"><span class="nav-number">7.3.3.</span> <span class="nav-text">DES Algorithm</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
